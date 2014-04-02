@@ -4,13 +4,16 @@
 "       Author: Ryu
 "        Email: neko@imiku.com
 "     HomePage: http://www.imiku.com/
-"      Version: 0.0.1
+"      Version: 0.0.2
 "   LastChange: 2012-12-29 23:07:28
 "      History:
 "=============================================================================
-let g:ajaxmin_cmd = $VIMFILES.'/bin/Microsoft-Ajax-Minifier-4/AjaxMin.exe'
-let g:ajaxmin_cmd_jsopt = '-clobber:true -term'
-let g:ajaxmin_cmd_cssopt = '-clobber:true -term -comments:hacks'
+
+if !exists("g:ajaxmin_cmd")
+    let g:ajaxmin_cmd = $VIMFILES.'/bin/Microsoft-Ajax-Minifier-4/AjaxMin.exe'
+    let g:ajaxmin_cmd_jsopt = '-clobber:true -term'
+    let g:ajaxmin_cmd_cssopt = '-clobber:true -term -comments:hacks'
+endif
 
 func! g:CompileAjaxMinJsCss(...)
 
