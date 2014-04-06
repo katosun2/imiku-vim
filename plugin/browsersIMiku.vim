@@ -5,12 +5,13 @@
 "        Email: neko@imiku.com
 "     HomePage: http://www.imiku.com/
 "      Version: 0.0.1
-"   LastChange: 2013-02-02 00:14:18
+"   LastChange: 2014-04-06 20:45:18
 "      History:
 "      auto load *.lnk files and map
 "=============================================================================
 
-if !isdirectory($BROWSERS) || exists("*GetLnk")
+if exists('*mkdir') && !isdirectory($BROWSERS) || exists("*GetLnk")
+
 	finish
 endif
 
