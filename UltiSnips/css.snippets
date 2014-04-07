@@ -1,407 +1,335 @@
-###########################################################################
-#                    Most of these came from TextMate                     #
-###########################################################################
-
-priority -50
-
-snippet ! "!important CSS (!)"
-${1:!important}
-endsnippet
-
-snippet fixed "Fixed Position Bottom 100% wide IE6"
-${2:bottom: auto;}top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-${1:THE HEIGHT OF THIS THING IN PIXELS}));
-${3:left: expression(eval(document.documentElement.scrollLeft));
-}${4:width: expression(eval(document.documentElement.clientWidth));}$0
-endsnippet
-
-snippet background "background-attachment: scroll:fixed (background)"
-background-attachment: ${1:scroll/fixed};$0
-endsnippet
-
-snippet background "background-color:  color-hex (background)"
-background-color: #${1:DDD};$0
-endsnippet
-
-snippet background "background-color:  color-name (background)"
-background-color: ${1:red};$0
-endsnippet
-
-snippet background "background-color:  color-rgb (background)"
-background-color: rgb(${1:255},${2:255},${3:255});$0
-endsnippet
-
-snippet background "background-color:  transparent (background)"
-background-color: transparent;$0
-endsnippet
-
-snippet background "background-image:  none (background)"
-background-image: none;$0
-endsnippet
-
-snippet background "background-image:  url (background)"
-background-image: url($1);$0
-endsnippet
-
-snippet background "background-position:  position (background)"
-background-position: ${1:top left/top center/top right/center left/center center/center right/bottom left/bottom center/bottom right/x-% y-%/x-pos y-pos};$0
-endsnippet
-
-snippet background "background-repeat:  r:r-x:r-y:n-r (background)"
-background-repeat: ${1:repeat/repeat-x/repeat-y/no-repeat};$0
-endsnippet
-
-snippet background "background:  color image repeat attachment position (background)"
-background:${6: #${1:DDD}} url($2) ${3:repeat/repeat-x/repeat-y/no-repeat} ${4:scroll/fixed} ${5:top left/top center/top right/center left/center center/center right/bottom left/bottom center/bottom right/x-% y-%/x-pos y-pos};$0
-endsnippet
-
-snippet border "border-bottom-color: size style color (border)"
-border-bottom-color: #${1:999};$0
-endsnippet
-
-snippet border "border-bottom-style: size style color (border)"
-border-bottom-style: ${1:none/hidden/dotted/dashed/solid/double/groove/ridge/inset/outset};$0
-endsnippet
-
-snippet border "border-bottom-width: size style color (border)"
-border-bottom-width: ${1:1}px ${2:solid} #${3:999};$0
-endsnippet
-
-snippet border "border-bottom: size style color (border)"
-border-bottom: ${1:1}px ${2:solid} #${3:999};$0
-endsnippet
-
-snippet border "border-color: color (border)"
-border-color: ${1:999};$0
-endsnippet
-
-snippet border "border-left-color: color (border)"
-border-right-color: #${1:999};$0
-endsnippet
-
-snippet border "border-left-style: style (border)"
-border-left-style: ${1:none/hidden/dotted/dashed/solid/double/groove/ridge/inset/outset};$0
-endsnippet
-
-snippet border "border-left-width: size (border)"
-border-left-width: ${1:1}px
-endsnippet
-
-snippet border "border-left: size style color (border)"
-border-left: ${1:1}px ${2:solid} #${3:999};$0
-endsnippet
-
-snippet border "border-right-color: color (border)"
-border-right-color: #${1:999};$0
-endsnippet
-
-snippet border "border-right-style: style (border)"
-border-right-style: ${1:none/hidden/dotted/dashed/solid/double/groove/ridge/inset/outset};$0
-endsnippet
-
-snippet border "border-right-width: size (border)"
-border-right-width: ${1:1}px
-endsnippet
-
-snippet border "border-right: size style color (border)"
-border-right: ${1:1}px ${2:solid} #${3:999};$0
-endsnippet
-
-snippet border "border-style: style (border)"
-border-style: ${1:none/hidden/dotted/dashed/solid/double/groove/ridge/inset/outset};$0
-endsnippet
-
-snippet border "border-top-color: color (border)"
-border-top-color: #${1:999};$0
-endsnippet
-
-snippet border "border-top-style: style (border)"
-border-top-style: ${1:none/hidden/dotted/dashed/solid/double/groove/ridge/inset/outset};$0
-endsnippet
-
-snippet border "border-top-width: size (border)"
-border-top-width: ${1:1}px
-endsnippet
-
-snippet border "border-top: size style color (border)"
-border-top: ${1:1}px ${2:solid} #${3:999};$0
-endsnippet
-
-snippet border "border-width: width (border)"
-border-width: ${1:1px};$0
-endsnippet
-
-snippet border "border:   size style color (border)"
-border: ${1:1px} ${2:solid} #${3:999};$0
-endsnippet
-
-snippet clear "clear: value (clear)"
-clear: ${1:left/right/both/none};$0
-endsnippet
-
-snippet color "color:  color-hex (color)"
-color: #${1:DDD};$0
-endsnippet
-
-snippet color "color:  color-name (color)"
-color: ${1:red};$0
-endsnippet
-
-snippet color "color:  color-rgb (color)"
-color: rgb(${1:255},${2:255},${3:255});$0
-endsnippet
-
-snippet cursor "cursor: type (cursor)"
-cursor: ${1:default/auto/crosshair/pointer/move/*-resize/text/wait/help};$0
-endsnippet
-
-snippet cursor "cursor: url (cursor)"
-cursor: url($1);$0
-endsnippet
-
-snippet direction "direction: ltr|rtl (direction)"
-direction: ${1:ltr|rtl};$0
-endsnippet
-
-snippet display "display: block (display)"
-display: block;$0
-endsnippet
-
-snippet display "display: common-types (display)"
-display: ${1:none/inline/block/list-item/run-in/compact/marker};$0
-endsnippet
-
-snippet display "display: inline (display)"
-display: inline;$0
-endsnippet
-
-snippet display "display: table-types (display)"
-display: ${1:table/inline-table/table-row-group/table-header-group/table-footer-group/table-row/table-column-group/table-column/table-cell/table-caption};$0
-endsnippet
-
-snippet float "float: left:right:none (float)"
-float: ${1:left/right/none};$0
-endsnippet
-
-snippet font "font-family:   family (font)"
-font-family: ${1:Arial, "MS Trebuchet"}, ${2:sans-}serif;$0
-endsnippet
-
-snippet font "font-size: size (font)"
-font-size: ${1:100%};$0
-endsnippet
-
-snippet font "font-style:   normal:italic:oblique (font)"
-font-style: ${1:normal/italic/oblique};$0
-endsnippet
-
-snippet font "font-variant:   normal:small-caps (font)"
-font-variant: ${1:normal/small-caps};$0
-endsnippet
-
-snippet font "font-weight: weight (font)"
-font-weight: ${1:normal/bold};$0
-endsnippet
-
-snippet font "font:   style variant weight size:line-height font -family (font)"
-font: ${1:normal/italic/oblique} ${2:normal/small-caps} ${3:normal/bold} ${4:1em/1.5em} ${5:Arial}, ${6:sans-}serif;$0
-endsnippet
-
-snippet font "font: size font (font)"
-font: ${1:75%} ${2:"Lucida Grande", "Trebuchet MS", Verdana,} ${3:sans-}serif;$0
-endsnippet
-
-snippet letter "letter-spacing:   length-em (letter)"
-letter-spacing: $1em;$0
-endsnippet
-
-snippet letter "letter-spacing:   length-px (letter)"
-letter-spacing: $1px;$0
-endsnippet
-
-snippet list "list-style-image: url (list)"
-list-style-image: url($1);$0
-endsnippet
-
-snippet list "list-style-position: pos (list)"
-list-style-position: ${1:inside/outside};$0
-endsnippet
-
-snippet list "list-style-type: asian (list)"
-list-style-type: ${1:cjk-ideographic/hiragana/katakana/hiragana-iroha/katakana-iroha};$0
-endsnippet
-
-snippet list "list-style-type: marker(list)"
-list-style-type: ${1:none/disc/circle/square};$0
-endsnippet
-
-snippet list "list-style-type: numeric (list)"
-list-style-type: ${1:decimal/decimal-leading-zero/zero};$0
-endsnippet
-
-snippet list "list-style-type: other (list)"
-list-style-type: ${1:hebrew/armenian/georgian};$0
-endsnippet
-
-snippet list "list-style-type: roman-alpha-greek (list)"
-list-style-type: ${1:lower-roman/upper-roman/lower-alpha/upper-alpha/lower-greek/lower-latin/upper-latin};$0
-endsnippet
-
-snippet list "list-style: type position image (list)"
-list-style: ${1:none/disc/circle/square/decimal/zero} ${2:inside/outside} url($3);$0
-endsnippet
-
-snippet margin "margin-bottom: length (margin)"
-margin-bottom: ${1:20px};$0
-endsnippet
-
-snippet margin "margin-left: length (margin)"
-margin-left: ${1:20px};$0
-endsnippet
-
-snippet margin "margin-right: length (margin)"
-margin-right: ${1:20px};$0
-endsnippet
-
-snippet margin "margin-top: length (margin)"
-margin-top: ${1:20px};$0
-endsnippet
-
-snippet margin "margin:   all (margin)"
-margin: ${1:20px};$0
-endsnippet
-
-snippet margin "margin: T R B L (margin)"
-margin: ${1:20px} ${2:0px} ${3:40px} ${4:0px};$0
-endsnippet
-
-snippet margin "margin: V H (margin)"
-margin: ${1:20px} ${2:0px};$0
-endsnippet
-
-snippet marker "marker-offset: auto (marker)"
-marker-offset: auto;$0
-endsnippet
-
-snippet marker "marker-offset: length (marker)"
-marker-offset: ${1:10px};$0
-endsnippet
-
-snippet overflow "overflow: type (overflow)"
-overflow: ${1:visible/hidden/scroll/auto};$0
-endsnippet
-
-snippet padding "padding-bottom: length (margin)"
-padding-bottom: ${1:20px};$0
-endsnippet
-
-snippet padding "padding-left: length (margin)"
-padding-left: ${1:20px};$0
-endsnippet
-
-snippet padding "padding-right: length (margin)"
-padding-right: ${1:20px};$0
-endsnippet
-
-snippet padding "padding-top: length (margin)"
-padding-top: ${1:20px};$0
-endsnippet
-
-snippet padding "padding:   T R B L (padding)"
-padding: ${1:20px} ${2:0px} ${3:40px} ${4:0px};$0
-endsnippet
-
-snippet padding "padding:   V H (padding)"
-padding: ${1:20px} ${2:0px};$0
-endsnippet
-
-snippet padding "padding:   all (padding)"
-padding: ${1:20px};$0
-endsnippet
-
-snippet position "position: type (position)"
-position: ${1:static/relative/absolute/fixed};$0
-endsnippet
-
-snippet { "properties { } ( } )"
-{
-	/* $1 */
-	$0
-
-endsnippet
-
-snippet scrollbar "scrollbar"
-scrollbar-base-color:       ${1:#CCCCCC};${2:
-scrollbar-arrow-color:      ${3:#000000};
-scrollbar-track-color:      ${4:#999999};
-scrollbar-3dlight-color:    ${5:#EEEEEE};
-scrollbar-highlight-color:  ${6:#FFFFFF};
-scrollbar-face-color:       ${7:#CCCCCC};
-scrollbar-shadow-color:     ${9:#999999};
-scrollbar-darkshadow-color: ${8:#666666};}
-endsnippet
-
-snippet selection "selection"
-$1::-moz-selection,
-$1::selection {
-	color: ${2:inherit};
-	background: ${3:inherit};
-}
-endsnippet
-
-snippet text "text-align: left:center:right (txt)"
-text-align: ${1:left/right/center/justify};$0
-endsnippet
-
-snippet text "text-decoration: none:underline:overline:line-through:blink (text)"
-text-decoration: ${1:none/underline/overline/line-through/blink};$0
-endsnippet
-
-snippet text "text-indent: length (text)"
-text-indent: ${1:10}px;$0
-endsnippet
-
-snippet text "text-shadow: color-hex x y blur (text)"
-text-shadow: #${1:DDD} ${2:10px} ${3:10px} ${4:2px};$0
-endsnippet
-
-snippet text "text-shadow: color-rgb x y blur (text)"
-text-shadow: rgb(${1:255},${2:255},${3:255}) ${4:10px} ${5:10px} ${6:2px};$0
-endsnippet
-
-snippet text "text-shadow: none (text)"
-text-shadow: none;$0
-endsnippet
-
-snippet text "text-transform: capitalize:upper:lower (text)"
-text-transform: ${1:capitalize/uppercase/lowercase};$0
-endsnippet
-
-snippet text "text-transform: none (text)"
-text-transform: none;$0
-endsnippet
-
-snippet vertical "vertical-align: type (vertical)"
-vertical-align: ${1:baseline/sub/super/top/text-top/middle/bottom/text-bottom/length/%};$0
-endsnippet
-
-snippet visibility "visibility: type (visibility)"
-visibility: ${1:visible/hidden/collapse};$0
-endsnippet
-
-snippet white "white-space:  normal:pre:nowrap (white)"
-white-space: ${1:normal/pre/nowrap};$0
-endsnippet
-
-snippet word "word-spacing:  length (word)"
-word-spacing: ${1:10px};$0
-endsnippet
-
-snippet word "word-spacing:  normal (word)"
-word-spacing: normal;$0
-endsnippet
-
-snippet z "z-index: index (z)"
-z-index: $1;$0
-endsnippet
-
-# vim:ft=snippets:
+snippet cc
+	.${1}{${2}}
+snippet dc
+	#${1}{${2}}
+snippet **
+	/*${1}*/
+snippet qjbhh
+	white-space:nowrap;
+snippet qjhh
+	word-break:break-all;
+snippet zdhh
+	word-wrap:break-word;word-break:normal; 
+snippet fs
+	font-size:
+snippet fs12
+	font-size:12px;
+snippet fs14
+	font-size:14px;
+snippet fs16
+	font-size:16px;
+snippet fs18
+	font-size:18px;
+snippet fw
+	font-weight:${1};
+snippet fw7
+	font-weight:700;
+snippet fw4
+	font-weight:400;
+snippet ff
+	font-family:${1};
+snippet ffht
+	font-family:"\9ED1\4F53";
+snippet ffst
+	font-family:"\5B8B\4F53";
+snippet ffyh
+	font-family:"\5FAE\8F6F\96C5\9ED1";
+snippet pa
+	padding:${1};
+snippet pat
+	padding-top:${1};
+snippet par
+	padding-right:${1};
+snippet pab
+	padding-bottom:${1};
+snippet pal
+	padding-left:${1};
+snippet ma
+	margin:${1};
+snippet maa
+	margin:0 auto;
+snippet mat
+	margin-top:${1};
+snippet mar
+	margin-right:${1};
+snippet mab
+	margin-bottom:${1};
+snippet mal
+	margin-left:${1};
+snippet mh
+	min-height:${1};
+snippet mw
+	min-width:${1};
+snippet bg
+	background:${1};
+snippet bgc
+	background:#${1};
+snippet bgu
+	background:url(${1}) no-repeat;
+snippet bguc
+	background:url(${1}) no-repeat #${2};
+snippet bgux
+	background:url(${1}) repeat-x;
+snippet bguy
+	background:url(${1}) repeat-y;
+snippet bgp
+	background-position:${1};
+snippet bgn
+	background:none;
+snippet bcc 
+	border-collapse:collapse;
+snippet co
+	color:#${1};
+snippet db
+	display:block;
+snippet dn
+	display:none;
+snippet di
+	display:inline;
+snippet dib
+	display:inline-block;*display:inline;*zoom:1;
+snippet tac
+	text-align:center;
+snippet tal
+	text-align:left;
+snippet tar
+	text-align:right;
+snippet ti
+	text-indent:
+snippet ti2
+	text-indent:2em;
+snippet tdn
+	text-decoration:none;
+snippet tdu
+	text-decoration:underline;
+snippet lhp
+	line-height:%${1};
+snippet lh
+	line-height:${1};
+snippet bo
+	border:1px solid #${1};
+snippet bon
+	border:0 none;
+snippet botn
+	border-top:0 none;
+snippet born
+	border-right:0 none;
+snippet boln
+	border-left:0 none;
+snippet bot
+	border-top:1px solid #${1};
+snippet bor
+	border-right:1px solid #${1};
+snippet bob
+	border-bottom:1px solid #${1};
+snippet bol
+	border-left:1px solid #${1};
+snippet border_dashed
+	dashed
+snippet border_solid
+	solid
+snippet border_dotted
+	dotted
+snippet border_double
+	double
+snippet border_groove
+	groove
+snippet border_inset
+	inset
+snippet border_outset
+	outset
+snippet border_ridge
+	ridge
+snippet fl
+	float:left;
+snippet fr
+	float:right;
+snippet oh
+	overflow:hidden;
+snippet oa
+	overflow:auto;height:1%;/*ie6 bug*/
+snippet poa
+	position:absolute;
+snippet por
+	position:relative;
+snippet pof
+	position:fixed;
+snippet pos
+	position:static;
+snippet l
+	left:${1};
+snippet r
+	right:${1};
+snippet t
+	top:${1};
+snippet b
+	bottom:${1};
+snippet va
+	vertical-align:baseline|sub|super|text-top|text-bottom|inherit;
+snippet vam
+	vertical-align:middle;
+snippet vab
+	vertical-align:bottom;
+snippet vatb
+	vertical-align:text-bottom;
+snippet vat
+	vertical-align:top;
+snippet cu
+	cursor:${1};
+snippet cuhh
+	cursor:help;
+snippet cuh
+	cursor:hand;cursor:pointer;
+snippet cum
+	cursor:move;
+snippet alp
+	filter:alpha(opacity=80);-moz-opacity:0.8;opacity: 0.8;
+snippet iebg
+	background:url(about:blank);
+snippet toe
+	overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+snippet utf8
+	@charset "utf-8";
+snippet gbk
+	@charset "gbk";
+snippet tplcss
+	body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td{padding:0;margin:0;}
+	table{border-collapse:collapse;border-spacing:0;}
+	fieldset, img{border:0 none;}
+	address, caption, cite, code, dfn, em, th, var{font-weight:400;font-style:normal;}
+	ol, ul{list-style:none;}
+	caption, th{text-align:left;}
+	h1, h2, h3, h4, h5, h6{font-weight:400;font-size:100%;}
+	q:before, q:after{content:'';}
+	abbr, acronym{border:0 none;}
+	body{color:#333333;font-size:12px;font-family:"\5B8B\4F53", Arial, Tahoma, Verdana, sans-serif;}
+	a{color:#333333;text-decoration:none;}
+	a:hover{text-decoration:underline;}
+	.wrapfix:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+	.wrapfix{display: inline-table;}/* Hides from IE-mac \*/
+	* html .wrapfix{height: 1%;}
+	.wrapfix{display: block;}/* End hide from IE-mac */
+	*+html .wrapfix{min-height: 1px;}/*ie7*/
+snippet ie6png32
+	_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="full URL");
+snippet ts
+	text-shadow:${1:1px} ${2:2px} ${3:rgba(0,0,0,0)};
+
+#User CSS3
+snippet bgs
+	background-size:${1};
+snippet cssyj
+	border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;-o-border-radius:5px;
+snippet csstm
+	filter:alpha(opacity=80);-moz-opacity:0.8;opacity:0.8;
+snippet cssyy
+	box-shadow:${1:1px} ${2:5px} ${3:3px} ${4:#000};-moz-box-shadow:${5:$1} ${6:$2} ${7:$3} ${8:$4};-webkit-box-shadow:${9:$1} ${10:$2} ${11:$3} ${12:$4};
+snippet cssjq
+	overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+snippet cssqx
+	transform:skew(10deg,0);-webkit-transform:skew(10deg,0);-moz-transform:skew(10deg,0);
+snippet cssbs
+	box-sizing:border-box;-webkit-box-sizing:border-box;
+snippet cssjb
+	background-color: ${1:#endcolor};background-repeat: repeat-x;background-image: -webkit-gradient(linear, left top, left bottom, from(${2:$begincolor}), to(${3:$1}));background-image: -webkit-linear-gradient(top, ${4:$2}, ${5:$1});background-image: linear-gradient(top, ${6:$2}, ${7:$1});
+snippet csshz
+	display:box;display:-webkit-box;box-flex:1;-webkit-box-flex:1;box-align:center;-webkit-box-align:center;box-pack:center;-webkit-box-pack:center;
+snippet cssztyy
+	text-shadow:${1:1px} ${2:2px} ${3:rgba(0,0,0,0)};
+snippet css3img
+	@media (min-device-width:600px) { 
+		img[data-src-600px] {
+			content: attr(data-src-600px, url); 
+		}
+	}
+	@media (min-device-width:800px) {
+		img[data-src-800px] {
+			content: attr(data-src-800px, url);
+		}
+	}
+snippet cssxz
+    transform:rotate(${1:90deg});
+    -webkit-transform:rotate(${2:$1});
+    -moz-transform:rotate(${3:$1});
+    -o-transform:rotate(${4:$1});
+snippet cssgd
+    transition:${1:transform} ${5:.3s};
+    -webkit-transition:-webkit-${2:$1} ${6:$5};
+    -moz-transition:-webkit-${3:$1} ${7:$5};
+    -o-transition:-webkit-${4:$1} ${8:$5};
+snippet cssdh
+    animation: ${5:$1} ${9:.5s};
+    -moz-animation: ${6:$1} ${10:$9};
+    -webkit-animation: ${7:$1} ${11:$9};
+    -o-animation: ${8:$1} ${12:$9};
+    @keyframes ${1:myanime} {
+        from {background: red;}
+        to {background: yellow;}
+    }
+    @-webkit-keyframes ${2:$1} {
+        from {background: red;}
+        to {background: yellow;}
+    }
+    @-moz-keyframes ${3:$1} {
+        from {background: red;}
+        to {background: yellow;}
+    }
+    @-o-keyframes ${4:$1} {
+        from {background: red;}
+        to {background: yellow;}
+    }
+snippet csscb
+	:root input[type="checkbox"] {
+		display:none;
+	}
+	:root input[type="checkbox"] + label:before {
+		display:inline-block;
+		width:28px;
+		height:28px;
+		margin:-1px 4px 0 0;
+		vertical-align:middle;
+		background:url() left top no-repeat;
+		background-size:contain;
+		cursor:pointer;
+		content:"";
+	}
+	:root input[type="checkbox"]:checked + label:before {
+		background-position:-38px;
+		background-size:contain;
+		content:"";
+	}
+snippet cssrd
+	:root input[type="radio"]{
+		display:none;
+	}
+	:root input[type="radio"] + label:before {
+		display:inline-block;
+		margin-right:0.5em;
+		width:1.2em;
+		height:1.2em;
+		vertical-align:middle;
+		background:url() no-repeat;
+		background-size:contain;
+		cursor:pointer;
+		content:"";
+	}
+	:root input[type="radio"]:checked + label:before {
+		background:url() no-repeat;
+		background-size:contain;
+		content:"";
+	}
+snippet csspre
+	white-space:pre-wrap
+	word-wrap: break-word;
+	word-break: break-all;/*如果要兼容IE，可以加上这句，连续字母断行的问题伤不起啊。。。。*/
+snippet gpu
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	backface-visibility: hidden;
+	 
+	 /*hack for light*/
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	-ms-perspective: 1000;
+	perspective: 1000;
