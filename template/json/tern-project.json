@@ -1,10 +1,11 @@
 {
   "libs": [
-    "browser",
-    "jquery"
+    "browser"
   ],
   "loadEagerly": [
-    "importantfile.js"
+    "/work/10.13.0.30/dev.kugou.com/Front-end/libs/js/library_2.0/js/base.js",
+	"./player_m.js",
+	"./mobilecall.js"
   ],
   "plugins": {
     "requirejs": {
