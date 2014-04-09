@@ -1,0 +1,30 @@
+{
+  "!name": "mylibrary",
+  "!define": {
+    "point": {
+      "x": "number",
+      "y": "number"
+    },
+	"offset": {
+		"top": "number",
+		"left": "number",
+		"right": "number",
+		"bottom": "number"
+	}
+  },
+  "MyConstructor": {
+    "!type": "fn(arg: string)",
+    "staticFunction": "fn() -> bool",
+    "prototype": {
+      "property": "[number]",
+      "clone": "fn() -> +MyConstructor",
+      "getPoint": "fn(i: number) -> point"
+    },
+	"getXY": {
+		"!type": "fn() -> offset",
+		"!url": "http://",
+		"!doc": "这里 !type 可以在 !defind 定义结果类型"
+	}
+  },
+  "someOtherGlobal": "string"
+}
