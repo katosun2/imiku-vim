@@ -1,0 +1,14 @@
+snippet for
+{foreach ${1:$data} as ${2:$key} => ${3:$val}}
+	${4}
+{/foreach}
+endsnippet
+
+snippet dump
+{var_dump(${1:$val})}${0}
+endsnippet
+
+snippet html
+{htmlspecialchars(addcslashes(${1:$val}, "'"),$smarty.const.ENT_QUOTES)}${0}
+endsnippet
+
