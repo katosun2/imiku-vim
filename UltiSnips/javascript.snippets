@@ -3,6 +3,18 @@ snippet test
 /${2:^}/.${1:TARGET}
 endsnippet
 
+snippet gettext
+var getText = function(el){
+	var message =  "";
+	if (document.body.innerText) {
+		message = el.innerText;
+	} else {
+		message = el.innerHTML.replace(/\&lt;br\&gt;/gi,"\n").replace(/(&lt;([^&gt;]+)&gt;)/gi, "");
+	}
+	return message;
+};
+endsnippet
+
 snippet constr
 ${1:class_name}.prototype.constructor = ${1:class_name}
 endsnippet
