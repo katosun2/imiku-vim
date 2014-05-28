@@ -3,6 +3,22 @@ snippet test
 /${2:^}/.${1:TARGET}
 endsnippet
 
+snippet jsmaobao
+	while (tag) {
+		if (!tag || tag == this) {
+			break;
+		}
+
+		if (tag.nodeType == 1 && tag.tagName.toLowerCase() == 'li') {
+			${0://code}
+			break;
+		} else {
+			//向上查找
+			tag = tag.parentNode;
+		}
+	}
+endsnippet
+
 snippet gettext
 var getText = function(el){
 	var message =  "";
@@ -1246,4 +1262,70 @@ function shareTo (plat){
 		phpLogClick(globalParam.stat.shareId);
 	}
 }
+endsnippet
+
+snippet jsopenapp
+(function() {
+	var isInstalled = 0,
+	//0:未知， 1:安装，2：没安装
+	ua = navigator.userAgent;
+
+	var schemelAndroid = 'kugou://start.weixin',
+	schemelIOS = 'kugouurl://start.weixin',
+	downloadURL = "",
+	schemelUrl = "";
+
+	if (ua.match(/iPhone|iPod/)) {
+		schemelUrl = schemelIOS;
+		downloadURL = "itms-apps://itunes.apple.com/cn/app/ku-gou-yin-le/id472208016?mt=8";
+	} else if (ua.match(/Android/)) {
+		schemelUrl = schemelAndroid;
+		downloadURL = "http://downmobile.kugou.com/promote/package/download/channel=118";
+	} else if (ua.match(/iPad/)) {
+		schemelUrl = schemelIOS;
+		downloadURL = "itms-apps://itunes.apple.com/cn/app/ku-gou-yin-le/id472208016?mt=8";
+	}
+
+	//if (ua.indexOf('KGBrowser') >= 0) { }
+
+	document.getElementById("go_enter").addEventListener("click", function() {
+		if (isInstalled == 1) {
+			location = schemelUrl;
+		} else if (isInstalled == 2) {
+			!!downloadURL && (location.href = downloadURL);
+		} else {
+			if (ua.match(/Android/)) { // android
+				var iframe = document.createElement("iframe");
+				iframe.style.width = "1px";
+				iframe.style.height = "1px";
+				iframe.style.display = "none";
+				var start = new Date().valueOf();
+				iframe.src = schemelUrl;
+				// 执行打开动作
+				document.body.appendChild(iframe);
+				setTimeout(function() {
+					if (!document.webkitHidden) {
+						var end = new Date().valueOf();
+						if ((end-start) < 1550) {
+							// 打开失败进入这个异常处理
+							window.location.href = downloadURL;
+						}
+					}
+				}, 1500);
+
+			} else if (ua.match(/iPhone|iPad|iPod/)) { // IOS
+				var start = new Date().valueOf();
+				window.location.href = schemelUrl;
+				setTimeout(function() {
+					if (!document.webkitHidden) {
+						var end = new Date().valueOf();
+						if ((end-start) < 2000) {
+							window.location.href = downloadURL;
+						}
+					}
+				}, 1500);
+			}
+		}
+	}, false);
+})();
 endsnippet

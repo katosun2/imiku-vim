@@ -669,3 +669,39 @@ endsnippet
 snippet kgpic
 http://test.kugou.com/tools/createImg.php?wh=${1:120x120}
 endsnippet
+
+snippet jsajax
+//创建异步请求
+var ajax = new XMLHttpRequest();
+var ajaxCallback = function(){
+	if(ajax.readyState == 4){
+		loading.style.display = 'none';
+		//console.log(ajax.responseText);
+		//content.innerHTML = ajax.responseText;
+		window.history.pushState(
+			{
+			content:content.innerHTML,
+			page:page
+		},
+		page,
+		urlbase + "?page=" + page
+		);
+
+		next.href = urlbase + "?page=" + (page + 1);
+	}
+};
+
+//点击下一页
+var next = document.getElementById('next');
+var nextClickEvent = function(event){
+	if(loading.style.display != 'block'){
+		loading.style.display = 'block';
+		page++;
+		ajax.open('GET', urlbase + '?page=' + page, true);
+		ajax.onreadystatechange = ajaxCallback;
+		ajax.send('');
+		event.preventDefault();
+	}
+};
+next.addEventListener('click', nextClickEvent, false);
+endsnippet
