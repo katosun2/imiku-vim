@@ -4,19 +4,18 @@ snippet test
 endsnippet
 
 snippet jsmaobao
-	while (tag) {
-		if (!tag || tag == this) {
-			break;
-		}
-
-		if (tag.nodeType == 1 && tag.tagName.toLowerCase() == 'li') {
-			${0://code}
-			break;
-		} else {
-			//向上查找
-			tag = tag.parentNode;
-		}
+while (tag) {
+	if (!tag || tag == this) {
+		break;
 	}
+	if (tag.nodeType == 1 && tag.tagName.toLowerCase() == 'li') {
+		${0://code}
+		break;
+	} else {
+		//向上查找
+		tag = tag.parentNode;
+	}
+}
 endsnippet
 
 snippet gettext
@@ -334,6 +333,7 @@ elem.style.width = '320px';
 elem.style.height = '480px';
 elem.style.display = 'block';//再显示
 endsnippet
+
 snippet jsdivclone
 var tmpnode = document.getElementById('container'),
 clone = tmpnode.cloneNode(true),
@@ -346,7 +346,6 @@ for(var i = 0; i<list.length; i++){
 }
 original.parentNode.replaceChild(clone,original);
 endsnippet
-
 
 snippet htmlcode
 function HTMLDECODE(str) {
@@ -585,70 +584,70 @@ snippet jsajax
 * @param { String } docType 返回文档格式(可选)
 */
 function ajax(method, url, async, args, callback, error, docType){
-   var params = args;
-   async = async == null ? true: async;
-   if (args) {
-	   if (typeof args === "object") {
-		   var str = "";
-		   for (var i in args) {
-			   str += i + "=" + args[i] + "&";
-		   }
-		   params = str.substr(0, str.length - 1);
-	   }
-   }
+	var params = args;
+	async = async == null ? true: async;
+	if (args) {
+		if (typeof args === "object") {
+			var str = "";
+			for (var i in args) {
+				str += i + "=" + args[i] + "&";
+			}
+			params = str.substr(0, str.length - 1);
+		}
+	}
 
-   method = method ? method.toUpperCase() : "POST";
-   docType = docType ? docType: "text";
-   var XMLHttp = null;
-   if (window.XMLHttpRequest && !(window.ActiveXObject)) {
-	   XMLHttp = new XMLHttpRequest();
-   } else if (window.ActiveXObject) {
-	   try {
-		   XMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
-	   } catch(otherMSIE) {
-		   try {
-			   XMLHttp = new ActiveXObject("Msxml2.XMLHTTP");
-		   } catch(NoSupport) {
-			   XMLHttp = null;
-		   }
-	   }
-   }
+	method = method ? method.toUpperCase() : "POST";
+	docType = docType ? docType: "text";
+	var XMLHttp = null;
+	if (window.XMLHttpRequest && !(window.ActiveXObject)) {
+		XMLHttp = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		try {
+			XMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch(otherMSIE) {
+			try {
+				XMLHttp = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch(NoSupport) {
+				XMLHttp = null;
+			}
+		}
+	}
 
-   XMLHttp.onreadystatechange = function() {
-	   if (XMLHttp.readyState == 4) {
-		   if (XMLHttp.status == 200 || XMLHttp.status == 0) {
-			   var param = null;
-			   switch (docType) {
-				   case "xml":
-					   param = XMLHttp.responseXML;
-				   break;
-				   case "json":
-					   param = Kg.JSON.parse(XMLHttp.responseText);
-				   break;
-				   default:
-					   param = XMLHttp.responseText;
-			   }
-			   callback && callback(param, XMLHttp);
-			   XMLHttp = null;
-		   } else {
-			   error && error();
-		   }
-	   }
-   };
+	XMLHttp.onreadystatechange = function() {
+		if (XMLHttp.readyState == 4) {
+			if (XMLHttp.status == 200 || XMLHttp.status == 0) {
+				var param = null;
+				switch (docType) {
+					case "xml":
+						param = XMLHttp.responseXML;
+					break;
+					case "json":
+						param = Kg.JSON.parse(XMLHttp.responseText);
+					break;
+					default:
+						param = XMLHttp.responseText;
+				}
+				callback && callback(param, XMLHttp);
+				XMLHttp = null;
+			} else {
+				error && error();
+			}
+		}
+	};
 
-   if (method == "GET") {
-	   if (url.indexOf("?") != -1) {
-		   XMLHttp.open(method, url + (params ? ("&" + params) : ''), async);
-	   } else {
-		   XMLHttp.open(method, url + (params ? ("?" + params) : ''), async);
-	   }
-	   XMLHttp.send(null);
-   } else {
-	   XMLHttp.open(method, url, async);
-	   XMLHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	   XMLHttp.send(params);
-   }
-   return XMLHttp;
+	if (method == "GET") {
+		if (url.indexOf("?") != -1) {
+			XMLHttp.open(method, url + (params ? ("&" + params) : ''), async);
+		} else {
+			XMLHttp.open(method, url + (params ? ("?" + params) : ''), async);
+		}
+		XMLHttp.send(null);
+	} else {
+		XMLHttp.open(method, url, async);
+		XMLHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		XMLHttp.send(params);
+	}
+	return XMLHttp;
 }
 endsnippet
 
@@ -1328,4 +1327,59 @@ snippet jsopenapp
 		}
 	}, false);
 })();
+endsnippet
+
+snippet jshttp
+var XMLHttp = null;
+if (window.XMLHttpRequest && !(window.ActiveXObject)) {
+	XMLHttp = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+	try {
+		XMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	} catch(otherMSIE) {
+		try {
+			XMLHttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch(NoSupport) {
+			XMLHttp = null;
+		}
+	}
+}
+XMLHttp.onreadystatechange = function(){};
+//XMLHttp.open("post", "http://cpm.sdn.kugou.com/default.html?id=211", true);
+XMLHttp.open("post", "http://192.168.19.243:1105/10.13.0.30/demo/log.php", true);
+XMLHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+XMLHttp.send();
+endsnippet
+
+snippet jsbefore
+var color = window.getComputedStyle(
+	document.querySelector('.element'), ':before'
+).getPropertyValue('color')
+endsnippet
+
+snippet jspagescroll
+/*
+*页面滑动
+* params { Number } 滚动的高度
+* params { Number } 滚动条高度
+*/
+var popToTop = function(h,s){
+	var nav_t = 0,
+	nav_d = 30,  //速度
+	nav_c = h,  //高度
+	dc = document,
+	nac = dc.documentElement || dc.body,
+	popSc = function(t,b,c,d){
+		return (t == d) ? b + c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+	};
+
+	function down(){
+		if(nav_t < nav_d){
+			nav_t++;
+			nac.scrollTop = Math.ceil(popSc(nav_t,0,nav_c,nav_d)) + s;
+			setTimeout(down, 10);
+		}
+	}
+	down();
+};
 endsnippet
