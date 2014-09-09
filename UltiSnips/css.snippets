@@ -30,6 +30,29 @@ snippet zdhh
 word-wrap:break-word;word-break:normal; 
 endsnippet
 
+snippet cssff
+/*define
+use in css : .iconfont{font-family:"iconfont"; font-size:16px;font-style:normal;}
+use in css : .iconfont{-webkit-font-smoothing: antialiased;}
+use in html : <i class="iconfont">&#33</i>
+*/
+@font-face {font-family: 'iconfont';
+	src: url('iconfont.eot'); /* IE9*/
+	src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	url('iconfont.woff') format('woff'), /* chrome、firefox */
+	url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+	url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+endsnippet
+
+snippet cssztyh
+	font-smoothing: antialiased; -webkit-font-smoothing: antialiased;
+endsnippet
+
+snippet cssztmh
+	text-stroke-width: ${1:0.2px}; -webkit-text-stroke-width: ${2:$1};
+endsnippet
+
 snippet fs
 font-size:
 endsnippet
@@ -301,6 +324,15 @@ endsnippet
 snippet oh
 overflow:hidden;
 endsnippet
+
+snippet vh
+visibility:hidden;
+endsnippet
+
+snippet vv
+visibility:visible;
+endsnippet
+
 
 snippet oa
 overflow:auto;height:1%;
@@ -575,4 +607,8 @@ backface-visibility: hidden;
 -moz-perspective: 1000;
 -ms-perspective: 1000;
 perspective: 1000;
+endsnippet
+
+snippet ha
+	hyphens:auto; 
 endsnippet

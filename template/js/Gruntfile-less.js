@@ -16,6 +16,20 @@ module.exports = function(grunt) {
 				options: {
 					yuicompress: true
 				}
+			},
+			test2: {
+				options: {
+					paths: ['js/base']
+				},
+				// target name
+				src: {
+					// no need for files, the config below should work
+					expand: true,
+					cwd:    "js/base",
+					src:    "*.less",
+					dest : "js/base",
+					ext:    ".css"
+				}
 			}
 		},
 		watch: {

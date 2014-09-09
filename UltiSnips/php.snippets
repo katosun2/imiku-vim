@@ -10,8 +10,8 @@ endsnippet
 
 snippet class
 /**
- * ${1}
- **/
+* ${1}
+**/
 class ${2:ClassName} {
 	${3}
 	function ${4:__construct}(${5:argument}) {
@@ -31,6 +31,24 @@ $${1:arrayName} = array('${2}' => ${3});${4}
 endsnippet
 
 snippet cktime
-$t= microtime(true);
+$t = microtime(true);
 echo microtime(true) - $t;
+endsnippet
+
+snippet readdir
+if ($handle = opendir($path)) {
+	echo "<pre>Directory handle: $handle\n";
+	echo "Files:\n";
+
+	while (false !== ($file = readdir($handle))) {
+		if(is_dir("{$path}\\{$file}")){
+			echo "D {$file}/\n";
+		} else {
+			echo "$file\n";
+		}
+	}
+
+	echo '</pre>';
+	closedir($handle);
+}
 endsnippet

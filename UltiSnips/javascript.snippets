@@ -3,6 +3,33 @@ snippet test
 /${2:^}/.${1:TARGET}
 endsnippet
 
+snippet jsmaobao
+while (tag) {
+	if (!tag || tag == this) {
+		break;
+	}
+	if (tag.nodeType == 1 && tag.tagName.toLowerCase() == 'li') {
+		${0://code}
+		break;
+	} else {
+		//向上查找
+		tag = tag.parentNode;
+	}
+}
+endsnippet
+
+snippet gettext
+var getText = function(el){
+	var message =  "";
+	if (document.body.innerText) {
+		message = el.innerText;
+	} else {
+		message = el.innerHTML.replace(/\&lt;br\&gt;/gi,"\n").replace(/(&lt;([^&gt;]+)&gt;)/gi, "");
+	}
+	return message;
+};
+endsnippet
+
 snippet constr
 ${1:class_name}.prototype.constructor = ${1:class_name}
 endsnippet
@@ -317,6 +344,7 @@ elem.style.width = '320px';
 elem.style.height = '480px';
 elem.style.display = 'block';//再显示
 endsnippet
+
 snippet jsdivclone
 var tmpnode = document.getElementById('container'),
 clone = tmpnode.cloneNode(true),
@@ -329,7 +357,6 @@ for(var i = 0; i<list.length; i++){
 }
 original.parentNode.replaceChild(clone,original);
 endsnippet
-
 
 snippet htmlcode
 function HTMLDECODE(str) {
@@ -568,70 +595,70 @@ snippet jsajax
 * @param { String } docType 返回文档格式(可选)
 */
 function ajax(method, url, async, args, callback, error, docType){
-   var params = args;
-   async = async == null ? true: async;
-   if (args) {
-	   if (typeof args === "object") {
-		   var str = "";
-		   for (var i in args) {
-			   str += i + "=" + args[i] + "&";
-		   }
-		   params = str.substr(0, str.length - 1);
-	   }
-   }
+	var params = args;
+	async = async == null ? true: async;
+	if (args) {
+		if (typeof args === "object") {
+			var str = "";
+			for (var i in args) {
+				str += i + "=" + args[i] + "&";
+			}
+			params = str.substr(0, str.length - 1);
+		}
+	}
 
-   method = method ? method.toUpperCase() : "POST";
-   docType = docType ? docType: "text";
-   var XMLHttp = null;
-   if (window.XMLHttpRequest && !(window.ActiveXObject)) {
-	   XMLHttp = new XMLHttpRequest();
-   } else if (window.ActiveXObject) {
-	   try {
-		   XMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
-	   } catch(otherMSIE) {
-		   try {
-			   XMLHttp = new ActiveXObject("Msxml2.XMLHTTP");
-		   } catch(NoSupport) {
-			   XMLHttp = null;
-		   }
-	   }
-   }
+	method = method ? method.toUpperCase() : "POST";
+	docType = docType ? docType: "text";
+	var XMLHttp = null;
+	if (window.XMLHttpRequest && !(window.ActiveXObject)) {
+		XMLHttp = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		try {
+			XMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+		} catch(otherMSIE) {
+			try {
+				XMLHttp = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch(NoSupport) {
+				XMLHttp = null;
+			}
+		}
+	}
 
-   XMLHttp.onreadystatechange = function() {
-	   if (XMLHttp.readyState == 4) {
-		   if (XMLHttp.status == 200 || XMLHttp.status == 0) {
-			   var param = null;
-			   switch (docType) {
-				   case "xml":
-					   param = XMLHttp.responseXML;
-				   break;
-				   case "json":
-					   param = Kg.JSON.parse(XMLHttp.responseText);
-				   break;
-				   default:
-					   param = XMLHttp.responseText;
-			   }
-			   callback && callback(param, XMLHttp);
-			   XMLHttp = null;
-		   } else {
-			   error && error();
-		   }
-	   }
-   };
+	XMLHttp.onreadystatechange = function() {
+		if (XMLHttp.readyState == 4) {
+			if (XMLHttp.status == 200 || XMLHttp.status == 0) {
+				var param = null;
+				switch (docType) {
+					case "xml":
+						param = XMLHttp.responseXML;
+					break;
+					case "json":
+						param = Kg.JSON.parse(XMLHttp.responseText);
+					break;
+					default:
+						param = XMLHttp.responseText;
+				}
+				callback && callback(param, XMLHttp);
+				XMLHttp = null;
+			} else {
+				error && error();
+			}
+		}
+	};
 
-   if (method == "GET") {
-	   if (url.indexOf("?") != -1) {
-		   XMLHttp.open(method, url + (params ? ("&" + params) : ''), async);
-	   } else {
-		   XMLHttp.open(method, url + (params ? ("?" + params) : ''), async);
-	   }
-	   XMLHttp.send(null);
-   } else {
-	   XMLHttp.open(method, url, async);
-	   XMLHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	   XMLHttp.send(params);
-   }
-   return XMLHttp;
+	if (method == "GET") {
+		if (url.indexOf("?") != -1) {
+			XMLHttp.open(method, url + (params ? ("&" + params) : ''), async);
+		} else {
+			XMLHttp.open(method, url + (params ? ("?" + params) : ''), async);
+		}
+		XMLHttp.send(null);
+	} else {
+		XMLHttp.open(method, url, async);
+		XMLHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		XMLHttp.send(params);
+	}
+	return XMLHttp;
 }
 endsnippet
 
@@ -1070,10 +1097,10 @@ function initSideFloat(){
 endsnippet
 
 snippet jsweixin
-/*分享到朋友圈参数*/
+/*微信分享*/
 var dataForWeixin = {
 	appId: "",
-	msgImg: "${1:http://www.wfeel.com/}",
+	msgImg: "http://m.kugou.com/static/images/share2014/cover.png",
 	url: location.href,
 	title: document.title,
 	desc: "",
@@ -1082,7 +1109,7 @@ var dataForWeixin = {
 };
 (function() {
 	var onBridgeReady = function() {
-		/*分享到朋友圈*/
+		/*发送给好友*/
 		WeixinJSBridge.on('menu:share:appmessage', function(argv) {
 			WeixinJSBridge.invoke('sendAppMessage', {
 				"appid": dataForWeixin.appId,
@@ -1092,6 +1119,20 @@ var dataForWeixin = {
 				"link": dataForWeixin.url,
 				"desc": dataForWeixin.desc,
 				"title": dataForWeixin.title
+			},
+			function(res) { 
+				(dataForWeixin.callback)();
+			});
+		});
+		/*分享到朋友圈*/
+		WeixinJSBridge.on('menu:share:timeline', function(argv) {
+			WeixinJSBridge.invoke('shareTimeline', {
+				"img_url": dataForWeixin.msgImg,
+				"img_width": "400",
+				"img_height": "400",
+				"link": dataForWeixin.url,
+				"desc": dataForWeixin.desc,
+				"title": dataForWeixin.desc
 			},
 			function(res) { 
 				(dataForWeixin.callback)();
@@ -1156,4 +1197,200 @@ Kg.Ajax({
 	},
 	error : function(){}
 });
+endsnippet
+
+snippet kgshare
+function shareTo (plat){
+	plat = plat || "sina";
+	var _this = MoPage,
+	option = {
+		popupWidth:615,
+		popupHeight:505,
+		title:globalParam.shareTitle,
+		url:globalParam.shareUrl,
+		content:globalParam.shareContent,
+		imgSrc:globalParam.shareImg,
+		swf:"",
+		appkey:"340086183",
+		/*(新浪微博) 用参数,关联用户的UID，分享微博会@该用户(可选)*/
+		ralateUid:""
+	},
+	winSrc = "",
+	queryStr = "";
+
+	var _title = encodeURIComponent(globalParam.shareTitle),
+	_url = encodeURIComponent(globalParam.shareUrl),
+	_content = encodeURIComponent(globalParam.shareContent),
+	_imgSrc =  encodeURI(globalParam.shareImg);
+	_swf = encodeURI(globalParam.shareSwf || "");
+
+	if(_this.isInClient()){
+		var client_share = {
+			"shareName" : globalParam.shareTitle,
+			"hash" : "",
+			"listID" : "",
+			"type" : 3,
+			"shareData" : {
+				"linkUrl" : encodeURIComponent(globalParam.shareUrl),
+				"picUrl" : globalParam.shareImg,
+				"content": globalParam.shareContent,
+				"title" : globalParam.shareTitle
+			},
+			"suid" : "",
+			"slid" : "",
+			"imgUrl" : "",
+			"filename" : "",
+			"duration": 0
+		};
+		KgMobileCall.share(Kg.JSON.stringify(client_share));
+	}else{
+		switch(plat){
+			case 'sina':
+				option.popupWidth = 615;
+				option.popupHeight = 505;
+				winSrc = "http://service.t.sina.com.cn/share/share.php";
+				queryStr = [
+					"url=" + _url,
+					"appkey=" + option.appkey,
+					"title=" + _content,
+					"pic=" + _imgSrc,
+					"ralateUid=" + option.ralateUid 
+				].join("&");
+				break;
+			default : 
+				return;
+		}
+
+		var l = (screen.width - option.popupWidth)/2,
+		t = (screen.height - option.popupHeight)/2,
+		resultUrl = winSrc + "?" + queryStr;
+
+		location.href = resultUrl;
+	}
+
+	if(globalParam.stat.shareId !== ""){
+		phpLogClick(globalParam.stat.shareId);
+	}
+}
+endsnippet
+
+snippet jsopenapp
+(function() {
+	var isInstalled = 0,
+	//0:未知， 1:安装，2：没安装
+	ua = navigator.userAgent;
+
+	var schemelAndroid = 'kugou://start.weixin',
+	schemelIOS = 'kugouurl://start.weixin',
+	downloadURL = "",
+	schemelUrl = "";
+
+	if (ua.match(/iPhone|iPod/)) {
+		schemelUrl = schemelIOS;
+		downloadURL = "itms-apps://itunes.apple.com/cn/app/ku-gou-yin-le/id472208016?mt=8";
+	} else if (ua.match(/Android/)) {
+		schemelUrl = schemelAndroid;
+		downloadURL = "http://downmobile.kugou.com/promote/package/download/channel=118";
+	} else if (ua.match(/iPad/)) {
+		schemelUrl = schemelIOS;
+		downloadURL = "itms-apps://itunes.apple.com/cn/app/ku-gou-yin-le/id472208016?mt=8";
+	}
+
+	//if (ua.indexOf('KGBrowser') >= 0) { }
+
+	document.getElementById("go_enter").addEventListener("click", function() {
+		if (isInstalled == 1) {
+			location = schemelUrl;
+		} else if (isInstalled == 2) {
+			!!downloadURL && (location.href = downloadURL);
+		} else {
+			if (ua.match(/Android/)) { // android
+				var iframe = document.createElement("iframe");
+				iframe.style.width = "1px";
+				iframe.style.height = "1px";
+				iframe.style.display = "none";
+				var start = new Date().valueOf();
+				iframe.src = schemelUrl;
+				// 执行打开动作
+				document.body.appendChild(iframe);
+				setTimeout(function() {
+					if (!document.webkitHidden) {
+						var end = new Date().valueOf();
+						if ((end-start) < 1550) {
+							// 打开失败进入这个异常处理
+							window.location.href = downloadURL;
+						}
+					}
+				}, 1500);
+
+			} else if (ua.match(/iPhone|iPad|iPod/)) { // IOS
+				var start = new Date().valueOf();
+				window.location.href = schemelUrl;
+				setTimeout(function() {
+					if (!document.webkitHidden) {
+						var end = new Date().valueOf();
+						if ((end-start) < 2000) {
+							window.location.href = downloadURL;
+						}
+					}
+				}, 1500);
+			}
+		}
+	}, false);
+})();
+endsnippet
+
+snippet jshttp
+var XMLHttp = null;
+if (window.XMLHttpRequest && !(window.ActiveXObject)) {
+	XMLHttp = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+	try {
+		XMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	} catch(otherMSIE) {
+		try {
+			XMLHttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch(NoSupport) {
+			XMLHttp = null;
+		}
+	}
+}
+XMLHttp.onreadystatechange = function(){};
+//XMLHttp.open("post", "http://cpm.sdn.kugou.com/default.html?id=211", true);
+XMLHttp.open("post", "http://192.168.19.243:1105/10.13.0.30/demo/log.php", true);
+XMLHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+XMLHttp.send();
+endsnippet
+
+snippet jsbefore
+var color = window.getComputedStyle(
+	document.querySelector('.element'), ':before'
+).getPropertyValue('color')
+endsnippet
+
+snippet jspagescroll
+/*
+*页面滑动
+* params { Number } 滚动的高度
+* params { Number } 滚动条高度
+*/
+var popToTop = function(h,s){
+	var nav_t = 0,
+	nav_d = 30,  //速度
+	nav_c = h,  //高度
+	dc = document,
+	nac = dc.documentElement || dc.body,
+	popSc = function(t,b,c,d){
+		return (t == d) ? b + c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+	};
+
+	function down(){
+		if(nav_t < nav_d){
+			nav_t++;
+			nac.scrollTop = Math.ceil(popSc(nav_t,0,nav_c,nav_d)) + s;
+			setTimeout(down, 10);
+		}
+	}
+	down();
+};
 endsnippet
