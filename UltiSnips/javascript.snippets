@@ -7,6 +7,17 @@ snippet constr
 ${1:class_name}.prototype.constructor = ${1:class_name}
 endsnippet
 
+snippet getStyle
+var style = document.getElementById("${1:id}").currentStyle || document.defaultView.getComputedStyle(document.getElementById("${2:$1}"), '')
+endsnippet
+
+snippet jszc
+if (!'${1:pattern}' in document.create_rElement_x('${2:input}') ) {
+	// do client/server side validation
+	${3}
+}
+endsnippet
+
 snippet switch
 switch(${1:expression}) {
 	case '${3:case}':
