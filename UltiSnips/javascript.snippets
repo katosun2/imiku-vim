@@ -1662,7 +1662,51 @@ user-select: none;
 -webkit-user-drag: none; 
 endsnippet
 
-snippet phimg
+
+snippet phatlasjson
+var botData = {
+"frames": [{
+	"filename": "running bot.swf/0000",
+	"frame": { "x": 34, "y": 128, "w": 56, "h": 60 },
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": { "x": 0, "y": 2, "w": 56, "h": 60 },
+	"sourceSize": { "w": 56, "h": 64 }
+}, {
+	"filename": "running bot.swf/0001",
+	"frame": { "x": 54, "y": 0, "w": 56, "h": 58 },
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": { "x": 0, "y": 3, "w": 56, "h": 58 },
+	"sourceSize": { "w": 56, "h": 64 }
+}, {
+	"filename": "running bot.swf/0002",
+	"frame": { "x": 54, "y": 58, "w": 56, "h": 58 },
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": { "x": 0, "y": 3, "w": 56, "h": 58 },
+	"sourceSize": { "w": 56, "h": 64 }
+}, {
+	"filename": "running bot.swf/0003",
+	"frame": { "x": 0, "y": 192, "w": 34, "h": 64 },
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": { "x": 11, "y": 0, "w": 34, "h": 64 },
+	"sourceSize": { "w": 56, "h": 64 }
+}],
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "running_bot.png",
+	"format": "RGBA8888",
+	"size": { "w": 252, "h": 256 },
+	"scale": "0.2",
+	"smartupdate": "$TexturePacker:SmartUpdate:fb56f261b1eb04e3215824426595f64c$"
+}
+};
+endsnippet
+
+snippet phlimg
 ${1}.load.image(${2:key}, ${3:src});
 endsnippet
 
@@ -1684,4 +1728,50 @@ endsnippet
 
 snippet phtop
 ${1:sprite}.bringToTop();
+endsnippet
+
+snippet phlanimate
+${1}.load.atlasJSONHash('${2:key}', '${3:pic}', '${4:json}');
+endsnippet
+
+snippet phlspsheet
+${1}.load.spritesheet('${2:key}', '${3:pic}', '${4:frameWidth_maxInt}', '${5:frameHeight}', ${6:-frameMax}, ${7:-margin}, ${8:-spacing});
+endsnippet
+
+snippet phlatlas
+${1}.load.atlas('${2:key}', '${3:pic}', ${4:null}, ${5:jsonData});
+endsnippet
+
+snippet phaniadd
+${1:sprite}.animations.add(${2:name}, ${3,-}, ${4:-fps}, ${5:-isYoyo});
+endsnippet
+
+snippet phaniplay
+${1:sprite}.animations.play(${2:name}, ${3:-fps}, ${4:-isLoop});
+endsnippet
+
+snippet phaddtween
+${1}.add.tween(${2:sprite}).to(${3:{ y: 400 }}, ${4:duration_2000}, ${5:Phaser.Easing.Quadratic.InOut}, ${6:isAutoStart_true}, ${7:delay:0}, ${8:repeat_1000}, ${9:isLikeYoyo_true});
+endsnippet
+
+snippet phaddtilesp
+${1}.add.tileSprite(${2:x}, ${3:y}, ${4:width}, ${5:height}, '${6:key}');
+endsnippet
+
+snippet phaddbutton
+${1}.add.button(${2:x}, ${3:y}, '${4:key}', ${5:onpressedCallback_func}, this, ${6:-overFrame_int_2}, ${7:-outFrame_int_1}, ${8:-downFrame_int_0, ${9:-upFrame_int_0}});
+endsnippet
+
+snippet phstartphy
+${1}.physics.startSystem(${2:Phaser.Physics.ARCADE});
+endsnippet
+
+snippet phgetworldcx
+${1}.world.centerX
+endsnippet
+
+snippet phspaddevent
+${1}.inputEnabled = true;
+${2:$1}.input.useHandCursor = true; //if you want a hand cursor
+${3:$1}.events.onInputOver.add(${4:func}, this);
 endsnippet
