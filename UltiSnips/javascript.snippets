@@ -1650,3 +1650,27 @@ user-select: none;
 -webkit-touch-callout: none; 
 -webkit-user-drag: none; 
 endsnippet
+
+snippet phimg
+${1}.load.image(${2:key}, ${3:src});
+endsnippet
+
+snippet phaddsp
+${1}.add.sprite(${2:x}, ${3:y}, ${4:key});
+endsnippet
+
+snippet phpaddimg
+${1}.add.image(${2:x}, ${3:y}, ${4:key});
+endsnippet
+
+snippet phpaddtxt
+${1}.add.text(${2:x}, ${3:y}, {${4:font:'16px Arial', fill:'#FFFFFF'}});
+endsnippet
+
+snippet phaddgroup
+${1}.add.group();
+endsnippet
+
+snippet phtop
+${1:sprite}.bringToTop();
+endsnippet
