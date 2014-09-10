@@ -1770,8 +1770,27 @@ snippet phgetworldcx
 ${1}.world.centerX
 endsnippet
 
+snippet phgroupcreate
+${1:group}.create(${2:x}, ${3:y}, ${4:key}, '${5:exists_frame_key}');
+endsnippet
+
 snippet phspaddevent
 ${1}.inputEnabled = true;
 ${2:$1}.input.useHandCursor = true; //if you want a hand cursor
 ${3:$1}.events.onInputOver.add(${4:func}, this);
+endsnippet
+
+snippet phrndrange
+${1}.rnd.integerInRange(${2:fromNum}, ${3:toNum})
+endsnippet
+
+snippet phanigenframe
+Phaser.Animation.generateFrameNames('${1:name}', ${2:-start_xxx000X}, ${3:-stop_xxx000X}, '${4:-suffix_ }', ${5:-zeroPad_0});
+endsnippet
+
+snippet phpgroupcallall
+//child.animations.add('swim', frameNames, 30, true, false)
+//group.callAll('animations.add', 'animations', 'swim', frameNames, 30, true, false);
+//child.method(parameter){context class};
+${1:group}.callAll(${2:method_animations.add}, ${3:context_animations}, ${4:parameter_*_repeat});
 endsnippet
