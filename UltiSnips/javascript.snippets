@@ -1383,3 +1383,270 @@ var popToTop = function(h,s){
 	down();
 };
 endsnippet
+
+snippet jsresize
+/**
+ * 重置字体大小 
+ */
+(function() {
+	if ( !! navigator.userAgent.match(/AppleWebKit.*Mobile.*/)) {
+		var body_fontsize = document.body.currentStyle || document.defaultView.getComputedStyle(document.body, '');
+		if (body_fontsize && parseInt(body_fontsize, 10) == 8) {
+			setTimeout(function() {
+				var vw = window.innerWidth || document.documentElement.clientWidth,
+				fs = Math.ceil((vw * 16) / 480);
+				if (fs % 2 == 1) {
+					fs++;
+				}
+				try {
+					document.getElementsByTagName("html")[0].style.fontSize = fs + "px";
+					document.getElementsByTagName("body")[0].style.fontSize = fs + "px";
+				} catch(e) {}
+			},
+			1000);
+		}
+	}
+})();
+endsnippet
+
+snippet jsresizemin
+(function(){if(!!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)){var a=document.body.currentStyle||document.defaultView.getComputedStyle(document.body,"");a&&parseInt(a,10)==8&&setTimeout(function(){var b=window.innerWidth||document.documentElement.clientWidth,a=Math.ceil(b*16/480);if(a%2==1)a++;try{document.getElementsByTagName("html")[0].style.fontSize=a+"px";document.getElementsByTagName("body")[0].style.fontSize=a+"px"}catch(c){}},1e3)}})();
+endsnippet
+
+snippet getimg
+var setUploadImg = function(target, imgTarget){
+	// 检查是否支持FileReader对象
+	if (typeof FileReader != 'undefined') {
+		var dc = document,
+			acceptedTypes = {
+			'image/png': true,
+			'image/jpeg': true,
+			'image/gif': true
+		};
+		if (target.files[0].type && acceptedTypes[target.files[0].type] === true) {
+			/*使用文件api获取图片*/
+			var reader = new FileReader();
+			reader.onload = function (event) {
+				imgTarget.src = event.target.result;
+			};
+			reader.readAsDataURL(target.files[0]);
+		}else{
+			alert("图片格式不正确");
+		}
+	}
+};
+endsnippet
+
+snippet trigger
+var trigger = function(target,type){
+	var dc = document;
+	if(dc.createEvent){
+		var evt = dc.createEvent("HTMLEvents");
+		evt.initEvent(type,false,true);
+		target.dispatchEvent(evt);
+	}
+	else if(dc.createEventObject){
+		target.fireEvent("on" + type);
+	}
+};
+endsnippet
+
+snippet regdomain
+var reg = /^http:\/\/.*?\//;
+endsnippet
+
+snippet getflash
+function getFlash(flashName) {
+	if (navigator.appName.indexOf("Microsoft") != -1) {
+		try{
+			return document[flashName];
+		}catch(e){
+			return window[flashName];
+		}
+	}else{
+		return document[flashName];
+	}
+}
+endsnippet
+
+snippet getflasever
+function getFlashVersion() {
+	var ver,
+		SF = "ShockwaveFlash";
+
+	// for NPAPI see: http://en.wikipedia.org/wiki/NPAPI
+	if (navigator.plugins && navigator.mimeTypes.length) {
+		ver = (navigator.plugins["Shockwave Flash"] || 0).description;
+	}
+	// for ActiveX see:	http://en.wikipedia.org/wiki/ActiveX
+	else if (win.ActiveXObject) {
+		try {
+			ver = new win.ActiveXObject(SF + "." + SF).GetVariable("$version");
+		} catch (ex) {
+			// S.log("getFlashVersion failed via ActiveXObject");
+			// nothing to do, just return undefined
+		}
+	}
+
+	// 插件没安装或有问题时，ver 为 undefined
+	if (!ver) {
+		return undefined;
+	}
+
+	// 插件安装正常时，ver 为 "Shockwave Flash 10.1 r53" or "WIN 10,1,53,64"
+	return getArrayVersion(ver);
+}
+endsnippet
+
+snippet ctxdi
+${1:ctx}.drawImage(${2:img}, ${3:sX}, ${4:sY}, ${5:sW}, ${6:sH}, ${7:dX}, ${8:dY}, ${9:dW}, ${10:dH});
+endsnippet
+
+snippet ctxclear
+${1:ctx}.clearRect(${2:x}, ${3:y}, ${4:w}, ${5:h});
+endsnippet
+
+snippet ctxrect
+${1:ctx}.rect(${2:x}, ${3:y}, ${4:w}, ${5:h});
+endsnippet
+
+snippet ctxarc
+${1:ctx}.arc(${2:x}, ${3:y}, ${4:radius}, ${5:startAngle}, ${6:endAngle}, ${7:anticlockwise});
+endsnippet
+
+snippet ctxmt
+${1:ctx}.arc(${2:x}, ${3:y});
+endsnippet
+
+snippet stage
+/**
+* Stage {Class}
+* 一个canvas对应一个stage实例
+* @inherit {objectContainerClass }
+* @param {htmlCanvasElement} 
+*/
+var Stage = ObjectContainerClass.extend({
+	onRefresh : function(){},
+	addEventListener : function(type, func){
+		return this._super(type, func);
+	},
+	removeEventListener : function(type, func){
+		return this._super(type, func);
+	},
+	removeAllEventListener : function(type){
+		return this._super(type);
+	},
+	hasEventListener : function(type){
+		return this._super(type);
+	},
+	getContext : function(){
+		return this._super();
+	},
+	addChild : function(child){
+		return this._super(child);
+	},
+	addChildAt : function(child, index){
+		return this._super(child, index);
+	},
+	removeChild : function(child){
+		return this._super(child);
+	},
+	removeChildAt : function(child, index){
+		return this._super(child, index);
+	},
+	getChildAt : function(index){
+		return this._super(index);
+	},
+	getChildIndex : function(child, index){
+		return this._super(child, index);
+	},
+	contain : function(child){
+		return this._super(index);
+	},
+	dispathMouseEvent : function(type, x, y){
+		return this._super(type, x, y);
+	},
+	clearHoverChildren : function(){
+		return this._super();
+	},
+	render : function(){},
+	clear : function(x, y, w, h){},
+	start : function(){},
+	stop : function(){},
+	init : function(canvas, option){}
+});
+endsnippet
+
+snippet sprite
+/**
+* Sprite {Class}
+* @inherit {objectContainerClass }
+* @param {htmlCanvasElement} 
+* option {
+*	stage : 
+*	x : 
+*	y : 
+*	width : 
+*	height : 
+* }
+*/
+var Sprite = ObjectContainerClass.extend({
+	onRefresh : function(){},
+	addEventListener : function(type, func){
+		return this._super(type, func);
+	},
+	removeEventListener : function(type, func){
+		return this._super(type, func);
+	},
+	removeAllEventListener : function(type){
+		return this._super(type);
+	},
+	hasEventListener : function(type){
+		return this._super(type);
+	},
+	getContext : function(){
+		return this._super();
+	},
+	addChild : function(child){
+		return this._super(child);
+	},
+	addChildAt : function(child, index){
+		return this._super(child, index);
+	},
+	removeChild : function(child){
+		return this._super(child);
+	},
+	removeChildAt : function(child, index){
+		return this._super(child, index);
+	},
+	getChildAt : function(index){
+		return this._super(index);
+	},
+	getChildIndex : function(child, index){
+		return this._super(child, index);
+	},
+	contain : function(child){
+		return this._super(index);
+	},
+	dispathMouseEvent : function(type, x, y){
+		return this._super(type, x, y);
+	},
+	clearHoverChildren : function(){
+		return this._super();
+	},
+	render : function(){},
+	onDrag : function(x, y){},
+	onDrop : function(x, y){},
+	init : function(canvas, option){}
+});
+endsnippet
+
+snippet csssel
+user-select: none; 
+-ms-user-select: none; 
+-webkit-user-select: none; 
+-khtml-user-select: none; 
+-moz-user-select: none; 
+-webkit-touch-callout: none; 
+-webkit-user-drag: none; 
+endsnippet
