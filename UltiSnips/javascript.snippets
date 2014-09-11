@@ -1743,7 +1743,7 @@ ${1}.load.atlas('${2:key}', '${3:pic}', ${4:null}, ${5:jsonData});
 endsnippet
 
 snippet phaniadd
-${1:sprite}.animations.add(${2:name}, ${3,-}, ${4:-fps}, ${5:-isYoyo});
+${1:sprite}.animations.add(${2:name}, ${3:-[0, 1, 2,...]}, ${4:-fps}, ${5:-isYoyo});
 endsnippet
 
 snippet phaniplay
@@ -1820,4 +1820,20 @@ endsnippet
 
 snippet phpeq
 Phaser.Easing.Quadratic.InOut
+endsnippet
+
+snippet phscale
+//控制游戏的旋转
+${1:$1}.scale.scaleMode = ${9:Phaser.ScaleManager.EXACT_FIT_最大化|Phaser.ScaleManager.NO_SCALE_将禁用缩放|Phaser.ScaleManager.SHOW_ALL_按比例缩放};
+${3:$1}.scale.minWidth = 40;
+${3:$1}.scale.minHeight = 20;
+${4:$1}.scale.maxWidth = 40;
+${5:$1}.scale.maxHeight = 20;
+${6:$1}.scale.forceLandscape = true;
+//将垂直方向居中
+${10:$1}.scale.pageAlignZontally = true;
+//将使游戏在水平
+${7:$1}.scale.pageAlignHorizontally = true;
+//激活缩放。
+${8:$1}.scale.setScreenSize(true);
 endsnippet
