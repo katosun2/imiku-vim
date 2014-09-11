@@ -1735,7 +1735,7 @@ ${1}.load.atlasJSONHash('${2:key}', '${3:pic}', '${4:json}');
 endsnippet
 
 snippet phlspsheet
-${1}.load.spritesheet('${2:key}', '${3:pic}', '${4:frameWidth_maxInt}', '${5:frameHeight}', ${6:-frameMax}, ${7:-margin}, ${8:-spacing});
+${1}.load.spritesheet('${2:key}', '${3:pic}', ${4:frameWidth_maxInt}, ${5:frameHeight}, ${6:-frameMax}, ${7:-margin}, ${8:-spacing});
 endsnippet
 
 snippet phlatlas
@@ -1774,10 +1774,21 @@ snippet phgroupcreate
 ${1:group}.create(${2:x}, ${3:y}, ${4:key}, '${5:exists_frame_key}');
 endsnippet
 
-snippet phspaddevent
+snippet phspaddeventover
 ${1}.inputEnabled = true;
 ${2:$1}.input.useHandCursor = true; //if you want a hand cursor
 ${3:$1}.events.onInputOver.add(${4:func}, this);
+endsnippet
+
+snippet phspaddeventdrag
+${1}.inputEnabled = true;
+${2:$1}.input.enableDrag();
+${3:$1}.events.onDragStop.add(${4:func}, this);
+endsnippet
+
+snippet phspaddevent
+${1}.inputEnabled = true;
+${3:$1}.events.on${2:event}.add(${4:func}, this);
 endsnippet
 
 snippet phrndrange
@@ -1793,4 +1804,20 @@ snippet phpgroupcallall
 //group.callAll('animations.add', 'animations', 'swim', frameNames, 30, true, false);
 //child.method(parameter){context class};
 ${1:group}.callAll(${2:method_animations.add}, ${3:context_animations}, ${4:parameter_*_repeat});
+endsnippet
+
+snippet phpinputsnap
+${1:sprite}.input.enableSnap(${2:snapX}, ${3:snapY}, ${4:-isOnDrag}, ${5:-isOnRelease}, ${6:-snapOffsetX}, ${7:-snapOffsetX});
+endsnippet
+
+snippet phpanchor
+${1:sprite}.anchor.${2};
+endsnippet
+
+snippet phpel
+Phaser.Easing.Linear.None
+endsnippet
+
+snippet phpeq
+Phaser.Easing.Quadratic.InOut
 endsnippet
