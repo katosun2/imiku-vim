@@ -1663,6 +1663,7 @@ user-select: none;
 endsnippet
 
 
+#Phaser S
 snippet phatlasjson
 var botData = {
 "frames": [{
@@ -1810,8 +1811,20 @@ snippet phpinputsnap
 ${1:sprite}.input.enableSnap(${2:snapX}, ${3:snapY}, ${4:-isOnDrag}, ${5:-isOnRelease}, ${6:-snapOffsetX}, ${7:-snapOffsetX});
 endsnippet
 
-snippet phpanchor
+snippet phac
 ${1:sprite}.anchor.${2};
+endsnippet
+
+snippet phwgl
+Phaser.WEBGL
+endsnippet
+
+snippet phcanvas
+Phaser.CANVAS
+endsnippet
+
+snippet phauto
+Phaser.AUTO
 endsnippet
 
 snippet phpel
@@ -1824,7 +1837,7 @@ endsnippet
 
 snippet phscale
 //控制游戏的旋转
-${1:$1}.scale.scaleMode = ${9:Phaser.ScaleManager.EXACT_FIT_最大化|Phaser.ScaleManager.NO_SCALE_将禁用缩放|Phaser.ScaleManager.SHOW_ALL_按比例缩放};
+${1}.scale.scaleMode = ${9:Phaser.ScaleManager.EXACT_FIT_最大化|Phaser.ScaleManager.NO_SCALE_将禁用缩放|Phaser.ScaleManager.SHOW_ALL_按比例缩放};
 ${3:$1}.scale.minWidth = 40;
 ${3:$1}.scale.minHeight = 20;
 ${4:$1}.scale.maxWidth = 40;
@@ -1837,3 +1850,42 @@ ${7:$1}.scale.pageAlignHorizontally = true;
 //激活缩放。
 ${8:$1}.scale.setScreenSize(true);
 endsnippet
+
+snippet phgame
+var ${1:game} = new Phaser.Game(${2:width}, ${3:height}, ${4:Phaser.AUTO|Phaser.WEBGL|Phaser.CANVAS}, '${5}', { preload: ${6:preload}, create: ${7:create}, update: ${8:update} });
+endsnippet
+
+snippet phaddstate
+${1}.stage.add();
+endsnippet
+
+snippet phstate
+//创建一个对象来存放要用到的state
+var ${1:states} = {
+	//prelaod场景，用来显示资源加载进度
+	preload : function(){},
+	create : function(){},
+	update : function(){},
+	//boot场景，用来做一些游戏启动前的准备
+	boot : function(){},
+	//menu场景，游戏菜单
+	menu : function(){},
+	//play场景，正式的游戏部分
+	play : function(){}
+};
+var ${11:$1} = function(){
+	this.preload = function(){};
+	this.create = function(){};
+	this.update = function(){};
+};
+
+//把定义好的场景添加到游戏中
+${2}.state.add('boot', ${6:$1}.boot);
+${3:$2}.state.add('preload', ${7:$1}.preload); 
+${4:$2}.state.add('menu', ${8:$1}.menu); 
+${5:$2}.state.add('play', ${9:$1}.play);
+
+//调用boot场景来启动游戏
+${10:$2}.state.start('boot');
+endsnippet
+#Phaser E
