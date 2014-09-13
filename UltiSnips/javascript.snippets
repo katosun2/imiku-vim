@@ -3,6 +3,14 @@ snippet test
 /${2:^}/.${1:TARGET}
 endsnippet
 
+snippet maxnum
+Number.MAX_VALUE
+endsnippet
+
+snippet minnum
+Number.MAX_VALUE
+endsnippet
+
 snippet jsmaobao
 while (tag) {
 	if (!tag || tag == this) {
@@ -1743,6 +1751,10 @@ snippet phlatlas
 ${1}.load.atlas('${2:key}', '${3:pic}', ${4:null}, ${5:jsonData});
 endsnippet
 
+snippet phlfnt
+${1}.load.bitmapFont('${2:key}', '${3:pic}', ${4:fnt});
+endsnippet
+
 snippet phlanimate
 ${1}.load.atlasJSONHash('${2:key}', '${3:pic}', '${4:json}');
 endsnippet
@@ -1761,7 +1773,7 @@ ${7:$1}text.setText("ok,change");
 endsnippet
 
 snippet phaddgroup
-${1}.add.group();
+var ${1} = ${2}.add.group();
 endsnippet
 
 snippet phaddtween
@@ -1780,6 +1792,7 @@ snippet phaddtimer
 var ${1:timer};
 ${4:$1}timer = ${2:game}.time.events.loop(Phaser.Timer.SECOND, ${3:func}, this);
 ${5:$2}.time.events.remove(${6:$1});
+${7:$2}.time.events.stop(false); //先不要启动时钟
 endsnippet
 
 snippet phcreatetimer
@@ -1800,8 +1813,13 @@ snippet phaniplay
 ${1:sprite}.animations.play(${2:name}, ${3:-fps}, ${4:-isLoop});
 endsnippet
 
-snippet phstartphy
-${1}.physics.startSystem(${2:Phaser.Physics.ARCADE});
+snippet phphy
+//${1}.physics.startSystem(Phaser.Physics.${2:ARCADE|P2|Ninja});
+endsnippet
+
+snippet phphysp
+//开启${3:$2}的物理系统
+${1}.physics.enable(${2:sprit},Phaser.Physics.${2:ARCADE|P2|Ninja}); 
 endsnippet
 
 snippet phgetworldcx
@@ -1893,7 +1911,7 @@ ${8:$1}.scale.setScreenSize(true);
 endsnippet
 
 snippet phgame
-var ${1:game} = new Phaser.Game(${2:width}, ${3:height}, ${4:Phaser.AUTO|Phaser.WEBGL|Phaser.CANVAS}, '${5}', { preload: ${6:preload}, create: ${7:create}, update: ${8:update} });
+var ${1:game} = new Phaser.Game(${2:width}, ${3:height}, Phaser.${4:AUTO|WEBGL|CANVAS}, '${5}', { preload: ${6:preload}, create: ${7:create}, update: ${8:update} });
 
 ${9:$1}.States = {
 	/*启动场景*/
@@ -1932,4 +1950,34 @@ ${6:$2}.load.setPreloadSprite(${7:$1}, ${8:direction_0_1});
 ${9:$1}.load.onFileComplete.add(function(${10:progress, key, isSucc, loadNum , totalNum}) {});
 endsnippet
 
+snippet phloading
+//加载进度
+var text = game.add.text( game.world.centerX, game.world.centerY, "0%",{font:"16px Arial", fill:"#FFFFFF", align: "center"}),
+percent = 0,
+curPercent = 0,
+loadKey,
+_addPrecent = function(from, to){
+	if(percent < to){
+		if(percent >= from){
+			percent++;
+		}
+
+		text.setText(percent + "%");
+
+		if(percent == 100){
+			game.time.events.remove(loadKey);
+		}
+	}
+};
+//文字居中
+text.anchor.set(0.5, 0.5);
+//添加定时器
+loadKey = game.time.events.loop(Phaser.Timer.SECOND / 30, function(){
+	_addPrecent(percent , curPercent);
+}, this);
+//绑定
+game.load.onFileComplete.add(function( progress ) {
+	curPercent  = progress;
+});
+endsnippet
 #Phaser E
