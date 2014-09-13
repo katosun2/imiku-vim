@@ -1662,6 +1662,26 @@ user-select: none;
 -webkit-user-drag: none; 
 endsnippet
 
+snippet loadNum
+/**
+* @method loadNum 
+* @param { Number } from
+* @param { Number } to
+*/
+var ${1:percent} = 0;
+var ${2:loadNum} = function(from , to){
+	if(${4:$1} < to){
+		if(${5:$1} >= from){
+			${6:$1}++;
+		}
+		console.log(${7:$1});
+		${3:$2}(${8:$1} ,to);
+		if(${9:$1} >= 100){
+			//code
+		}
+	}
+};
+endsnippet
 
 #Phaser S
 snippet phatlasjson
@@ -1711,28 +1731,8 @@ snippet phlimg
 ${1}.load.image(${2:key}, ${3:src});
 endsnippet
 
-snippet phaddsp
-${1}.add.sprite(${2:x}, ${3:y}, ${4:key});
-endsnippet
-
-snippet phpaddimg
-${1}.add.image(${2:x}, ${3:y}, ${4:key});
-endsnippet
-
-snippet phpaddtxt
-${1}.add.text(${2:x}, ${3:y}, {${4:font:'16px Arial', fill:'#FFFFFF'}});
-endsnippet
-
-snippet phaddgroup
-${1}.add.group();
-endsnippet
-
-snippet phtop
-${1:sprite}.bringToTop();
-endsnippet
-
-snippet phlanimate
-${1}.load.atlasJSONHash('${2:key}', '${3:pic}', '${4:json}');
+snippet phlaudio
+${1}.load.audio(${2:key}, ${3:src});
 endsnippet
 
 snippet phlspsheet
@@ -1743,24 +1743,61 @@ snippet phlatlas
 ${1}.load.atlas('${2:key}', '${3:pic}', ${4:null}, ${5:jsonData});
 endsnippet
 
+snippet phlanimate
+${1}.load.atlasJSONHash('${2:key}', '${3:pic}', '${4:json}');
+endsnippet
+
+snippet phaddsp
+var ${1:sprite} = ${2}.add.sprite(${3:x}, ${4:y}, ${5:key});
+endsnippet
+
+snippet phpaddimg
+var ${1:image} = ${2}.add.image(${3:x}, ${4:y}, ${5:key});
+endsnippet
+
+snippet phaddtxt
+var ${1:text} = ${2}.add.text(${3:x}, ${4:y}, '${5:txt}', {${6:font:'16px Arial', fill:'#FFFFFF'}});
+${7:$1}text.setText("ok,change");
+endsnippet
+
+snippet phaddgroup
+${1}.add.group();
+endsnippet
+
+snippet phaddtween
+var ${1:tween} = ${2}.add.tween(${3:sprite}).to(${4:{ y: 400 }}, ${5:duration_2000}, ${6:Phaser.Easing.Quadratic.InOut}, ${7:isAutoStart_true}, ${8:delay:0}, ${9:repeat_1000}, ${10:isLikeYoyo_true});
+endsnippet
+
+snippet phaddtilesp
+var ${1:tilesprite} = ${2}.add.tileSprite(${3:x}, ${4:y}, ${5:width}, ${6:height}, '${7:key}');
+endsnippet
+
+snippet phaddbutton
+var ${1:button} = ${2}.add.button(${3:x}, ${4:y}, '${5:key}', ${6:onpressedCallback_func}, this, ${7:-overFrame_int_2}, ${8:-outFrame_int_1}, ${9:-downFrame_int_0, ${10:-upFrame_int_0}});
+endsnippet
+
+snippet phaddtimer
+var ${1:timer};
+${4:$1}timer = ${2:game}.time.events.loop(Phaser.Timer.SECOND, ${3:func}, this);
+${5:$2}.time.events.remove(${6:$1});
+endsnippet
+
+snippet phcreatetimer
+var ${1:timer} = ${2:game}.time.create(false);
+${5:$1}.loop(${3:duration}, ${4:func}, this);
+${6:$1}.start();
+endsnippet
+
+snippet phtop
+${1:sprite}.bringToTop();
+endsnippet
+
 snippet phaniadd
-${1:sprite}.animations.add(${2:name}, ${3:-[0, 1, 2,...]}, ${4:-fps}, ${5:-isYoyo});
+var ${1:animation} = ${2:sprite}.animations.add(${3:name}, ${4:-[0, 1, 2,...]}, ${5:-fps}, ${6:-isYoyo});
 endsnippet
 
 snippet phaniplay
 ${1:sprite}.animations.play(${2:name}, ${3:-fps}, ${4:-isLoop});
-endsnippet
-
-snippet phaddtween
-${1}.add.tween(${2:sprite}).to(${3:{ y: 400 }}, ${4:duration_2000}, ${5:Phaser.Easing.Quadratic.InOut}, ${6:isAutoStart_true}, ${7:delay:0}, ${8:repeat_1000}, ${9:isLikeYoyo_true});
-endsnippet
-
-snippet phaddtilesp
-${1}.add.tileSprite(${2:x}, ${3:y}, ${4:width}, ${5:height}, '${6:key}');
-endsnippet
-
-snippet phaddbutton
-${1}.add.button(${2:x}, ${3:y}, '${4:key}', ${5:onpressedCallback_func}, this, ${6:-overFrame_int_2}, ${7:-outFrame_int_1}, ${8:-downFrame_int_0, ${9:-upFrame_int_0}});
 endsnippet
 
 snippet phstartphy
@@ -1770,6 +1807,10 @@ endsnippet
 snippet phgetworldcx
 ${1}.world.centerX
 endsnippet
+
+snippet phsetworldbou
+{1}.world.setBounds(${2:x}, ${3:y}, ${4:maxW}, ${5:maxH});
+snippet phsetworldbou
 
 snippet phgroupcreate
 ${1:group}.create(${2:x}, ${3:y}, ${4:key}, '${5:exists_frame_key}');
@@ -1853,6 +1894,19 @@ endsnippet
 
 snippet phgame
 var ${1:game} = new Phaser.Game(${2:width}, ${3:height}, ${4:Phaser.AUTO|Phaser.WEBGL|Phaser.CANVAS}, '${5}', { preload: ${6:preload}, create: ${7:create}, update: ${8:update} });
+
+${9:$1}.States = {
+	/*启动场景*/
+	boot : function(){
+		this.preload = function(){};
+		this.create = function(){};
+		this.update = function(){};
+	}
+};
+//添加场景
+${10:$1}.state.add("boot", ${11:$1}.States.boot);
+//启动场景
+${12:$1}.state.start("boot");
 endsnippet
 
 snippet phaddstate
@@ -1860,32 +1914,22 @@ ${1}.stage.add();
 endsnippet
 
 snippet phstate
-//创建一个对象来存放要用到的state
-var ${1:states} = {
-	//prelaod场景，用来显示资源加载进度
-	preload : function(){},
-	create : function(){},
-	update : function(){},
-	//boot场景，用来做一些游戏启动前的准备
-	boot : function(){},
-	//menu场景，游戏菜单
-	menu : function(){},
-	//play场景，正式的游戏部分
-	play : function(){}
-};
-var ${11:$1} = function(){
+//定义一个场景
+var ${1} = function(){
 	this.preload = function(){};
 	this.create = function(){};
 	this.update = function(){};
 };
 
 //把定义好的场景添加到游戏中
-${2}.state.add('boot', ${6:$1}.boot);
-${3:$2}.state.add('preload', ${7:$1}.preload); 
-${4:$2}.state.add('menu', ${8:$1}.menu); 
-${5:$2}.state.add('play', ${9:$1}.play);
-
-//调用boot场景来启动游戏
-${10:$2}.state.start('boot');
+${2}.state.add('${3}', ${$4});
+${5:$2}.state.start('${6:$3}');
 endsnippet
+
+snippet phsetloadsp
+var ${1:preloadSprite} = ${2}.add.sprite(${3:x}, ${4:y}, '${5:key}');
+${6:$2}.load.setPreloadSprite(${7:$1}, ${8:direction_0_1});
+${9:$1}.load.onFileComplete.add(function(${10:progress, key, isSucc, loadNum , totalNum}) {});
+endsnippet
+
 #Phaser E
