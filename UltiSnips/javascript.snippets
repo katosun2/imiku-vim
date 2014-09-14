@@ -1736,56 +1736,64 @@ var botData = {
 endsnippet
 
 snippet phlimg
-${1}.load.image(${2:key}, ${3:src});
+${1:game}.load.image(${2:key}, ${3:src});
 endsnippet
 
 snippet phlaudio
-${1}.load.audio(${2:key}, ${3:src});
+${1:game}.load.audio(${2:key}, ${3:src});
 endsnippet
 
 snippet phlspsheet
-${1}.load.spritesheet('${2:key}', '${3:pic}', ${4:frameWidth_maxInt}, ${5:frameHeight}, ${6:-frameMax}, ${7:-margin}, ${8:-spacing});
+${1:game}.load.spritesheet('${2:key}', '${3:pic}', ${4:frameWidth_maxInt}, ${5:frameHeight}, ${6:-frameMax}, ${7:-margin}, ${8:-spacing});
 endsnippet
 
 snippet phlatlas
-${1}.load.atlas('${2:key}', '${3:pic}', ${4:null}, ${5:jsonData});
+${1:game}.load.atlas('${2:key}', '${3:pic}', ${4:null}, ${5:jsonData});
 endsnippet
 
 snippet phlfnt
-${1}.load.bitmapFont('${2:key}', '${3:pic}', ${4:fnt});
+${1:game}.load.bitmapFont('${2:key}', '${3:pic}', ${4:fnt});
 endsnippet
 
 snippet phlanimate
-${1}.load.atlasJSONHash('${2:key}', '${3:pic}', '${4:json}');
+${1:game}.load.atlasJSONHash('${2:key}', '${3:pic}', '${4:json}');
 endsnippet
 
 snippet phaddsp
-var ${1:sprite} = ${2}.add.sprite(${3:x}, ${4:y}, ${5:key});
+var ${1:sprite} = ${2:game}.add.sprite(${3:x}, ${4:y}, ${5:key}, ${6:-frame}, ${7:-group});
 endsnippet
 
-snippet phpaddimg
-var ${1:image} = ${2}.add.image(${3:x}, ${4:y}, ${5:key});
+snippet phaddimg
+var ${1:image} = ${2:game}.add.image(${3:x}, ${4:y}, ${5:key});
+endsnippet
+
+snippet phaddaudio
+var ${1:game}.add.audio(${2:key});
 endsnippet
 
 snippet phaddtxt
-var ${1:text} = ${2}.add.text(${3:x}, ${4:y}, '${5:txt}', {${6:font:'16px Arial', fill:'#FFFFFF'}});
+var ${1:text_name} = ${2:game}.add.text(${3:x}, ${4:y}, '${5:txt}', {${6:font:'16px Arial', fill:'#FFFFFF'}});
 ${7:$1}text.setText("ok,change");
 endsnippet
 
+snippet phaddfnttxt
+var ${1:text_name} = ${3:game}.add.bitmapText(${4:x}, ${5:y}, '${6:fnt_key}', '${7:msg}', ${8:size}, ${9:group});
+endsnippet
+
 snippet phaddgroup
-var ${1} = ${2}.add.group();
+var ${1:group_name} = ${2:game}.add.group();
 endsnippet
 
 snippet phaddtween
-var ${1:tween} = ${2}.add.tween(${3:sprite}).to(${4:{ y: 400 }}, ${5:duration_2000}, ${6:Phaser.Easing.Quadratic.InOut}, ${7:isAutoStart_true}, ${8:delay:0}, ${9:repeat_1000}, ${10:isLikeYoyo_true});
+var ${1:tween_name} = ${2:game}.add.tween(${3:sprite}).to(${4:{ y: 400 }}, ${5:duration_2000}, ${6:Phaser.Easing.Quadratic.InOut}, ${7:isAutoStart_true}, ${8:delay:0}, ${9:repeat_1000}, ${10:isLikeYoyo_true});
 endsnippet
 
 snippet phaddtilesp
-var ${1:tilesprite} = ${2}.add.tileSprite(${3:x}, ${4:y}, ${5:width}, ${6:height}, '${7:key}');
+var ${1:tilesprite} = ${2:game}.add.tileSprite(${3:x}, ${4:y}, ${5:width}, ${6:height}, '${7:key}');
 endsnippet
 
 snippet phaddbutton
-var ${1:button} = ${2}.add.button(${3:x}, ${4:y}, '${5:key}', ${6:onpressedCallback_func}, this, ${7:-overFrame_int_2}, ${8:-outFrame_int_1}, ${9:-downFrame_int_0, ${10:-upFrame_int_0}});
+var ${1:button} = ${2:game}.add.button(${3:x}, ${4:y}, '${5:key}', ${6:onpressedCallback_func}, this, ${7:-overFrame_int_2}, ${8:-outFrame_int_1}, ${9:-downFrame_int_0, ${10:-upFrame_int_0}});
 endsnippet
 
 snippet phaddtimer
@@ -1813,21 +1821,32 @@ snippet phaniplay
 ${1:sprite}.animations.play(${2:name}, ${3:-fps}, ${4:-isLoop});
 endsnippet
 
+snippet phanistop
+${1:sprite}.animations.stop('{2:name}', ${3:resetFrame_0});
+endsnippet
+
 snippet phphy
-//${1}.physics.startSystem(Phaser.Physics.${2:ARCADE|P2|Ninja});
+${1:game}.physics.startSystem(Phaser.Physics.${2:ARCADE|P2|NINJA});
 endsnippet
 
 snippet phphysp
 //开启${3:$2}的物理系统
-${1}.physics.enable(${2:sprit},Phaser.Physics.${2:ARCADE|P2|Ninja}); 
+${1:game}.physics.enable(${2:sprit},Phaser.Physics.${2:ARCADE|P2|NINJA}); 
+endsnippet
+
+snippet phphyarcpz
+//产生物理作用
+${1:game}.physics.arcade.collide(${2:sprite1}, ${3:sprite2}, ${4:callback},${5:collideCallback}, ${6:processCallback}, this);
+//不产生物理作用
+${7:$1}.physics.arcade.overlap(${8:$2}, ${9:$3}, ${10:$4}, ${11:$5}, ${12:$6}, this);
 endsnippet
 
 snippet phgetworldcx
-${1}.world.centerX
+${1:game}.world.centerX
 endsnippet
 
 snippet phsetworldbou
-{1}.world.setBounds(${2:x}, ${3:y}, ${4:maxW}, ${5:maxH});
+{1:game}.world.setBounds(${2:x}, ${3:y}, ${4:maxW}, ${5:maxH});
 snippet phsetworldbou
 
 snippet phgroupcreate
@@ -1835,19 +1854,19 @@ ${1:group}.create(${2:x}, ${3:y}, ${4:key}, '${5:exists_frame_key}');
 endsnippet
 
 snippet phspaddeventover
-${1}.inputEnabled = true;
+${1:game}.inputEnabled = true;
 ${2:$1}.input.useHandCursor = true; //if you want a hand cursor
 ${3:$1}.events.onInputOver.add(${4:func}, this);
 endsnippet
 
 snippet phspaddeventdrag
-${1}.inputEnabled = true;
+${1:sprite}.inputEnabled = true;
 ${2:$1}.input.enableDrag();
 ${3:$1}.events.onDragStop.add(${4:func}, this);
 endsnippet
 
 snippet phspaddevent
-${1}.inputEnabled = true;
+${1:sprite}.inputEnabled = true;
 ${3:$1}.events.on${2:event}.add(${4:func}, this);
 endsnippet
 
@@ -1896,7 +1915,7 @@ endsnippet
 
 snippet phscale
 //控制游戏的旋转
-${1}.scale.scaleMode = ${9:Phaser.ScaleManager.EXACT_FIT_最大化|Phaser.ScaleManager.NO_SCALE_将禁用缩放|Phaser.ScaleManager.SHOW_ALL_按比例缩放};
+${1:game}.scale.scaleMode = ${9:Phaser.ScaleManager.EXACT_FIT_最大化|Phaser.ScaleManager.NO_SCALE_将禁用缩放|Phaser.ScaleManager.SHOW_ALL_按比例缩放};
 ${3:$1}.scale.minWidth = 40;
 ${3:$1}.scale.minHeight = 20;
 ${4:$1}.scale.maxWidth = 40;
@@ -1928,12 +1947,12 @@ ${12:$1}.state.start("boot");
 endsnippet
 
 snippet phaddstate
-${1}.stage.add();
+${1:game}.stage.add();
 endsnippet
 
 snippet phstate
 //定义一个场景
-var ${1} = function(){
+var ${1:state_name} = function(){
 	this.preload = function(){};
 	this.create = function(){};
 	this.update = function(){};
