@@ -1763,6 +1763,10 @@ snippet phaddsp
 var ${1:sprite} = ${2:game}.add.sprite(${3:x}, ${4:y}, ${5:key}, ${6:-frame}, ${7:-group});
 endsnippet
 
+snippet phaddbmd
+var ${1:sprite} = ${2:game}.add.bitmapData(${3:width}, ${4:height}, ${5:-key}, ${6:-isAddToCache_false});
+endsnippet
+
 snippet phaddimg
 var ${1:image} = ${2:game}.add.image(${3:x}, ${4:y}, ${5:key});
 endsnippet
@@ -1790,6 +1794,12 @@ endsnippet
 
 snippet phaddtilesp
 var ${1:tilesprite} = ${2:game}.add.tileSprite(${3:x}, ${4:y}, ${5:width}, ${6:height}, '${7:key}');
+endsnippet
+
+snippet phaddemi
+var ${1:emitter} = ${2:game}.add.emitter(${3:x}, ${4:y}, ${5:maxParticles}');
+${7:emitter}.makeParticles('${6:key}');
+${8:emitter}.start(${9:-explode_false}, ${10:-lifespan_0_forever}, ${11:-frequency_250}, ${12:-quantity_0_all}, ${13:-forceQuantity_false});
 endsnippet
 
 snippet phaddbutton
@@ -1999,4 +2009,17 @@ game.load.onFileComplete.add(function( progress ) {
 	curPercent  = progress;
 });
 endsnippet
+
+snippet gsbgc
+${1:game}.stage.backgroundColor = "${2:color}";
+endsnippet
+
+snippet gpa
+game.physics.arcade.${1:moveToPointer(bullet, 300)};
+endsnippet
+
+snippet gikc
+var cursors = game.input.keyboard.createCursorKeys();
+endsnippet
+
 #Phaser E
