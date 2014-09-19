@@ -1837,6 +1837,7 @@ endsnippet
 
 snippet phphy
 ${1:game}.physics.startSystem(Phaser.Physics.${2:ARCADE|P2|NINJA});
+${3:$1}.physics.arcade.gravity.y = 250;
 endsnippet
 
 snippet phphysp
@@ -1844,7 +1845,7 @@ snippet phphysp
 ${1:game}.physics.enable(${2:sprit},Phaser.Physics.${2:ARCADE|P2|NINJA}); 
 endsnippet
 
-snippet phphyarcpz
+snippet phphyapz
 //产生物理作用
 ${1:game}.physics.arcade.collide(${2:sprite1}, ${3:sprite2}, ${4:callback},${5:collideCallback}, ${6:processCallback}, this);
 //不产生物理作用
