@@ -1888,11 +1888,15 @@ snippet phanigenframe
 Phaser.Animation.generateFrameNames('${1:name}', ${2:-start_xxx000X}, ${3:-stop_xxx000X}, '${4:-suffix_ }', ${5:-zeroPad_0});
 endsnippet
 
-snippet phpgroupcallall
+snippet phgroupcallall
 //child.animations.add('swim', frameNames, 30, true, false)
 //group.callAll('animations.add', 'animations', 'swim', frameNames, 30, true, false);
 //child.method(parameter){context class};
 ${1:group}.callAll(${2:method_animations.add}, ${3:context_animations}, ${4:parameter_*_repeat});
+endsnippet
+
+snippet phaddgroupsetall
+${1:group}.setAll('${2:checkWorldBounds}',${3:value}, ${4:-ischeckAlive_false}, ${5:-ischeckVisible_false});
 endsnippet
 
 snippet phpinputsnap
@@ -2020,6 +2024,11 @@ endsnippet
 
 snippet gikc
 var cursors = game.input.keyboard.createCursorKeys();
+endsnippet
+
+snippet phchkwb
+${1:sprite}.checkWorldBounds = true; //边界检测
+${2:$1}.outOfBoundsKill = true; //出边界就自动kill
 endsnippet
 
 #Phaser E
