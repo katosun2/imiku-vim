@@ -1752,7 +1752,7 @@ ${1:game}.load.atlas('${2:key}', '${3:pic}', ${4:null}, ${5:jsonData});
 endsnippet
 
 snippet phlfnt
-${1:game}.load.bitmapFont('${2:key}', '${3:pic}', ${4:fnt});
+${1:game}.load.bitmapFont('${2:key}', '${3:pic}', '${4:fnt_xml}');
 endsnippet
 
 snippet phlanimate
@@ -1816,7 +1816,10 @@ endsnippet
 snippet phcreatetimer
 var ${1:timer} = ${2:game}.time.create(false);
 ${5:$1}.loop(${3:duration}, ${4:func}, this);
-${6:$1}.start();
+${6:$1}.start(false); //启动不开始
+${7:$1}.resume();
+${7:$1}.pause();
+${6:$1}.stop();
 endsnippet
 
 snippet phtop
@@ -1878,6 +1881,7 @@ endsnippet
 
 snippet phspaddevent
 ${1:sprite}.inputEnabled = true;
+${5:$1}.input.useHandCursor = true;
 ${3:$1}.events.on${2:event}.add(${4:func}, this);
 endsnippet
 
@@ -2031,5 +2035,8 @@ snippet phchkwb
 ${1:sprite}.checkWorldBounds = true; //边界检测
 ${2:$1}.outOfBoundsKill = true; //出边界就自动kill
 endsnippet
+
+snippet phlogsb
+${1:game}.debug.spriteBounds(${2:kthis.soapSmall});
 
 #Phaser E
