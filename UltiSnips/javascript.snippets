@@ -1786,6 +1786,8 @@ endsnippet
 
 snippet phaddgroup
 var ${1:group_name} = ${2:game}.add.group();
+${3:$2}.enableBody = true;
+${4:$2}.physicsBodyType = Phaser.Physics.ARCADE;
 endsnippet
 
 snippet phaddtween
@@ -2038,5 +2040,6 @@ endsnippet
 
 snippet phlogsb
 ${1:game}.debug.spriteBounds(${2:kthis.soapSmall});
+endsnippet
 
 #Phaser E
