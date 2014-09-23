@@ -1778,6 +1778,8 @@ endsnippet
 snippet phaddtxt
 var ${1:text_name} = ${2:game}.add.text(${3:x}, ${4:y}, '${5:txt}', {${6:font:'16px Arial', fill:'#FFFFFF'}});
 ${7:$1}text.setText("ok,change");
+${8:$1}.text.wordWrap = true;
+${9:$1}.text.wordWrapWidth = (0.95 * this.game.world.width);
 endsnippet
 
 snippet phaddfnttxt
@@ -1899,7 +1901,7 @@ snippet phgroupcallall
 //child.animations.add('swim', frameNames, 30, true, false)
 //group.callAll('animations.add', 'animations', 'swim', frameNames, 30, true, false);
 //child.method(parameter){context class};
-${1:group}.callAll(${2:method_animations.add}, ${3:context_animations}, ${4:parameter_*_repeat});
+${1:group}.callAll(${2:method_animations.add}, ${3:context_method_animations}, ${4:parameter_*_repeat}, ${5:parameter_*_repeat...});
 endsnippet
 
 snippet phaddgroupsetall

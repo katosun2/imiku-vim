@@ -11,6 +11,52 @@ snippet asc
 <aside class="${1:class}">${2}</aside>
 endsnippet
 
+snippet xmlhttp
+var XMLHttp = null;
+if (window.XMLHttpRequest && !(window.ActiveXObject)) {
+	XMLHttp = new XMLHttpRequest();
+} else if (window.ActiveXObject) {
+	try {
+		XMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+	} catch(otherMSIE) {
+		try {
+			XMLHttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch(NoSupport) {
+			XMLHttp = null;
+		}
+	}
+}
+endsnippet
+
+snippet jsonp
+var loadScript = function(url, args, callback) {
+	var params = args || "";
+	if (args && (typeof args === "object")) {
+		var str = "";
+		for (var i in args) {
+			str += i + "=" + args[i] + "&";
+		}
+		params = str.substr(0, str.length - 1);
+	};
+	params = params.trim();
+	var script = document.createElement("script");
+	script.type = 'text/javascript';
+	script.src = url + (params?"?"+params:"");
+	script.onload = script.onreadystatechange = function() {
+		if (!this.readyState || (this.readyState == "complete" || this.readyState == "loaded")) {
+			callback && callback();
+			script.onreadystatechange = script.onload = null;
+			script = null;
+		}
+	};
+	document.getElementsByTagName("head")[0].appendChild(script);
+};
+endsnippet
+
+snippet writejs
+document.write(unescape("%3Cscript src='${1:src}' type='text/javascript'%3E%3C/script%3E"));
+endsnippet
+
 snippet as
 <aside">${1}</aside>
 endsnippet
