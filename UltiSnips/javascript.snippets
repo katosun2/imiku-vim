@@ -3,6 +3,41 @@ snippet test
 /${2:^}/.${1:TARGET}
 endsnippet
 
+snippet isstring
+function isString(obj) {
+	return Object.prototype.toString.call(obj) === "[object String]";
+}
+endsnippet
+
+snippet htmlencode
+function htmlencode(s){
+	var div = document.createElement('div');
+	div.appendChild(document.createTextNode(s));
+	return div.innerHTML;
+}
+function htmldecode(s){
+	var div = document.createElement('div');
+	div.innerHTML = s;
+	return div.innerText || div.textContent;
+}
+endsnippet
+
+snippet isalltype
+var toString = Object.prototype.toString
+function isObject(obj) {
+	return toString.call(obj) === "[object Object]";
+}
+function isString(obj) {
+	return toString.call(obj) === "[object String]";
+}
+function isArray(obj) {
+	return toString.call(obj) === "[object Array]";
+}
+function isFunction(obj) {
+	return toString.call(obj) === "[object Function]";
+}
+endsnippet
+
 snippet maxnum
 Number.MAX_VALUE
 endsnippet
@@ -1704,7 +1739,7 @@ seajs.config({
 
 	// 路径配置
 	//paths: {
-		//'gallery': 'https://a.alipayobjects.com/gallery'
+		//'kgimg': 'http://static.kgimg.com/common/js-lib/min'
 	//},
 	
 	// 变量配置{locale}
@@ -1736,6 +1771,10 @@ snippet sjuse
 seajs.use(${1:string|array}, ${2:function(a, b){
 	${3}
 }});
+endsnippet
+
+snippet sjrss
+require.resolve(${1:id});
 endsnippet
 
 snippet sjdef
