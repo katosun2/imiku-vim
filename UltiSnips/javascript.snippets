@@ -1726,7 +1726,26 @@ var ${2:loadNum} = function(from , to){
 };
 endsnippet
 
+snippet grunt
+module.exports = function(grunt) {
+	grunt.initConfig({
+		pkg: grunt.file.readJSON('package.json')
+	});
+
+	grunt.loadNpmTasks('grunt-cmd-transport');
+	grunt.loadNpmTasks('grunt-cmd');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+
+	//grunt.registerTask('default', ['watch']);
+};
+endsnippet
+
 #seajs S
+snippet sjme
+module.exports = ${1};
+endsnippet
+
 snippet sjconf
 seajs.config({
 	// Sea.js 的基础路径
@@ -1803,6 +1822,32 @@ require.async(${1:String|Array}, ${2:function(c, d) {
 })};
 endsnippet
 #seajs E
+
+#nodejs S
+snippet pkg
+{
+	"family": "${1:game}",
+	"name": "${2:demo1}",
+	"version": "${3:1.0.0}",
+	"description": "${4:desc}",
+	"scripts": {
+		"test": "-save-dev"
+	},
+	"repository": {
+		"type": "${5:svn_git}",
+		"url": ""
+	},
+	"license": "${6:MIT}",
+	"devDependencies": {
+		"grunt": "^0.4.5",
+		"grunt-cmd-transport": "^0.4.1",
+		"grunt-cmd-concat": "^0.2.7",
+		"grunt-contrib-clean": "^0.6.0",
+		"grunt-contrib-uglify": "^0.6.0"
+	}
+}
+endsnippet
+#nodejs E
 
 #Phaser S
 snippet phatlasjson
