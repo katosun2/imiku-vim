@@ -22,6 +22,14 @@ function htmldecode(s){
 }
 endsnippet
 
+snippet jsmodules
+(function ( my ) {
+	my.xxMethod = function () {
+		//code
+	}
+})( window.${1:myModule} = window.${2:myModule} || {} );
+endsnippet
+
 snippet isalltype
 var toString = Object.prototype.toString
 function isObject(obj) {
