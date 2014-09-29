@@ -1,0 +1,31 @@
+{
+  "family": "game",
+  "name": "demo1",
+  "version": "1.0.0",
+  "description": "a seajs exapmle with grunt build tool.",
+  "scripts": {
+    "grunt": "help"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/katosun2/seajs-grunt-demo"
+  },
+  "license": "Copyright 2014",
+  "spm": {
+    "main": [
+      "demo1.js",
+      "demo1-debug.js"
+    ],
+    "alias": {
+      "kg": "sealib/kg/kg/2.0.0/base-min"
+    }
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cmd-transport": "^0.4.1",
+    "grunt-cmd-concat": "^0.2.7",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-sea-hashmap": "^0.2.1"
+  }
+}
