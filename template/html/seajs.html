@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>a seajs tpl</title>
+</head>
+<body>
+</body>
+</html>
+<script type="text/javascript" src="../js/sea.js"></script>
+<script type="text/javascript">
+ seajs.config({
+ 	// Sea.js 的基础路径
+ 	base: './js/modules/',
+ 
+ 	// 别名配置
+ 	alias: {
+ 		'kg': './js/modules/base-min.js'
+ 	}
+ });
+
+// For development
+if (location.href.indexOf("?dev") > 0) {
+	seajs.use("demo1/src/demo1");
+}
+// For production
+else {
+	seajs.use("demo1/dist/demo1");
+}
+</script>
