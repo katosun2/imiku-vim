@@ -1,0 +1,51 @@
+#Grunt S
+snippet gtconf
+{
+	"transport" : {
+		"options": {
+			"idleading": "${1:demo1}/<%= compile_dir %>/",
+			"debug": true
+		},
+		"files": [{
+			"expand": true,
+			"cwd": "${2:$1}/src",
+			"src": "**/*",
+			"filter": "isFile",
+			"dest": "${3:$1}/<%= temp_dir %>/"
+		}]
+	},
+	"concat" : {
+		"options": {
+			"include": "relative"
+		},
+		"files": [{
+			"expand": true,
+			"cwd": "${3:$1}/<%= temp_dir %>/",
+			"src": ["${4:$1}.js", "${5:$1}-debug.js"],
+			"dest": "${6:$1}/<%= compile_dir %>/"
+		}]
+	},
+	"jshint" : {
+		"src" : ["${7:$1}/<%= temp_dir %>/*.js", "${8:$1}/<%= compile_dir %>/*.js"]
+	},
+	"uglify" : {
+		"files": [{
+			"expand": true,
+			"cwd": "demo1/<%= compile_dir %>",
+			"src": "**/demo1.js",
+			"filter": "isFile",
+			"dest": "demo1/<%= compile_dir %>/"
+		}]
+	},
+	"copy" : {
+		"files" : [
+			{
+				"src" : ["demo1/<%= compile_dir %>/demo1.js"],
+				"dest" : "demo1/demo1.js"
+			}
+		]
+	},
+	"clean" : ["demo1/<%= temp_dir %>"]
+}
+endsnippet
+#Grunt E

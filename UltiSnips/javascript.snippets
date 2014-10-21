@@ -9,6 +9,25 @@ function isString(obj) {
 }
 endsnippet
 
+snippet jsnamespace
+${1:game}.namespace = function(ns){
+	var parts = ns.split("."),
+		object = ${2:$1},
+		i, len;
+
+	if(parts[0] === "${3:$1}"){
+		parts = parts.slice(1);
+	}
+	for(i = 0, len = parts.length; i < len; i+=1){
+		if(!object[parts[i]]){
+			object[parts[i]] = {};
+		}
+		object = object[parts[i]];
+	}
+	return object;
+};
+endsnippet
+
 snippet reg1
 ^(.*\.(?:css|js))(.*)$/i
 endsnippet
@@ -1971,7 +1990,7 @@ var ${1:tilesprite} = ${2:game}.add.tileSprite(${3:x}, ${4:y}, ${5:width}, ${6:h
 endsnippet
 
 snippet phaddemi
-var ${1:emitter} = ${2:game}.add.emitter(${3:x}, ${4:y}, ${5:maxParticles}');
+var ${1:emitter} = ${2:game}.add.emitter(${3:x}, ${4:y}, '${5:maxParticles}');
 ${7:emitter}.makeParticles('${6:key}');
 ${8:emitter}.start(${9:-explode_false}, ${10:-lifespan_0_forever}, ${11:-frequency_250}, ${12:-quantity_0_all}, ${13:-forceQuantity_false});
 endsnippet
