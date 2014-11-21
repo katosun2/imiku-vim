@@ -150,6 +150,31 @@ snippet a
 alert(${1});
 endsnippet
 
+snippet resetSize
+/**
+ * 重置字体大小 
+ */
+(function() {
+	if ( !! navigator.userAgent.match(/AppleWebKit.*Mobile.*/)) {
+		var body_fontsize = document.body.currentStyle || document.defaultView.getComputedStyle(document.body, '');
+		if (body_fontsize && parseInt(body_fontsize.fontSize, 10) == 8) {
+			setTimeout(function() {
+				var vw = window.innerWidth || document.documentElement.clientWidth,
+				fs = Math.ceil((vw * 16) / 480);
+				if (fs % 2 == 1) {
+					fs++;
+				}
+				try {
+					document.getElementsByTagName("html")[0].style.fontSize = fs + "px";
+					document.getElementsByTagName("body")[0].style.fontSize = fs + "px";
+				} catch(e) {}
+			},
+			1000);
+		}
+	}
+})();
+endsnippet
+
 snippet class
 var ClassName = function(a, b){
 	/* public variable */
@@ -1924,6 +1949,10 @@ var botData = {
 };
 endsnippet
 
+snippet phltilemap
+${1:game}.load.tilemap('${2:key}', '${3:url_json}', ${4:null}, Phaser.Tilemap.${5:TILED_JSON|CSV});
+endsnippet
+
 snippet phlimg
 ${1:game}.load.image(${2:key}, ${3:src});
 endsnippet
@@ -2006,6 +2035,21 @@ ${5:$2}.time.events.remove(${6:$1});
 ${7:$2}.time.events.stop(false); //先不要启动时钟
 endsnippet
 
+snippet phcreatemap
+game.load.tilemap('tile_01', '../images/shoebox/tile_01.json', null, Phaser.Tilemap.TILED_JSON);
+game.load.image('tiles-1', '../images/shoebox/tiles-1.png');
+var map = game.add.tilemap('tile_01'),
+layer;
+map.addTilesetImage('tiles-1');
+//map.setCollisionByExclusion([ 14 ]);
+layer = map.createLayer('layer1');
+layer.resizeWorld();
+endsnippet
+
+snippet phgcf
+game.camera.follow(${1:sprite});
+endsnippet
+
 snippet phcreatetimer
 var ${1:timer} = ${2:game}.time.create(false);
 ${5:$1}.loop(${3:duration}, ${4:func}, this);
@@ -2036,12 +2080,24 @@ ${1:game}.physics.startSystem(Phaser.Physics.${2:ARCADE|P2|NINJA});
 ${3:$1}.physics.arcade.gravity.y = 250;
 endsnippet
 
+snippet phcursor
+var ${1:cursors} = game.input.keyboard.createCursorKeys();
+if(${2:$1}.up.isDown){}
+if(${3:$1}.down.isDown){}
+if(${4:$1}.left.isDown){}
+if(${5:$1}.right.isDown){}
+endsnippet
+
+snippet phaddkey
+var jumpButton = game.input.keyboard.addKey(${1:Phaser.Keyboard.SPACEBAR});
+endsnippet
+
 snippet phphysp
 //开启${3:$2}的物理系统
 ${1:game}.physics.enable(${2:sprit},Phaser.Physics.${2:ARCADE|P2|NINJA}); 
 endsnippet
 
-snippet phphyapz
+snippet phphypz
 //产生物理作用
 ${1:game}.physics.arcade.collide(${2:sprite1}, ${3:sprite2}, ${4:callback},${5:collideCallback}, ${6:processCallback}, this);
 //不产生物理作用
@@ -2232,4 +2288,19 @@ endsnippet
 snippet phlogsb
 ${1:game}.debug.spriteBounds(${2:kthis.soapSmall});
 endsnippet
+
+snippet phrect
+/ create a new bitmap data object
+var bmd = game.add.bitmapData(128,128);
+
+// draw to the canvas context like normal
+bmd.ctx.beginPath();
+bmd.ctx.rect(0,0,128,128);
+bmd.ctx.fillStyle = '#ff0000';
+bmd.ctx.fill();
+
+// use the bitmap data as the texture for the sprite
+var sprite = game.add.sprite(200, 200, bmd);
+endsnippet
 #Phaser E
+
