@@ -9,6 +9,19 @@ function isString(obj) {
 }
 endsnippet
 
+snippet strtojson
+var json = (new Function("return " + jsonStr))();
+var json = eval('(' + jsonStr + ')');
+//ie8+
+var json = JSON.parse(jsonStr);
+endsnippet
+
+snippet jssortram
+${1:tabList}.sort(function(){
+	return Math.random() > 0.5 ? -1 : 1;
+}); 
+endsnippet
+
 snippet jsnamespace
 ${1:game}.namespace = function(ns){
 	var parts = ns.split("."),
@@ -1795,6 +1808,19 @@ module.exports = function(grunt) {
 
 	//grunt.registerTask('default', ['watch']);
 };
+endsnippet
+
+snippet jsdh
+window.requestAnimFrame = (function(){ 
+	return window.requestAnimationFrame || 
+		window.webkitRequestAnimationFrame || 
+		window.mozRequestAnimationFrame || 
+		window.oRequestAnimationFrame || 
+		window.msRequestAnimationFrame || 
+		function(callback) { 
+			window.setTimeout(callback, 1000 / 60); 
+		}; 
+})();
 endsnippet
 
 #seajs S
