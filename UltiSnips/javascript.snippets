@@ -1823,6 +1823,48 @@ window.requestAnimFrame = (function(){
 })();
 endsnippet
 
+snippet jsorient
+window.addEventListener('orientationchange', function(event) { 
+	alert(window.orientation || screen.orientation) 
+}, false); 
+window.addEventListener('deviceorientation', function(event) { 
+	var a = event.alpha; 
+	var b = event.beta; 
+	var g = event.gamma; 
+	console.log([a, b, g]); 
+}, false); 
+window.addEventListener('compassneedscalibration', function(event) { 
+	alert('Your compass needs calibrating! Wave your device in a figure-eight motion'); 
+	event.preventDefault(); 
+}, false); 
+window.addEventListener('devicemotion', function(event) { 
+	// Process event.acceleration, event.accelerationIncludingGravity, 
+	// event.rotationRate and event.interval 
+}, false); 
+endsnippet
+
+snippet jsnet
+function updateConnectionClass() { 
+	var root = document.documentElement, 
+		types = "unknown ethernet wifi 2g 3g 4g none".split(" "); 
+	for (var i = 0, n = types.length; i < n; i++) { 
+		root.classList.remove("network-" + types[i]); 
+	} 
+	root.classList.add("network-" + navigator.connection.type); 
+} 
+window.onload = window.ononline = window.onoffline = updateConnectionClass;
+endsnippet
+
+snippet jsgeo
+if (navigator.geolocation) { 
+	navigator.geolocation.getCurrentPosition(function(position) { 
+		var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude); 
+		var marker = new google.maps.Marker({position: latLng, map: map}); 
+		map.setCenter(latLng); 
+	}, errorHandler); 
+} 
+endsnippet
+
 #seajs S
 snippet sjme
 module.exports = ${1};

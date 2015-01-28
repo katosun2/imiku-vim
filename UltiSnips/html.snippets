@@ -28,6 +28,11 @@ if (window.XMLHttpRequest && !(window.ActiveXObject)) {
 }
 endsnippet
 
+snippet lmedia
+<link rel="stylesheet" media="screen, handled and (orientation:portrait)" href="${1:portrait.css}" /> 
+<link rel="stylesheet" media="screen, handled and (orientation:landscape)" href="${2:landscape.css}" /> 
+endsnippet
+
 snippet jsonp
 var loadScript = function(url, args, callback) {
 	var params = args || "";
@@ -750,8 +755,4 @@ var nextClickEvent = function(event){
 	}
 };
 next.addEventListener('click', nextClickEvent, false);
-endsnippet
-
-snippet abc
-var a=  1;
 endsnippet
