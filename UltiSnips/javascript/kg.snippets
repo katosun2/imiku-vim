@@ -75,37 +75,6 @@ function play(data){
 }
 endsnippet
 
-snippet kgplay
-/*{"Hash":"F612BF97F642D60F4C81B66910F94B7D", "FileName":"筷子兄弟", "timeLen":"291"},{"Hash":"28CFEB81BF1CA25FC463C2F099A28A27", "FileName":"陈奕迅", "timeLen":"211"}*/
-function play(data){
-	var files = "";
-	var counter = 0;
-
-	for(var j = 0; j < data.length;j++){
-		if(data[j].sid == oid){
-			if(files.length > 0){
-				files += ",";
-			}
-			var fn = data[j].singername;
-			if(fn.indexOf("】") > -1 && fn.trim().indexOf("】") != fn.trim().length-1){
-				fn = fn.substring(fn.indexOf("】")+1);
-			}
-
-			var json = '{"Hash":"' + data[j].hash + '", "FileName":"' + fn +  '", "timeLen":"' + (data[j].duration/1000) + '"}';
-			files += json;
-
-			counter = counter + 1;
-		}
-	}
-
-	if(files.length > 0){
-		try{
-			KgWebSuperCall.playSongs('[' + files + ']', 'yueku_omnibus');
-		}catch(exp){}
-	}
-}
-endsnippet
-
 snippet kgsharealbum
 /**
 * 分享
