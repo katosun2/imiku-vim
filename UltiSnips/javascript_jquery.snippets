@@ -1,0 +1,80 @@
+#Jquery S
+snippet jqplug
+(function($){
+	$.fn.pluginName = function(opt) {
+		var defaults = {
+			${1}
+		};
+		var opt = $.extend(defaults,opt);
+		return this.each(function() {
+			${2:_this} = $(this);
+			${3}
+		});
+	};
+})(jQuery);
+endsnippet
+
+snippet jqajax
+$.ajax({
+	type: '${1:get}',
+	url : '',
+	dataType:'${2:json}',
+	data: 'rand=1',
+	success : function(msg){
+		${4}
+	},
+	error : function(msg){
+		${3}
+	}
+});
+endsnippet
+
+snippet jqjsonp
+$.ajax({
+	type: "get",
+	async: false,
+	url: "",
+	dataType: "jsonp",
+	data:"",
+	jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+	jsonpCallback:"getinfo",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+	success: function(json){
+		//
+	},
+	error: function(){
+		//
+	}
+});
+endsnippet
+
+snippet jqscroll
+/**
+* 文字滚动
+* lh 行高, speed 速度, delay 间隔时间, id 容器id
+*/
+function startmarquee(lh,speed,delay,id){
+	var t; //定时器
+	var p=false; //初始化为允许滚动状态
+	var o=document.getElementById(id);   //获取容器
+	$('#'+id).attr('run','1');
+	o.innerHTML+=o.innerHTML; 
+	o.onmouseover=function(){p=true;}; 
+	o.onmouseout=function(){p=false;};
+	o.scrollTop = 0; //初始化滚动高度
+	function start() { 
+		t=setInterval(scrolling,speed); 
+		if(!p) o.scrollTop += 2;
+	}
+function scrolling() { 
+	if(o.scrollTop%lh!==0){ 
+		o.scrollTop += 2;
+		if(o.scrollTop>=o.scrollHeight/2) o.scrollTop = 0;
+	}else{
+		clearInterval(t); 
+		setTimeout(start,delay);
+	}
+}
+setTimeout(start,delay); 
+}
+endsnippet
+#Jquery E

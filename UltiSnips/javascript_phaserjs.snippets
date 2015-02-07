@@ -1,0 +1,399 @@
+#Phaser S
+snippet phatlasjson
+var botData = {
+"frames": [{
+	"filename": "running bot.swf/0000",
+	"frame": { "x": 34, "y": 128, "w": 56, "h": 60 },
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": { "x": 0, "y": 2, "w": 56, "h": 60 },
+	"sourceSize": { "w": 56, "h": 64 }
+}, {
+	"filename": "running bot.swf/0001",
+	"frame": { "x": 54, "y": 0, "w": 56, "h": 58 },
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": { "x": 0, "y": 3, "w": 56, "h": 58 },
+	"sourceSize": { "w": 56, "h": 64 }
+}, {
+	"filename": "running bot.swf/0002",
+	"frame": { "x": 54, "y": 58, "w": 56, "h": 58 },
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": { "x": 0, "y": 3, "w": 56, "h": 58 },
+	"sourceSize": { "w": 56, "h": 64 }
+}, {
+	"filename": "running bot.swf/0003",
+	"frame": { "x": 0, "y": 192, "w": 34, "h": 64 },
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": { "x": 11, "y": 0, "w": 34, "h": 64 },
+	"sourceSize": { "w": 56, "h": 64 }
+}],
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "running_bot.png",
+	"format": "RGBA8888",
+	"size": { "w": 252, "h": 256 },
+	"scale": "0.2",
+	"smartupdate": "$TexturePacker:SmartUpdate:fb56f261b1eb04e3215824426595f64c$"
+}
+};
+endsnippet
+
+snippet phltilemap
+${1:game}.load.tilemap('${2:key}', '${3:url_json}', ${4:null}, Phaser.Tilemap.${5:TILED_JSON|CSV});
+endsnippet
+
+snippet phlimg
+${1:game}.load.image(${2:key}, ${3:src});
+endsnippet
+
+snippet phlaudio
+${1:game}.load.audio(${2:key}, ${3:src});
+endsnippet
+
+snippet phlspsheet
+${1:game}.load.spritesheet('${2:key}', '${3:pic}', ${4:frameWidth_maxInt}, ${5:frameHeight}, ${6:-frameMax}, ${7:-margin}, ${8:-spacing});
+endsnippet
+
+snippet phlatlas
+${1:game}.load.atlas('${2:key}', '${3:pic}', ${4:null}, ${5:jsonData});
+endsnippet
+
+snippet phlfnt
+${1:game}.load.bitmapFont('${2:key}', '${3:pic}', '${4:fnt_xml}');
+endsnippet
+
+snippet phlanimate
+${1:game}.load.atlasJSONHash('${2:key}', '${3:pic}', '${4:json}');
+endsnippet
+
+snippet phaddsp
+var ${1:sprite} = ${2:game}.add.sprite(${3:x}, ${4:y}, ${5:key}, ${6:-frame}, ${7:-group});
+endsnippet
+
+snippet phaddbmd
+var ${1:sprite} = ${2:game}.add.bitmapData(${3:width}, ${4:height}, ${5:-key}, ${6:-isAddToCache_false});
+endsnippet
+
+snippet phaddimg
+var ${1:image} = ${2:game}.add.image(${3:x}, ${4:y}, ${5:key});
+endsnippet
+
+snippet phaddaudio
+var ${1:game}.add.audio(${2:key});
+endsnippet
+
+snippet phaddtxt
+var ${1:text_name} = ${2:game}.add.text(${3:x}, ${4:y}, '${5:txt}', {${6:font:'16px Arial', fill:'#FFFFFF'}});
+${7:$1}text.setText("ok,change");
+${8:$1}.text.wordWrap = true;
+${9:$1}.text.wordWrapWidth = (0.95 * this.game.world.width);
+endsnippet
+
+snippet phaddfnttxt
+var ${1:text_name} = ${3:game}.add.bitmapText(${4:x}, ${5:y}, '${6:fnt_key}', '${7:msg}', ${8:size}, ${9:group});
+endsnippet
+
+snippet phaddgroup
+var ${1:group_name} = ${2:game}.add.group();
+${3:$2}.enableBody = true;
+${4:$2}.physicsBodyType = Phaser.Physics.ARCADE;
+endsnippet
+
+snippet phaddtween
+var ${1:tween_name} = ${2:game}.add.tween(${3:sprite}).to(${4:{ y: 400 }}, ${5:duration_2000}, ${6:Phaser.Easing.Quadratic.InOut}, ${7:isAutoStart_true}, ${8:delay:0}, ${9:repeat_1000}, ${10:isLikeYoyo_true});
+endsnippet
+
+snippet phaddtilesp
+var ${1:tilesprite} = ${2:game}.add.tileSprite(${3:x}, ${4:y}, ${5:width}, ${6:height}, '${7:key}');
+endsnippet
+
+snippet phaddemi
+var ${1:emitter} = ${2:game}.add.emitter(${3:x}, ${4:y}, '${5:maxParticles}');
+${7:emitter}.makeParticles('${6:key}');
+${8:emitter}.start(${9:-explode_false}, ${10:-lifespan_0_forever}, ${11:-frequency_250}, ${12:-quantity_0_all}, ${13:-forceQuantity_false});
+endsnippet
+
+snippet phaddbutton
+var ${1:button} = ${2:game}.add.button(${3:x}, ${4:y}, '${5:key}', ${6:onpressedCallback_func}, this, ${7:-overFrame_int_2}, ${8:-outFrame_int_1}, ${9:-downFrame_int_0, ${10:-upFrame_int_0}});
+endsnippet
+
+snippet phaddtimer
+var ${1:timer};
+${4:$1}timer = ${2:game}.time.events.loop(Phaser.Timer.SECOND, ${3:func}, this);
+${5:$2}.time.events.remove(${6:$1});
+${7:$2}.time.events.stop(false); //先不要启动时钟
+endsnippet
+
+snippet phcreatemap
+game.load.tilemap('tile_01', '../images/shoebox/tile_01.json', null, Phaser.Tilemap.TILED_JSON);
+game.load.image('tiles-1', '../images/shoebox/tiles-1.png');
+var map = game.add.tilemap('tile_01'),
+layer;
+map.addTilesetImage('tiles-1');
+//map.setCollisionByExclusion([ 14 ]);
+layer = map.createLayer('layer1');
+layer.resizeWorld();
+endsnippet
+
+snippet phgcf
+game.camera.follow(${1:sprite});
+endsnippet
+
+snippet phcreatetimer
+var ${1:timer} = ${2:game}.time.create(false);
+${5:$1}.loop(${3:duration}, ${4:func}, this);
+${6:$1}.start(false); //启动不开始
+${7:$1}.resume();
+${7:$1}.pause();
+${6:$1}.stop();
+endsnippet
+
+snippet phtop
+${1:sprite}.bringToTop();
+endsnippet
+
+snippet phaniadd
+var ${1:animation} = ${2:sprite}.animations.add(${3:name}, ${4:-[0, 1, 2,...]}, ${5:-fps}, ${6:-isYoyo});
+endsnippet
+
+snippet phaniplay
+${1:sprite}.animations.play(${2:name}, ${3:-fps}, ${4:-isLoop});
+endsnippet
+
+snippet phanistop
+${1:sprite}.animations.stop('{2:name}', ${3:resetFrame_0});
+endsnippet
+
+snippet phphy
+${1:game}.physics.startSystem(Phaser.Physics.${2:ARCADE|P2|NINJA});
+${3:$1}.physics.arcade.gravity.y = 250;
+endsnippet
+
+snippet phcursor
+var ${1:cursors} = game.input.keyboard.createCursorKeys();
+if(${2:$1}.up.isDown){}
+if(${3:$1}.down.isDown){}
+if(${4:$1}.left.isDown){}
+if(${5:$1}.right.isDown){}
+endsnippet
+
+snippet phaddkey
+var jumpButton = game.input.keyboard.addKey(${1:Phaser.Keyboard.SPACEBAR});
+endsnippet
+
+snippet phphysp
+//开启${3:$2}的物理系统
+${1:game}.physics.enable(${2:sprit},Phaser.Physics.${2:ARCADE|P2|NINJA}); 
+endsnippet
+
+snippet phphypz
+//产生物理作用
+${1:game}.physics.arcade.collide(${2:sprite1}, ${3:sprite2}, ${4:callback},${5:collideCallback}, ${6:processCallback}, this);
+//不产生物理作用
+${7:$1}.physics.arcade.overlap(${8:$2}, ${9:$3}, ${10:$4}, ${11:$5}, ${12:$6}, this);
+endsnippet
+
+snippet phgetworldcx
+${1:game}.world.centerX
+endsnippet
+
+snippet phsetworldbou
+${1:game}.world.setBounds(${2:x}, ${3:y}, ${4:maxW}, ${5:maxH});
+endsnippet
+
+snippet phgroupcreate
+${1:group}.create(${2:x}, ${3:y}, ${4:key}, '${5:exists_frame_key}');
+endsnippet
+
+snippet phspaddeventover
+${1:game}.inputEnabled = true;
+${2:$1}.input.useHandCursor = true; //if you want a hand cursor
+${3:$1}.events.onInputOver.add(${4:func}, this);
+endsnippet
+
+snippet phspaddeventdrag
+${1:sprite}.inputEnabled = true;
+${2:$1}.input.enableDrag();
+${3:$1}.events.onDragStop.add(${4:func}, this);
+endsnippet
+
+snippet phspaddevent
+${1:sprite}.inputEnabled = true;
+${5:$1}.input.useHandCursor = true;
+${3:$1}.events.on${2:event}.add(${4:func}, this);
+endsnippet
+
+snippet phrndrange
+${1}.rnd.integerInRange(${2:fromNum}, ${3:toNum})
+endsnippet
+
+snippet phanigenframe
+Phaser.Animation.generateFrameNames('${1:name}', ${2:-start_xxx000X}, ${3:-stop_xxx000X}, '${4:-suffix_ }', ${5:-zeroPad_0});
+endsnippet
+
+snippet phgroupcallall
+//child.animations.add('swim', frameNames, 30, true, false)
+//group.callAll('animations.add', 'animations', 'swim', frameNames, 30, true, false);
+//child.method(parameter){context class};
+${1:group}.callAll(${2:method_animations.add}, ${3:context_method_animations}, ${4:parameter_*_repeat}, ${5:parameter_*_repeat...});
+endsnippet
+
+snippet phaddgroupsetall
+${1:group}.setAll('${2:checkWorldBounds}',${3:value}, ${4:-ischeckAlive_false}, ${5:-ischeckVisible_false});
+endsnippet
+
+snippet phpinputsnap
+${1:sprite}.input.enableSnap(${2:snapX}, ${3:snapY}, ${4:-isOnDrag}, ${5:-isOnRelease}, ${6:-snapOffsetX}, ${7:-snapOffsetX});
+endsnippet
+
+snippet phac
+${1:sprite}.anchor.${2};
+endsnippet
+
+snippet phwgl
+Phaser.WEBGL
+endsnippet
+
+snippet phcanvas
+Phaser.CANVAS
+endsnippet
+
+snippet phauto
+Phaser.AUTO
+endsnippet
+
+snippet phpel
+Phaser.Easing.Linear.None
+endsnippet
+
+snippet phpeq
+Phaser.Easing.Quadratic.InOut
+endsnippet
+
+snippet phscale
+//控制游戏的旋转
+${1:game}.scale.scaleMode = ${9:Phaser.ScaleManager.EXACT_FIT_最大化|Phaser.ScaleManager.NO_SCALE_将禁用缩放|Phaser.ScaleManager.SHOW_ALL_按比例缩放};
+${3:$1}.scale.minWidth = 40;
+${3:$1}.scale.minHeight = 20;
+${4:$1}.scale.maxWidth = 40;
+${5:$1}.scale.maxHeight = 20;
+${6:$1}.scale.forceLandscape = true;
+//将垂直方向居中
+${10:$1}.scale.pageAlignZontally = true;
+//将使游戏在水平
+${7:$1}.scale.pageAlignHorizontally = true;
+//激活缩放。
+${8:$1}.scale.setScreenSize(true);
+endsnippet
+
+snippet phgame
+var ${1:game} = new Phaser.Game(${2:width}, ${3:height}, Phaser.${4:AUTO|WEBGL|CANVAS}, '${5}', { preload: ${6:preload}, create: ${7:create}, update: ${8:update} });
+
+${9:$1}.States = {
+	/*启动场景*/
+	boot : function(){
+		this.preload = function(){};
+		this.create = function(){};
+		this.update = function(){};
+	}
+};
+//添加场景
+${10:$1}.state.add("boot", ${11:$1}.States.boot);
+//启动场景
+${12:$1}.state.start("boot");
+endsnippet
+
+snippet phaddstate
+${1:game}.stage.add();
+endsnippet
+
+snippet phstate
+//定义一个场景
+var ${1:state_name} = function(){
+	this.preload = function(){};
+	this.create = function(){};
+	this.update = function(){};
+};
+
+//把定义好的场景添加到游戏中
+${2}.state.add('${3}', ${$4});
+${5:$2}.state.start('${6:$3}');
+endsnippet
+
+snippet phsetloadsp
+var ${1:preloadSprite} = ${2}.add.sprite(${3:x}, ${4:y}, '${5:key}');
+${6:$2}.load.setPreloadSprite(${7:$1}, ${8:direction_0_1});
+${9:$1}.load.onFileComplete.add(function(${10:progress, key, isSucc, loadNum , totalNum}) {});
+endsnippet
+
+snippet phloading
+//加载进度
+var text = game.add.text( game.world.centerX, game.world.centerY, "0%",{font:"16px Arial", fill:"#FFFFFF", align: "center"}),
+percent = 0,
+curPercent = 0,
+loadKey,
+_addPrecent = function(from, to){
+	if(percent < to){
+		if(percent >= from){
+			percent++;
+		}
+
+		text.setText(percent + "%");
+
+		if(percent == 100){
+			game.time.events.remove(loadKey);
+		}
+	}
+};
+//文字居中
+text.anchor.set(0.5, 0.5);
+//添加定时器
+loadKey = game.time.events.loop(Phaser.Timer.SECOND / 30, function(){
+	_addPrecent(percent , curPercent);
+}, this);
+//绑定
+game.load.onFileComplete.add(function( progress ) {
+	curPercent  = progress;
+});
+endsnippet
+
+snippet gsbgc
+${1:game}.stage.backgroundColor = "${2:color}";
+endsnippet
+
+snippet gpa
+game.physics.arcade.${1:moveToPointer(bullet, 300)};
+endsnippet
+
+snippet gikc
+var cursors = game.input.keyboard.createCursorKeys();
+endsnippet
+
+snippet phchkwb
+${1:sprite}.checkWorldBounds = true; //边界检测
+${2:$1}.outOfBoundsKill = true; //出边界就自动kill
+endsnippet
+
+snippet phlogsb
+${1:game}.debug.spriteBounds(${2:kthis.soapSmall});
+endsnippet
+
+snippet phrect
+/ create a new bitmap data object
+var bmd = game.add.bitmapData(128,128);
+
+// draw to the canvas context like normal
+bmd.ctx.beginPath();
+bmd.ctx.rect(0,0,128,128);
+bmd.ctx.fillStyle = '#ff0000';
+bmd.ctx.fill();
+
+// use the bitmap data as the texture for the sprite
+var sprite = game.add.sprite(200, 200, bmd);
+endsnippet
+#Phaser E
+

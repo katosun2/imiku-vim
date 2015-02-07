@@ -9,7 +9,7 @@ function isString(obj) {
 }
 endsnippet
 
-snippet strtojson
+snippet str2json
 var json = (new Function("return " + jsonStr))();
 var json = eval('(' + jsonStr + ')');
 //ie8+
@@ -67,16 +67,20 @@ snippet jsmodules
 endsnippet
 
 snippet isalltype
-var toString = Object.prototype.toString
+var toString = Object.prototype.toString;
+
 function isObject(obj) {
 	return toString.call(obj) === "[object Object]";
 }
+
 function isString(obj) {
 	return toString.call(obj) === "[object String]";
 }
+
 function isArray(obj) {
 	return toString.call(obj) === "[object Array]";
 }
+
 function isFunction(obj) {
 	return toString.call(obj) === "[object Function]";
 }
@@ -90,22 +94,25 @@ snippet minnum
 Number.MAX_VALUE
 endsnippet
 
-snippet jsmaobao
-while (tag) {
-	if (!tag || tag == this) {
+snippet jsdigui
+while (${1:tag}) {
+	if (!${2:$1} || ${3:$1} == this) {
 		break;
 	}
-	if (tag.nodeType == 1 && tag.tagName.toLowerCase() == 'li') {
+	if (${4:$1}.nodeType == 1 && ${5:$1}.tagName.toLowerCase() == 'li') {
 		${0://code}
 		break;
 	} else {
 		//向上查找
-		tag = tag.parentNode;
+		${6:$1} = ${7:$1}.parentNode;
 	}
 }
 endsnippet
 
 snippet gettext
+/**
+* 获取dom标签内容
+*/
 var getText = function(el){
 	var message =  "";
 	if (document.body.innerText) {
@@ -121,15 +128,8 @@ snippet constr
 ${1:class_name}.prototype.constructor = ${1:class_name}
 endsnippet
 
-snippet getStyle
+snippet getstyle
 var style = document.getElementById("${1:id}").currentStyle || document.defaultView.getComputedStyle(document.getElementById("${2:$1}"), '')
-endsnippet
-
-snippet jszc
-if (!'${1:pattern}' in document.create_rElement_x('${2:input}') ) {
-	// do client/server side validation
-	${3}
-}
 endsnippet
 
 snippet switch
@@ -138,25 +138,10 @@ switch(${1:expression}) {
 		${4:// code}
 		break;
 	${5://case...}
-		default:
+	default:
 		${2:// code}
 		break;
-	}
-endsnippet
-
-snippet module
-var module = function(){
-	function f(){
-		${2://code}
-		}
-		return {
-			init : function(){
-				${1://code}
-				}
-			}
-		}();
-	}
-};
+}
 endsnippet
 
 snippet a
@@ -165,8 +150,8 @@ endsnippet
 
 snippet resetSize
 /**
- * 重置字体大小 
- */
+* 重置字体大小 
+*/
 (function() {
 	if ( !! navigator.userAgent.match(/AppleWebKit.*Mobile.*/)) {
 		var body_fontsize = document.body.currentStyle || document.defaultView.getComputedStyle(document.body, '');
@@ -190,53 +175,25 @@ endsnippet
 
 snippet class
 var ClassName = function(a, b){
+	/* private variables */
+	var x = '',
+	y = '',
+
+	/* variable */
+	pr = function(){
+		${1://code}
+		}
+	};
+
 	/* public variable */
 	this.a = '' || a;
 	this.b = '' || b;
-	/* private variables */
-	var x = '';
-	var y = ''
+
 	/* public methods */
 	this.pu = function(){
 		this.a = a;
 		tihs.b = b;
-	}
-	/* variable */
-	var pr = function(){
-		${1://code}
-		}
-	}
-	endsnippet
-
-
-snippet jqplug
-;(function($){
-	$.fn.pluginName = function(opt) {
-		var defaults = {
-			${1}
-		};
-		var opt = $.extend(defaults,opt);
-		return this.each(function() {
-			${2:_this} = $(this);
-			${3}
-		});
 	};
-})(jQuery);
-endsnippet
-
-snippet jqajax
-$.ajax({
-	type: '${1:get}',
-	url : '',
-	dataType:'${2:json}',
-	data: 'rand=1',
-	success : function(msg){
-		${4}
-	},
-	error : function(msg){
-		${3}
-	}
-});
 endsnippet
 
 snippet log
@@ -362,23 +319,6 @@ snippet jsbodyfontsize
 var style = document.body.currentStyle || document.defaultView.getComputedStyle(document.body, '')
 console.log(style.fontSize);
 endsnippet
-snippet jqjsonp
-$.ajax({
-	type: "get",
-	async: false,
-	url: "",
-	dataType: "jsonp",
-	data:"",
-	jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-	jsonpCallback:"getinfo",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
-	success: function(json){
-		//
-	},
-	error: function(){
-		//
-	}
-});
-endsnippet
 
 snippet randxy
 Math.floor(Math.max(min, Math.random() * (max + 1)));
@@ -403,11 +343,11 @@ document.body.appendChild(${6:$1});
 endsnippet
 
 snippet jsdivs
-var arrText=["1","2","3","4","5","6","7","8","9","10"];
-var oFrag=document.createDocumentFragment();//创建页面碎片
-for(var i=0;i<arrText.length;i++){
-	var op=document.createElement("P");
-	var oText=document.createTextNode(arrText[i]);
+var arrText = ["1","2","3","4","5","6","7","8","9","10"];
+var oFrag = document.createDocumentFragment();//创建页面碎片
+for(var i = 0; i < arrText.length; i++){
+	var op = document.createElement("P");
+	var oText = document.createTextNode(arrText[i]);
 	op.appendChild(oText);
 	oFrag.appendChild(op);
 }
@@ -460,17 +400,21 @@ endsnippet
 snippet jsdivclone
 var tmpnode = document.getElementById('container'),
 clone = tmpnode.cloneNode(true),
-list = ['foo','bar','baz'],elem,contents;
+list = ['foo', 'bar', 'baz'], 
+elem, 
+contents;
+
 clone.setAttribute('width','50%');
 for(var i = 0; i<list.length; i++){
 	elem = document.createElement('div');
 	content = document.createTextNode(list[i]);
 	clone.appendChild(elem);
 }
-original.parentNode.replaceChild(clone,original);
+original.parentNode.replaceChild(clone, original);
 endsnippet
 
 snippet htmlcode
+//有更优htmlencode
 function HTMLDECODE(str) {
 	str = str || "";
 	if (str === "" || str.length === 0) {
@@ -494,42 +438,11 @@ function HTMLENCODE(str) {
 	str = str.replace(/>/g, "&gt;");
 	str = str.replace(/</g, "&lt;");
 	str = str.replace(/\//g, '&#047;');
-		str = str.replace(/'/g, "&#039;");
+	str = str.replace(/'/g, "&#039;");
 	str = str.replace(/"/g, '&quot;');
 	str = str.replace(/\s| /g, "&nbsp;");
 	str = str.replace(/&/g, "&amp;");
 	return str;
-}
-endsnippet
-
-snippet jqscroll
-/**
-* 文字滚动
-* lh 行高, speed 速度, delay 间隔时间, id 容器id
-*/
-function startmarquee(lh,speed,delay,id){
-	var t; //定时器
-	var p=false; //初始化为允许滚动状态
-	var o=document.getElementById(id);   //获取容器
-	$('#'+id).attr('run','1');
-	o.innerHTML+=o.innerHTML; 
-	o.onmouseover=function(){p=true;}; 
-	o.onmouseout=function(){p=false;};
-	o.scrollTop = 0; //初始化滚动高度
-	function start() { 
-		t=setInterval(scrolling,speed); 
-		if(!p) o.scrollTop += 2;
-	}
-function scrolling() { 
-	if(o.scrollTop%lh!==0){ 
-		o.scrollTop += 2;
-		if(o.scrollTop>=o.scrollHeight/2) o.scrollTop = 0;
-	}else{
-		clearInterval(t); 
-		setTimeout(start,delay);
-	}
-}
-setTimeout(start,delay); 
 }
 endsnippet
 
@@ -538,61 +451,6 @@ snippet randint
 var RANDOMXY = function(min, max) {
 	return Math.floor(Math.max(min, Math.random() * (max + 1)));
 };
-endsnippet
-
-# appcan UEX
-snippet uexwc
-uexWindow.closeToast();
-endsnippet
-
-snippet uexwt
-uexWindow.toast(${1:1},${2:5},${3:string},${4:time});
-endsnippet
-
-snippet zytouch 
-function zy_touch(class, func){
-	　var t = event.currentTarget;
-	　if (!t.zTouch) {
-		t.zTouch = new zyClick(t, func, class);
-		t.zTouch._touchStart(event);
-	}
-} 
-endsnippet
-
-snippet uexss
-$$("${1:obj_id}").gesture = new zyEvent("${1:obj_id}", function(me, dx, dy) { 
-	//移动过程中事件
-}, function(me, dx, dy, t) { 
-	//手指松开后事件
-	if (t == "right") zy_anim_push(me, "a-mr");
-}, false, function(e){
-	//对象动画结束事件,后面的loadmaincon()是主窗口root的函数
-	uexWindow.evaluateScript("root", "0", "loadmaincon()");
-});
-endsnippet
-
-snippet uexjsonp
-var xmlHttp = function() {
-	uexXmlHttpMgr.open("1", "GET", url, "");
-	uexXmlHttpMgr.send("1");
-};
-var successCB = function(opid, stauts, result) {
-	if (parseInt(stauts, 10) === 1) {
-		result = JSON.parse(result);
-		uexXmlHttpMgr.close("1");
-		//code
-		uexWindow.closeToast();
-	}else if(parseInt(stauts, 10) === 0){
-		//加载中
-	}else if(parseInt(stauts, 10) === -1){
-		//加载出错
-	}
-};
-uexXmlHttpMgr.onData = successCB;
-uexWidgetOne.cbError = function(opCode, errorCode, errorInfo) {
-	uexWindow.toast(0, "5", "数据加载出错", 5000);
-};
-xmlHttp();
 endsnippet
 
 snippet jsreg
@@ -615,14 +473,16 @@ ${1:Object} instanceof Array
 endsnippet
 
 snippet jsclass
-;(function(){
-	var ${1:ClassName} = function(name,age,opt){
-		if(!(this instanceof Dog)){
-			return new Dog(name,age);
+(function(){
+	var ${1:ClassName} = function(opt){
+		if(!(this instanceof ${6:$1})){
+			return new ${5:$1}(opt);
 		}
 		this.name = name;
 		this.age = age;
 		this.setOpt(opt || {});
+
+		return this;
 	};
 	${2:$1}.prototype={
 		setOpt:function(opt){
@@ -651,7 +511,7 @@ snippet jsclass
 	};
 	return (window.${3:$1} = ${4:$1});
 })();
-//${4:$1}("旺旺",3).getName().getAge();
+//${7:$1}("旺旺",3).getName().getAge();
 endsnippet
 
 snippet jsaddevent1
@@ -660,13 +520,11 @@ var addEvent = (function () {
 		return function (type, element, fun) {
 			element.addEventListener(type, fun, false);
 		};
-	}
-	else if (document.attachEvent) {
+	} else if (document.attachEvent) {
 		return function (type, element, fun) {
 			element.attachEvent('on' + type, fun);
 		};
-	}
-	else {
+	} else {
 		return function (type, element, fun) {
 			element['on' + type] = fun;
 		};
@@ -905,53 +763,28 @@ function getXY(dom) {
 * @return {Object} 页面宽度值、高度值、滚动全高度值、滚动全宽度值、滚动高值、滚动宽值
 */
 function getBodySize() {
-	if (document.compatMode == "BackCompat") {
-		var clientH = document.body.clientHeight;
-		var clientW = document.body.clientWidth;
-		var scrollH = document.body.scrollHeight;
-		var scrollW = document.body.scrollWidth;
-		var scrollT = document.body.scrollTop;
-		var scrollL = document.body.scrollLeft;
-	} else if (document.compatMode == "CSS1Compat") {
-		var clientH = document.documentElement.clientHeight;
-		var clientW = document.documentElement.clientWidth;
-		var scrollH = document.documentElement.scrollHeight;
-		var scrollW = document.documentElement.scrollWidth;
-		var scrollT = document.body.scrollTop || document.documentElement.scrollTop;
-		var scrollL = document.body.scrollLeft || document.documentElement.scrollLeft;
-	}
-	return {
-		cH: clientH,
-		cW: clientW,
-		sH: scrollH,
-		sW: scrollW,
-		sT: scrollT,
-		sL: scrollL
-	};
-}
-endsnippet
+	var dc = document,
+	clientH,
+	clientW,
+	scrollH,
+	scrollW,
+	scrollT,
+	scrollL;
 
-snippet getbodysize
-/**
-* 获取页面可视宽、高、滚动全高、滚动全宽、滚动高、滚动宽
-* @id getBodySize
-* @return {Object} 页面宽度值、高度值、滚动全高度值、滚动全宽度值、滚动高值、滚动宽值
-*/
-function getBodySize() {
-	if (document.compatMode == "BackCompat") {
-		var clientH = document.body.clientHeight;
-		var clientW = document.body.clientWidth;
-		var scrollH = document.body.scrollHeight;
-		var scrollW = document.body.scrollWidth;
-		var scrollT = document.body.scrollTop;
-		var scrollL = document.body.scrollLeft;
+	if (dc.compatMode == "BackCompat") {
+		clientH = dc.body.clientHeight;
+		clientW = dc.body.clientWidth;
+		scrollH = dc.body.scrollHeight;
+		scrollW = dc.body.scrollWidth;
+		scrollT = dc.body.scrollTop;
+		scrollL = dc.body.scrollLeft;
 	} else if (document.compatMode == "CSS1Compat") {
-		var clientH = document.documentElement.clientHeight;
-		var clientW = document.documentElement.clientWidth;
-		var scrollH = document.documentElement.scrollHeight;
-		var scrollW = document.documentElement.scrollWidth;
-		var scrollT = document.body.scrollTop || document.documentElement.scrollTop;
-		var scrollL = document.body.scrollLeft || document.documentElement.scrollLeft;
+		clientH = dc.documentElement.clientHeight;
+		clientW = dc.documentElement.clientWidth;
+		scrollH = dc.documentElement.scrollHeight;
+		scrollW = dc.documentElement.scrollWidth;
+		scrollT = dc.body.scrollTop || document.documentElement.scrollTop;
+		scrollL = dc.body.scrollLeft || document.documentElement.scrollLeft;
 	}
 	return {
 		cH: clientH,
@@ -969,19 +802,20 @@ snippet ie6cache
 *针对ie6背景图片缓存
 */
 try{
-	var userAgent = navigator.userAgent.toLowerCase();
-	var env = null;
-	var ver = 0;
+	var userAgent = navigator.userAgent.toLowerCase(),
+	env = null,
+	ver = 0;
+
 	env = userAgent.match(/msie ([\d.]+)/);ver = env ? parseInt(env[1], 10) : 0;
 	if(ver == 6){
 		try{ 
 			document.execCommand("BackgroundImageCache", false, true);
-		}catch(e){}
+		}catch(ex){}
 	}
-}catch(e){}
+}catch(ex){}
 endsnippet
 
-snippet stope
+snippet jsstope
 /**
 * 停止事件冒泡
 * @id stopEvent
@@ -1012,7 +846,7 @@ function getRequest(){
 }
 endsnippet
 
-snippet stopb
+snippet jsstopb
 //非默认
 if(e.stopPropagation){
 	e.stopPropagation();
@@ -1024,137 +858,6 @@ if(e.preventDefault){
 	e.preventDefault();
 }else{
 	e.returnValue = false;
-}
-endsnippet
-
-snippet kgajax
-Kg.Ajax("post", "${1:url}", true, "${2:a=10&b=20}", ${3:callback}, ${4:error}, "json");
-endsnippet
-
-snippet kggbs
-var o = Kg.getBodySize();
-endsnippet
-
-snippet kggs
-Kg.getStyle(${1:dom}, "${2:font-size}");  
-endsnippet
-
-snippet kggxy
-Kg.getXY(${1:dom});
-endsnippet
-
-snippet kgadde
-Kg.$("${1:dom}").addEvent("${2:click}", function(){
-	${3:code}
-});
-endsnippet
-
-snippet kgpost
-Kg.post("${1:url}", ${2:{"name":"kugou"}}, ${3:callback});
-endsnippet
-
-snippet kggetjson
-Kg.getJSON("${1:url}", ${2:{"name":"kugou"}}, ${3:callback});
-endsnippet
-
-snippet kglit
-{literal}
-${1:""}
-{/literal}
-endsnippet
-
-snippet kgtj
-/**
-* 通用统计
-* @param { Number || Array }
-* @param { String }
-*/
-function sdnClick(key,type){
-	if(!key){return;}
-	var src = (new Date()).getTime();
-
-	//判断是否为数组
-	if(Object.prototype.toString.call(key)==='[object Array]'){
-		for(var i=0,l=key.length;i<l;i++){
-			src = (new Date()).getTime();
-			switch(type){
-				case "aspx": src = 'http://sdn.kugou.com/link.aspx?id=' + key[i] + '&url=&t=' + src; break;
-					case "php":
-						default:  src = 'http://tj.kugou.com/front/link.php?id=' + key[i] + '&url=&t=' + src; break;
-			};
-				(new Image()).src = src;
-		}
-	}else{
-		switch(type){
-			case "aspx": src = 'http://sdn.kugou.com/link.aspx?id=' + key + '&url=&t=' + src; break;
-				case "php":
-					default:  src = 'http://tj.kugou.com/front/link.php?id=' + key + '&url=&t=' + src; break;
-		};
-			(new Image()).src = src;
-	}
-}
-endsnippet
-
-snippet kgplay
-/*{"Hash":"F612BF97F642D60F4C81B66910F94B7D", "FileName":"筷子兄弟", "timeLen":"291"},{"Hash":"28CFEB81BF1CA25FC463C2F099A28A27", "FileName":"陈奕迅", "timeLen":"211"}*/
-function play(data){
-	var files = "";
-	var counter = 0;
-
-	for(var j = 0; j < data.length;j++){
-		if(data[j].sid == oid){
-			if(files.length > 0){
-				files += ",";
-			}
-			var fn = data[j].singername;
-			if(fn.indexOf("】") > -1 && fn.trim().indexOf("】") != fn.trim().length-1){
-				fn = fn.substring(fn.indexOf("】")+1);
-			}
-
-			var json = '{"Hash":"' + data[j].hash + '", "FileName":"' + fn +  '", "timeLen":"' + (data[j].duration/1000) + '"}';
-			files += json;
-
-			counter = counter + 1;
-		}
-	}
-
-	if(files.length > 0){
-		try{
-			KgWebSuperCall.playSongs('[' + files + ']', 'yueku_omnibus');
-		}catch(exp){}
-	}
-}
-endsnippet
-
-snippet kgsharealbum
-/**
-* 分享
-* @name shareAlbum
-* @param { String } 分享渠道
-* @param { Number } 精选辑id
-*/
-function shareAlbum(chl, id){
-	var el = Kg.$C("s_" + id)[0];
-	//专辑名
-	var name = Kg.$T("a", el)[0].title;
-	//分享图片
-	var img = Kg.$T("img", el)[0].getAttribute("_src");
-	//简介
-	var intro = Kg.$C("text",el)[0].innerHTML;
-	img = img.match(/\b\d+\.\w+$/);
-	openShareAlbum(chl, name, id, img, "special", intro);
-}
-
-//存在于base.js中
-function openShareAlbum(chl, name, id, pic, type, intro){
-	var url = "http://www.kugou.com/interface/fromsoft/?action=share&microblog=1";
-		url += "&plat=" + chl;
-	url += "&name=" + encodeURI(name);
-	url += "&id=" + id;
-	url += "&pic=" + pic;
-	url += "&share_type=" + type;
-	url += "&intro=" + encodeURI(intro);
-	window.open(url);
 }
 endsnippet
 
@@ -1212,7 +915,7 @@ snippet jsweixin
 /*微信分享*/
 var dataForWeixin = {
 	appId: "",
-	msgImg: "http://m.kugou.com/static/images/share2014/cover.png",
+	msgImg: "",
 	url: location.href,
 	title: document.title,
 	desc: "",
@@ -1295,95 +998,6 @@ context.stroke();//处理
 context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
 var base64 = canvas.toDataURL("image/png")); 
 */
-endsnippet
-
-snippet kgjsonp
-Kg.Ajax({
-	docType : "jsonp",
-	method : "get", 
-	url : "",
-	callbackFuncName : "",
-	args : metadata,
-	callback : function(res){
-		console.log(res);
-	},
-	error : function(){}
-});
-endsnippet
-
-snippet kgshare
-function shareTo (plat){
-	plat = plat || "sina";
-	var _this = MoPage,
-	option = {
-		popupWidth:615,
-		popupHeight:505,
-		title:globalParam.shareTitle,
-		url:globalParam.shareUrl,
-		content:globalParam.shareContent,
-		imgSrc:globalParam.shareImg,
-		swf:"",
-		appkey:"340086183",
-		/*(新浪微博) 用参数,关联用户的UID，分享微博会@该用户(可选)*/
-		ralateUid:""
-	},
-	winSrc = "",
-	queryStr = "";
-
-	var _title = encodeURIComponent(globalParam.shareTitle),
-	_url = encodeURIComponent(globalParam.shareUrl),
-	_content = encodeURIComponent(globalParam.shareContent),
-	_imgSrc =  encodeURI(globalParam.shareImg);
-	_swf = encodeURI(globalParam.shareSwf || "");
-
-	if(_this.isInClient()){
-		var client_share = {
-			"shareName" : globalParam.shareTitle,
-			"hash" : "",
-			"listID" : "",
-			"type" : 3,
-			"shareData" : {
-				"linkUrl" : encodeURIComponent(globalParam.shareUrl),
-				"picUrl" : globalParam.shareImg,
-				"content": globalParam.shareContent,
-				"title" : globalParam.shareTitle
-			},
-			"suid" : "",
-			"slid" : "",
-			"imgUrl" : "",
-			"filename" : "",
-			"duration": 0
-		};
-		KgMobileCall.share(Kg.JSON.stringify(client_share));
-	}else{
-		switch(plat){
-			case 'sina':
-				option.popupWidth = 615;
-				option.popupHeight = 505;
-				winSrc = "http://service.t.sina.com.cn/share/share.php";
-				queryStr = [
-					"url=" + _url,
-					"appkey=" + option.appkey,
-					"title=" + _content,
-					"pic=" + _imgSrc,
-					"ralateUid=" + option.ralateUid 
-				].join("&");
-				break;
-			default : 
-				return;
-		}
-
-		var l = (screen.width - option.popupWidth)/2,
-		t = (screen.height - option.popupHeight)/2,
-		resultUrl = winSrc + "?" + queryStr;
-
-		location.href = resultUrl;
-	}
-
-	if(globalParam.stat.shareId !== ""){
-		phpLogClick(globalParam.stat.shareId);
-	}
-}
 endsnippet
 
 snippet jsopenapp
@@ -1509,8 +1123,8 @@ endsnippet
 
 snippet jsresize
 /**
- * 重置字体大小 
- */
+* 重置字体大小 
+*/
 (function() {
 	if ( !! navigator.userAgent.match(/AppleWebKit.*Mobile.*/)) {
 		var body_fontsize = document.body.currentStyle || document.defaultView.getComputedStyle(document.body, '');
@@ -1530,10 +1144,6 @@ snippet jsresize
 		}
 	}
 })();
-endsnippet
-
-snippet jsresizemin
-(function(){if(!!navigator.userAgent.match(/AppleWebKit.*Mobile.*/)){var a=document.body.currentStyle||document.defaultView.getComputedStyle(document.body,"");a&&parseInt(a,10)==8&&setTimeout(function(){var b=window.innerWidth||document.documentElement.clientWidth,a=Math.ceil(b*16/480);if(a%2==1)a++;try{document.getElementsByTagName("html")[0].style.fontSize=a+"px";document.getElementsByTagName("body")[0].style.fontSize=a+"px"}catch(c){}},1e3)}})();
 endsnippet
 
 snippet getimg
@@ -1561,14 +1171,13 @@ var setUploadImg = function(target, imgTarget){
 endsnippet
 
 snippet trigger
-var trigger = function(target,type){
+var trigger = function(target, type){
 	var dc = document;
 	if(dc.createEvent){
 		var evt = dc.createEvent("HTMLEvents");
-		evt.initEvent(type,false,true);
+		evt.initEvent(type, false, true);
 		target.dispatchEvent(evt);
-	}
-	else if(dc.createEventObject){
+	} else if(dc.createEventObject){
 		target.fireEvent("on" + type);
 	}
 };
@@ -1764,16 +1373,6 @@ var Sprite = ObjectContainerClass.extend({
 });
 endsnippet
 
-snippet csssel
-user-select: none; 
--ms-user-select: none; 
--webkit-user-select: none; 
--khtml-user-select: none; 
--moz-user-select: none; 
--webkit-touch-callout: none; 
--webkit-user-drag: none; 
-endsnippet
-
 snippet loadNum
 /**
 * @method loadNum 
@@ -1864,511 +1463,3 @@ if (navigator.geolocation) {
 	}, errorHandler); 
 } 
 endsnippet
-
-#seajs S
-snippet sjme
-module.exports = ${1};
-endsnippet
-
-snippet sjconf
-seajs.config({
-	// Sea.js 的基础路径
-	base: './js/modules/',
-
-	// 别名配置
-	alias: {
-		'kg': './js/modules/base-min.js'
-	},
-
-	// 路径配置
-	//paths: {
-		//'kgimg': 'http://static.kgimg.com/common/js-lib/min'
-	//},
-	
-	// 变量配置{locale}
-	//vars: {
-		//'locale': 'zh-cn'
-	//},
-	
-	// 映射配置
-	//map: [
-		//['http://example.com/js/app/', 'http://localhost/js/app/']
-	//],
-	
-	// 预加载项
-	//在老浏览器中，提前加载好 ES5 和 json 模块
-	//preload: [
-		//Function.prototype.bind ? '' : 'es5-safe',
-		//this.JSON ? '' : 'json'
-	//],
-	
-	// 调试模式
-	debug: true,
-
-	// 文件编码
-	charset: 'utf-8'
-});
-endsnippet
-
-snippet sjuse
-seajs.use(${1:string|array}, ${2:function(a, b){
-	${3}
-}});
-endsnippet
-
-snippet sjrss
-require.resolve(${1:id});
-endsnippet
-
-snippet sjdef
-// 所有模块都通过 define 来定义
-define(function(require, exports, module) {
-	// 通过 require 引入依赖
-	var Kg = require('kg');
-	var Spinning = require('./spinning');
-
-	// 通过 exports 对外提供接口
-	exports.${1:doSomething} = ${2};
-
-	// 或者通过 module.exports 提供整个接口
-	module.exports = ${3};
-});
-endsnippet
-
-snippet sjreq
-require('${1:String}');
-endsnippet
-
-snippet sjreqasync
-// 异步加载多个模块，在加载完成时，执行回调
-require.async(${1:String|Array}, ${2:function(c, d) {
-	${3}
-})};
-endsnippet
-#seajs E
-
-#nodejs S
-snippet pkg
-{
-	"family": "${1:game}",
-	"name": "${2:demo1}",
-	"version": "${3:1.0.0}",
-	"description": "${4:desc}",
-	"scripts": {
-		"test": "-save-dev"
-	},
-	"repository": {
-		"type": "${5:svn_git}",
-		"url": ""
-	},
-	"license": "${6:MIT}",
-	"devDependencies": {
-		"grunt": "^0.4.5",
-		"grunt-cmd-transport": "^0.4.1",
-		"grunt-cmd-concat": "^0.2.7",
-		"grunt-contrib-clean": "^0.6.0",
-		"grunt-contrib-uglify": "^0.6.0"
-	}
-}
-endsnippet
-#nodejs E
-
-#Phaser S
-snippet phatlasjson
-var botData = {
-"frames": [{
-	"filename": "running bot.swf/0000",
-	"frame": { "x": 34, "y": 128, "w": 56, "h": 60 },
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": { "x": 0, "y": 2, "w": 56, "h": 60 },
-	"sourceSize": { "w": 56, "h": 64 }
-}, {
-	"filename": "running bot.swf/0001",
-	"frame": { "x": 54, "y": 0, "w": 56, "h": 58 },
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": { "x": 0, "y": 3, "w": 56, "h": 58 },
-	"sourceSize": { "w": 56, "h": 64 }
-}, {
-	"filename": "running bot.swf/0002",
-	"frame": { "x": 54, "y": 58, "w": 56, "h": 58 },
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": { "x": 0, "y": 3, "w": 56, "h": 58 },
-	"sourceSize": { "w": 56, "h": 64 }
-}, {
-	"filename": "running bot.swf/0003",
-	"frame": { "x": 0, "y": 192, "w": 34, "h": 64 },
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": { "x": 11, "y": 0, "w": 34, "h": 64 },
-	"sourceSize": { "w": 56, "h": 64 }
-}],
-"meta": {
-	"app": "http://www.texturepacker.com",
-	"version": "1.0",
-	"image": "running_bot.png",
-	"format": "RGBA8888",
-	"size": { "w": 252, "h": 256 },
-	"scale": "0.2",
-	"smartupdate": "$TexturePacker:SmartUpdate:fb56f261b1eb04e3215824426595f64c$"
-}
-};
-endsnippet
-
-snippet phltilemap
-${1:game}.load.tilemap('${2:key}', '${3:url_json}', ${4:null}, Phaser.Tilemap.${5:TILED_JSON|CSV});
-endsnippet
-
-snippet phlimg
-${1:game}.load.image(${2:key}, ${3:src});
-endsnippet
-
-snippet phlaudio
-${1:game}.load.audio(${2:key}, ${3:src});
-endsnippet
-
-snippet phlspsheet
-${1:game}.load.spritesheet('${2:key}', '${3:pic}', ${4:frameWidth_maxInt}, ${5:frameHeight}, ${6:-frameMax}, ${7:-margin}, ${8:-spacing});
-endsnippet
-
-snippet phlatlas
-${1:game}.load.atlas('${2:key}', '${3:pic}', ${4:null}, ${5:jsonData});
-endsnippet
-
-snippet phlfnt
-${1:game}.load.bitmapFont('${2:key}', '${3:pic}', '${4:fnt_xml}');
-endsnippet
-
-snippet phlanimate
-${1:game}.load.atlasJSONHash('${2:key}', '${3:pic}', '${4:json}');
-endsnippet
-
-snippet phaddsp
-var ${1:sprite} = ${2:game}.add.sprite(${3:x}, ${4:y}, ${5:key}, ${6:-frame}, ${7:-group});
-endsnippet
-
-snippet phaddbmd
-var ${1:sprite} = ${2:game}.add.bitmapData(${3:width}, ${4:height}, ${5:-key}, ${6:-isAddToCache_false});
-endsnippet
-
-snippet phaddimg
-var ${1:image} = ${2:game}.add.image(${3:x}, ${4:y}, ${5:key});
-endsnippet
-
-snippet phaddaudio
-var ${1:game}.add.audio(${2:key});
-endsnippet
-
-snippet phaddtxt
-var ${1:text_name} = ${2:game}.add.text(${3:x}, ${4:y}, '${5:txt}', {${6:font:'16px Arial', fill:'#FFFFFF'}});
-${7:$1}text.setText("ok,change");
-${8:$1}.text.wordWrap = true;
-${9:$1}.text.wordWrapWidth = (0.95 * this.game.world.width);
-endsnippet
-
-snippet phaddfnttxt
-var ${1:text_name} = ${3:game}.add.bitmapText(${4:x}, ${5:y}, '${6:fnt_key}', '${7:msg}', ${8:size}, ${9:group});
-endsnippet
-
-snippet phaddgroup
-var ${1:group_name} = ${2:game}.add.group();
-${3:$2}.enableBody = true;
-${4:$2}.physicsBodyType = Phaser.Physics.ARCADE;
-endsnippet
-
-snippet phaddtween
-var ${1:tween_name} = ${2:game}.add.tween(${3:sprite}).to(${4:{ y: 400 }}, ${5:duration_2000}, ${6:Phaser.Easing.Quadratic.InOut}, ${7:isAutoStart_true}, ${8:delay:0}, ${9:repeat_1000}, ${10:isLikeYoyo_true});
-endsnippet
-
-snippet phaddtilesp
-var ${1:tilesprite} = ${2:game}.add.tileSprite(${3:x}, ${4:y}, ${5:width}, ${6:height}, '${7:key}');
-endsnippet
-
-snippet phaddemi
-var ${1:emitter} = ${2:game}.add.emitter(${3:x}, ${4:y}, '${5:maxParticles}');
-${7:emitter}.makeParticles('${6:key}');
-${8:emitter}.start(${9:-explode_false}, ${10:-lifespan_0_forever}, ${11:-frequency_250}, ${12:-quantity_0_all}, ${13:-forceQuantity_false});
-endsnippet
-
-snippet phaddbutton
-var ${1:button} = ${2:game}.add.button(${3:x}, ${4:y}, '${5:key}', ${6:onpressedCallback_func}, this, ${7:-overFrame_int_2}, ${8:-outFrame_int_1}, ${9:-downFrame_int_0, ${10:-upFrame_int_0}});
-endsnippet
-
-snippet phaddtimer
-var ${1:timer};
-${4:$1}timer = ${2:game}.time.events.loop(Phaser.Timer.SECOND, ${3:func}, this);
-${5:$2}.time.events.remove(${6:$1});
-${7:$2}.time.events.stop(false); //先不要启动时钟
-endsnippet
-
-snippet phcreatemap
-game.load.tilemap('tile_01', '../images/shoebox/tile_01.json', null, Phaser.Tilemap.TILED_JSON);
-game.load.image('tiles-1', '../images/shoebox/tiles-1.png');
-var map = game.add.tilemap('tile_01'),
-layer;
-map.addTilesetImage('tiles-1');
-//map.setCollisionByExclusion([ 14 ]);
-layer = map.createLayer('layer1');
-layer.resizeWorld();
-endsnippet
-
-snippet phgcf
-game.camera.follow(${1:sprite});
-endsnippet
-
-snippet phcreatetimer
-var ${1:timer} = ${2:game}.time.create(false);
-${5:$1}.loop(${3:duration}, ${4:func}, this);
-${6:$1}.start(false); //启动不开始
-${7:$1}.resume();
-${7:$1}.pause();
-${6:$1}.stop();
-endsnippet
-
-snippet phtop
-${1:sprite}.bringToTop();
-endsnippet
-
-snippet phaniadd
-var ${1:animation} = ${2:sprite}.animations.add(${3:name}, ${4:-[0, 1, 2,...]}, ${5:-fps}, ${6:-isYoyo});
-endsnippet
-
-snippet phaniplay
-${1:sprite}.animations.play(${2:name}, ${3:-fps}, ${4:-isLoop});
-endsnippet
-
-snippet phanistop
-${1:sprite}.animations.stop('{2:name}', ${3:resetFrame_0});
-endsnippet
-
-snippet phphy
-${1:game}.physics.startSystem(Phaser.Physics.${2:ARCADE|P2|NINJA});
-${3:$1}.physics.arcade.gravity.y = 250;
-endsnippet
-
-snippet phcursor
-var ${1:cursors} = game.input.keyboard.createCursorKeys();
-if(${2:$1}.up.isDown){}
-if(${3:$1}.down.isDown){}
-if(${4:$1}.left.isDown){}
-if(${5:$1}.right.isDown){}
-endsnippet
-
-snippet phaddkey
-var jumpButton = game.input.keyboard.addKey(${1:Phaser.Keyboard.SPACEBAR});
-endsnippet
-
-snippet phphysp
-//开启${3:$2}的物理系统
-${1:game}.physics.enable(${2:sprit},Phaser.Physics.${2:ARCADE|P2|NINJA}); 
-endsnippet
-
-snippet phphypz
-//产生物理作用
-${1:game}.physics.arcade.collide(${2:sprite1}, ${3:sprite2}, ${4:callback},${5:collideCallback}, ${6:processCallback}, this);
-//不产生物理作用
-${7:$1}.physics.arcade.overlap(${8:$2}, ${9:$3}, ${10:$4}, ${11:$5}, ${12:$6}, this);
-endsnippet
-
-snippet phgetworldcx
-${1:game}.world.centerX
-endsnippet
-
-snippet phsetworldbou
-${1:game}.world.setBounds(${2:x}, ${3:y}, ${4:maxW}, ${5:maxH});
-endsnippet
-
-snippet phgroupcreate
-${1:group}.create(${2:x}, ${3:y}, ${4:key}, '${5:exists_frame_key}');
-endsnippet
-
-snippet phspaddeventover
-${1:game}.inputEnabled = true;
-${2:$1}.input.useHandCursor = true; //if you want a hand cursor
-${3:$1}.events.onInputOver.add(${4:func}, this);
-endsnippet
-
-snippet phspaddeventdrag
-${1:sprite}.inputEnabled = true;
-${2:$1}.input.enableDrag();
-${3:$1}.events.onDragStop.add(${4:func}, this);
-endsnippet
-
-snippet phspaddevent
-${1:sprite}.inputEnabled = true;
-${5:$1}.input.useHandCursor = true;
-${3:$1}.events.on${2:event}.add(${4:func}, this);
-endsnippet
-
-snippet phrndrange
-${1}.rnd.integerInRange(${2:fromNum}, ${3:toNum})
-endsnippet
-
-snippet phanigenframe
-Phaser.Animation.generateFrameNames('${1:name}', ${2:-start_xxx000X}, ${3:-stop_xxx000X}, '${4:-suffix_ }', ${5:-zeroPad_0});
-endsnippet
-
-snippet phgroupcallall
-//child.animations.add('swim', frameNames, 30, true, false)
-//group.callAll('animations.add', 'animations', 'swim', frameNames, 30, true, false);
-//child.method(parameter){context class};
-${1:group}.callAll(${2:method_animations.add}, ${3:context_method_animations}, ${4:parameter_*_repeat}, ${5:parameter_*_repeat...});
-endsnippet
-
-snippet phaddgroupsetall
-${1:group}.setAll('${2:checkWorldBounds}',${3:value}, ${4:-ischeckAlive_false}, ${5:-ischeckVisible_false});
-endsnippet
-
-snippet phpinputsnap
-${1:sprite}.input.enableSnap(${2:snapX}, ${3:snapY}, ${4:-isOnDrag}, ${5:-isOnRelease}, ${6:-snapOffsetX}, ${7:-snapOffsetX});
-endsnippet
-
-snippet phac
-${1:sprite}.anchor.${2};
-endsnippet
-
-snippet phwgl
-Phaser.WEBGL
-endsnippet
-
-snippet phcanvas
-Phaser.CANVAS
-endsnippet
-
-snippet phauto
-Phaser.AUTO
-endsnippet
-
-snippet phpel
-Phaser.Easing.Linear.None
-endsnippet
-
-snippet phpeq
-Phaser.Easing.Quadratic.InOut
-endsnippet
-
-snippet phscale
-//控制游戏的旋转
-${1:game}.scale.scaleMode = ${9:Phaser.ScaleManager.EXACT_FIT_最大化|Phaser.ScaleManager.NO_SCALE_将禁用缩放|Phaser.ScaleManager.SHOW_ALL_按比例缩放};
-${3:$1}.scale.minWidth = 40;
-${3:$1}.scale.minHeight = 20;
-${4:$1}.scale.maxWidth = 40;
-${5:$1}.scale.maxHeight = 20;
-${6:$1}.scale.forceLandscape = true;
-//将垂直方向居中
-${10:$1}.scale.pageAlignZontally = true;
-//将使游戏在水平
-${7:$1}.scale.pageAlignHorizontally = true;
-//激活缩放。
-${8:$1}.scale.setScreenSize(true);
-endsnippet
-
-snippet phgame
-var ${1:game} = new Phaser.Game(${2:width}, ${3:height}, Phaser.${4:AUTO|WEBGL|CANVAS}, '${5}', { preload: ${6:preload}, create: ${7:create}, update: ${8:update} });
-
-${9:$1}.States = {
-	/*启动场景*/
-	boot : function(){
-		this.preload = function(){};
-		this.create = function(){};
-		this.update = function(){};
-	}
-};
-//添加场景
-${10:$1}.state.add("boot", ${11:$1}.States.boot);
-//启动场景
-${12:$1}.state.start("boot");
-endsnippet
-
-snippet phaddstate
-${1:game}.stage.add();
-endsnippet
-
-snippet phstate
-//定义一个场景
-var ${1:state_name} = function(){
-	this.preload = function(){};
-	this.create = function(){};
-	this.update = function(){};
-};
-
-//把定义好的场景添加到游戏中
-${2}.state.add('${3}', ${$4});
-${5:$2}.state.start('${6:$3}');
-endsnippet
-
-snippet phsetloadsp
-var ${1:preloadSprite} = ${2}.add.sprite(${3:x}, ${4:y}, '${5:key}');
-${6:$2}.load.setPreloadSprite(${7:$1}, ${8:direction_0_1});
-${9:$1}.load.onFileComplete.add(function(${10:progress, key, isSucc, loadNum , totalNum}) {});
-endsnippet
-
-snippet phloading
-//加载进度
-var text = game.add.text( game.world.centerX, game.world.centerY, "0%",{font:"16px Arial", fill:"#FFFFFF", align: "center"}),
-percent = 0,
-curPercent = 0,
-loadKey,
-_addPrecent = function(from, to){
-	if(percent < to){
-		if(percent >= from){
-			percent++;
-		}
-
-		text.setText(percent + "%");
-
-		if(percent == 100){
-			game.time.events.remove(loadKey);
-		}
-	}
-};
-//文字居中
-text.anchor.set(0.5, 0.5);
-//添加定时器
-loadKey = game.time.events.loop(Phaser.Timer.SECOND / 30, function(){
-	_addPrecent(percent , curPercent);
-}, this);
-//绑定
-game.load.onFileComplete.add(function( progress ) {
-	curPercent  = progress;
-});
-endsnippet
-
-snippet gsbgc
-${1:game}.stage.backgroundColor = "${2:color}";
-endsnippet
-
-snippet gpa
-game.physics.arcade.${1:moveToPointer(bullet, 300)};
-endsnippet
-
-snippet gikc
-var cursors = game.input.keyboard.createCursorKeys();
-endsnippet
-
-snippet phchkwb
-${1:sprite}.checkWorldBounds = true; //边界检测
-${2:$1}.outOfBoundsKill = true; //出边界就自动kill
-endsnippet
-
-snippet phlogsb
-${1:game}.debug.spriteBounds(${2:kthis.soapSmall});
-endsnippet
-
-snippet phrect
-/ create a new bitmap data object
-var bmd = game.add.bitmapData(128,128);
-
-// draw to the canvas context like normal
-bmd.ctx.beginPath();
-bmd.ctx.rect(0,0,128,128);
-bmd.ctx.fillStyle = '#ff0000';
-bmd.ctx.fill();
-
-// use the bitmap data as the texture for the sprite
-var sprite = game.add.sprite(200, 200, bmd);
-endsnippet
-#Phaser E
-

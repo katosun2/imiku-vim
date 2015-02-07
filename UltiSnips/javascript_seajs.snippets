@@ -1,0 +1,81 @@
+#seajs S
+snippet sjme
+module.exports = ${1};
+endsnippet
+
+snippet sjconf
+seajs.config({
+	// Sea.js 的基础路径
+	base: './js/modules/',
+
+	// 别名配置
+	alias: {
+		'kg': './js/modules/base-min.js'
+	},
+
+	// 路径配置
+	//paths: {
+		//'kgimg': 'http://static.kgimg.com/common/js-lib/min'
+	//},
+	
+	// 变量配置{locale}
+	//vars: {
+		//'locale': 'zh-cn'
+	//},
+	
+	// 映射配置
+	//map: [
+		//['http://example.com/js/app/', 'http://localhost/js/app/']
+	//],
+	
+	// 预加载项
+	//在老浏览器中，提前加载好 ES5 和 json 模块
+	//preload: [
+		//Function.prototype.bind ? '' : 'es5-safe',
+		//this.JSON ? '' : 'json'
+	//],
+	
+	// 调试模式
+	debug: true,
+
+	// 文件编码
+	charset: 'utf-8'
+});
+endsnippet
+
+snippet sjuse
+seajs.use(${1:string|array}, ${2:function(a, b){
+	${3}
+}});
+endsnippet
+
+snippet sjrss
+require.resolve(${1:id});
+endsnippet
+
+snippet sjdef
+// 所有模块都通过 define 来定义
+define(function(require, exports, module) {
+	// 通过 require 引入依赖
+	var Kg = require('kg');
+	var Spinning = require('./spinning');
+
+	// 通过 exports 对外提供接口
+	exports.${1:doSomething} = ${2};
+
+	// 或者通过 module.exports 提供整个接口
+	module.exports = ${3};
+});
+endsnippet
+
+snippet sjreq
+require('${1:String}');
+endsnippet
+
+snippet sjreqasync
+// 异步加载多个模块，在加载完成时，执行回调
+require.async(${1:String|Array}, ${2:function(c, d) {
+	${3}
+})};
+endsnippet
+#seajs E
