@@ -474,13 +474,13 @@ endsnippet
 
 snippet jsclass
 (function(){
-	var ${1:ClassName} = function(opt){
+	var ${1:ClassName} = function(){
 		if(!(this instanceof ${6:$1})){
-			return new ${5:$1}(opt);
+			return new ${5:$1}(arguments);
 		}
 		this.name = name;
 		this.age = age;
-		this.setOpt(opt || {});
+		this.setOpt(arguments[0] || {});
 
 		return this;
 	};
@@ -1462,4 +1462,23 @@ if (navigator.geolocation) {
 		map.setCenter(latLng); 
 	}, errorHandler); 
 } 
+endsnippet
+
+snippet jssetcss
+var setCss = function(){
+	var dc = document,
+	_style = dc.createElement('style'),
+	_css = '';
+
+	_style.type = "text/css";
+	_css = [''].join('');
+
+	//插入样式
+	dc.getElementsByTagName('head')[0].appendChild(_style);
+	if (_style.styleSheet) {
+		_style.styleSheet.cssText = css;
+	} else {
+		_style.innerHTML = css;
+	}
+};
 endsnippet
