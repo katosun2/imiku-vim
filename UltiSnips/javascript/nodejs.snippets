@@ -22,4 +22,35 @@ snippet pkg
 	}
 }
 endsnippet
+
+snippet nodeget
+grunt.registerTask('test', function(){
+	var done = this.async(),
+	http = require('http');
+
+	http.get(${1:url}, function(res){
+		var r = '';
+
+		res.on('data', function(chunk){
+			r = chunk.toString();
+		});
+			
+		res.on('end', function(){
+			console.log(r);
+			done();
+		});
+	}).on('error', function(e) {
+		console.log("Got error: " + e.message);
+	});
+});
+endsnippet
+
+
+snippet nodecmd
+var spawn = require('child_process').spawn;
+spawn('svn',['commit','-m','"更新公共电台本地包版本"', myPath.config.split("/").pop()], {
+	"cwd":myPath.config.replace(/\/[^\/]+$/,"/"),
+	"stdio": [process.stdin, process.stdout, process.stderr]
+});
+endsnippet
 #nodejs E
