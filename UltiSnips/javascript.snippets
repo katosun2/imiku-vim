@@ -1490,3 +1490,22 @@ endsnippet
 snippet getdomRect
 ${1:document.body}.getBoundingClientRect().top
 endsnippet
+
+snippet jstosjon
+var json = new Function("return " + jsonStr)();
+var json = eval('(' + jsonStr + ')');
+endsnippet
+
+snippet jscookie
+document.cookie = "k7_misicLib_curSrc=" + location.href + ";path=/yueku/v8;domain=kugou.com;";
+endsnippet
+
+snippet jsregexec
+var strXml = "<author>jack<span>Ryu</span></author><author>jack</author>"; 
+var regExp = /<author>(.*?)<\/author>/gi; 
+//var result = strXml.match(regExp);
+while(result = regExp.exec(strXml)){
+	console.log(RegExp.$1);
+}
+endsnippet
+

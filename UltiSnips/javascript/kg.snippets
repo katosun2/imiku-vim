@@ -217,3 +217,20 @@ Kg.$("${1:dom}").addEvent("${2:click}", function(){
 	${3:code}
 });
 endsnippet
+
+snippet kgplayradio
+var json = {
+	"fmid" : 3,
+	"fmname" : "DJ热碟",
+	"fmtype" : 2,
+	"classid" : '分类编号',
+	"classname" : '分类名称',
+	"imgurl" : "http://c3.kgimg.com/fmlogo/80/20130823162721505364.jpg",
+	"imgurl32" : "http://c3.kgimg.com/fmlogo/80/20130823162721505364.jpg",
+	"songs" : ${1:data.songs},
+	"description": "",
+	"fmstat" : "综合搜索/DJ热碟",
+	"offset" : data.offset
+};
+KgSuperCall.CollectRadio(Kg.JSON.stringify(json));
+endsnippet
