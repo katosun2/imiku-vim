@@ -53,4 +53,22 @@ spawn('svn',['commit','-m','"更新公共电台本地包版本"', myPath.config.
 	"stdio": [process.stdin, process.stdout, process.stderr]
 });
 endsnippet
+
+snippet nodecmd2
+var spawn = require('child_process').spawn,
+cmd = spawn('cmd.exe', ["/s", "/c", "node", "-v"]);
+/*cmd = require('child_process').exec('node -v');*/
+
+cmd.stdout.on('data', function(data){
+	console.log('\n' + data);
+});
+
+cmd.stderr.on('data', function(data){
+	console.log('\n' + data);
+});
+
+cmd.on('exit', function(code, signal){
+	console.log('\n' + code);
+});
+endsnippet
 #nodejs E
