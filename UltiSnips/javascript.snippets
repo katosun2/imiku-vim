@@ -1509,3 +1509,27 @@ while(result = regExp.exec(strXml)){
 }
 endsnippet
 
+snippet jsopener
+try{
+	window.parent.opener.location.reload();
+	window.parent.close();
+}catch(ex){
+	//portal为要刷新父页面的地址
+	window.parent.opener.location = '${1:url}';
+	window.parent.opener = null;
+	window.parent.close();
+}
+endsnippet
+
+snippet jscreateevent
+var trigger = function(target, type) {
+	var dc = document;
+	if (dc.createEvent) {
+		var evt = dc.createEvent("HTMLEvents");
+		evt.initEvent(type, false, true);
+		target.dispatchEvent(evt);
+	} else if (dc.createEventObject) {
+		target.fireEvent("on" + type);
+	}
+};
+endsnippet
