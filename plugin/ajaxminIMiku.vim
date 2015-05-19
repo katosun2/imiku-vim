@@ -1,11 +1,11 @@
 "=============================================================================
-"     FileName: ajaxmin.vim
-"         Desc: Use Microsoft Ajax Minifier 4 for JS/CSS
+"     FileName: ajaxminIMiku.vim
+"         Desc: Use Microsoft Ajax Minifier 5 for JS/CSS
 "       Author: Ryu
 "        Email: neko@imiku.com
 "     HomePage: http://www.imiku.com/
-"      Version: 0.0.2
-"   LastChange: 2012-12-29 23:07:28
+"      Version: 0.0.3
+"   LastChange: 2015-05-19 11:34:54
 "      History:
 "=============================================================================
 
@@ -76,7 +76,8 @@ func! g:CompileAjaxMinJsCss(...)
 			let l:errs = substitute(l:errs, "^$", "", "g")
 		endif
 		" we jsut need the message
-		let l:errs = split(l:errs, "\\n\\n\\n")[1]
+		"let l:errs = split(l:errs, "\\n")[1]
+		let l:errs = split(l:errs, "Minifying ")[1]
 
 		echo l:errs
 	endif
