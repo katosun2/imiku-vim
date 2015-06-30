@@ -1558,3 +1558,52 @@ endsnippet
 snippet get2d
 var ${1:ctx} = ${2:canvas}.getContext('2d');
 endsnippet
+
+snippet getcls
+/**
+* 获取类名节点
+* @param { String } classname
+* @param { String | Object } 
+* @return { Array } els
+*/
+var getCls = function(cls, id){
+	var dc = document,
+	father_el,
+	els,
+	arr = [];
+
+	if(id){
+		if(Object.prototype.toString.call(id) === '[object String]'){
+			father_el = dc.getElementById(id);
+		}else if(Object.prototype.toString.call(id) === '[object Object]'){
+			father_el = id;
+		}
+	}
+
+	/*如果没有父节点，则使用页面*/
+	if(!father_el){
+		father_el = dc;
+	}
+
+	if(cls){
+		/*判断是否支持高级选择器*/
+		if(dc.getElementsByClassName && false){
+			els = father_el.getElementsByClassName(cls);
+			arr = els;
+		}
+
+		/*常用处理方法*/
+		else{
+			els = father_el.getElementsByTagName('*');
+			/*分别匹配*/
+			for (var i = 0, len = els.length; i < len; i++) {
+				if(new RegExp('\\b' + cls + '\\b').test(els[i].className)){
+					arr.push(els[i]);
+				}
+			}
+		}
+	}
+
+	return arr;
+};
+endsnippet
