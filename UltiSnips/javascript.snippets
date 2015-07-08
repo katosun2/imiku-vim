@@ -1559,7 +1559,6 @@ snippet get2d
 var ${1:ctx} = ${2:canvas}.getContext('2d');
 endsnippet
 
-<<<<<<< HEAD
 snippet typeOf
 var oP = Object.prototype,
 toString = oP.toString;
@@ -1674,6 +1673,23 @@ var getCls = function(cls, id){
 	}
 
 	return arr;
->>>>>>> origin/master
 };
+endsnippet
+
+snippet stopscroll
+if(navigator.userAgent.indexOf('firefox') > -1){
+	/*只有火狐没有whellDelta*/
+	document.getElementById("scroll").addEventListener('DOMMouseScroll',function(event){
+		/*console.log(event);*/
+		document.getElementById("scroll").scrollTop += event.detail > 0 ? 20 : -20;
+		event.preventDefault();
+	},false);
+}else{
+	document.getElementById("scroll").onmousewheel = function(event){
+		event = event || window.event;
+		/*console.log(event);*/
+		document.getElementById("scroll").scrollTop += event.wheelDelta > 0 ? -20 : 20;
+		event.returnValue = false;
+	};
+}
 endsnippet
