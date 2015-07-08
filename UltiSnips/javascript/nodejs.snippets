@@ -71,4 +71,13 @@ cmd.on('exit', function(code, signal){
 	console.log('\n' + code);
 });
 endsnippet
+
+snippet nodemd5
+/*加密相关*/
+var crypto = require('crypto');
+var hash = crypto.createHash('md5');
+hash.update(${1:'admin'});
+var str = hash.digest(${2:'hex,binary,base64'});
+endsnippet
+
 #nodejs E
