@@ -1698,3 +1698,37 @@ snippet webedit
 document.body.contentEditable='true';
 document.designMode='on';
 endsnippet
+
+snippet getUrlp
+/*获取url中的参数*/
+var getUrlParam = function(name) {
+	/*构造一个含有目标参数的正则表达式对象*/
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"),
+	/*匹配目标参数*/
+	r = window.location.search.substr(1).match(reg);
+
+	/*返回参数值*/
+	if (r){
+		return unescape(r[2]);
+	}
+	return null;
+};
+endsnippet
+
+snippet hashchange
+if( ('onhashchange' in window) && ((typeof document.documentMode==='undefined') || document.documentMode==8)) {
+	// 浏览器支持onhashchange事件
+	// TODO，对应新的hash执行的操作函数
+	window.onhashchange = hashChangeFire;
+} else {
+	// 不支持则用定时器检测的办法
+	setInterval(function() {
+		// TODO，检测hash值或其中某一段是否更改的函数
+		var ischanged = isHashChanged();
+		if(ischanged) {
+		// TODO，对应新的hash执行的操作函数
+			hashChangeFire();
+		}
+	}, 150);
+}
+endsnippet
