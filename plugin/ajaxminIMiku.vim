@@ -8,6 +8,10 @@
 "   LastChange: 2015-05-19 11:34:54
 "      History:
 "=============================================================================
+if exists("b:loaded_ajaxmin")
+	finish
+endif
+let b:loaded_ajaxmin = 1
 
 if !exists("g:ajaxmin_cmd")
     let g:ajaxmin_cmd = $VIMFILES.'/bin/Microsoft-Ajax-Minifier/AjaxMin.exe'
