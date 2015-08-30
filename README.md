@@ -4,10 +4,10 @@
 
 ## 包含插件
 
-- *LESS* 语法识别
+- <del>*LESS* 语法识别</del> 需要可以试一试 [[https://github.com/katosun2/imiku-less-vim|imiku-less-vim]]
 - *nginx* 语法识别
 - *markdown* 语法识别（如果有安装vimwiki可以无视）
-- *html, aiml, less, javascript* 语法缩进调整
+- *html, aiml, <del>less</del>, javascript* 语法缩进调整
 - *ajaxminIMiku.vim* 对 js, css 进行压缩
 - *browsersIMiku.vim* 从 Vim 打开不同的浏览器
 - *calendar.vim* 日历插件
