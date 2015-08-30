@@ -4,7 +4,7 @@
 
 ## 包含插件
 
-- <del>*LESS* 语法识别</del> 需要可以试一试 [[https://github.com/katosun2/imiku-less-vim|imiku-less-vim]]
+- <del>*LESS* 语法识别</del> 需要可以试一试 [imiku-less-vim](https://github.com/katosun2/imiku-less-vim)
 - *nginx* 语法识别
 - *markdown* 语法识别（如果有安装vimwiki可以无视）
 - *html, aiml, <del>less</del>, javascript* 语法缩进调整
