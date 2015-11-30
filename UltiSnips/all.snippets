@@ -30,3 +30,35 @@ endsnippet
 snippet / "a" i 
 /${1}/${0}
 endsnippet
+
+# i 不需要空格即可显示
+# r 使用正则表达式
+# echo date time
+snippet "date(time)?" "datetime" ri
+`!v strftime("%c")`${0}
+endsnippet
+
+# i 不需要空格即可显示
+# r 使用正则表达式
+snippet "unix(date)?(time)?" "vimscript unixtime" ri
+`!v localtime()`${0}
+endsnippet
+
+# eg. 24px10 -> 2.4rem
+snippet "([0-9.]+)(px)([0-9.]+)" "py: convent px to rem" rib
+`!p snip.rv = round(float(match.group(1)) / float(match.group(3)), 4)`${1}${2:rem}${0}
+endsnippet
+
+snippet nodev "cmd: node -v" i
+`node -v`
+endsnippet
+
+# eg. 2rem10 -> 24px
+snippet "([0-9.]+)(rem|em)([0-9.]+)" "convent rem or em to px" rb
+`!p snip.rv = round(float(match.group(1)) * float(match.group(3)), 4)`${1}px${0}
+endsnippet
+
+# ${1} diff $1
+snippet mark "select c-k mark c-k" i
+${1:<tag>}${VISUAL}$1
+endsnippet
