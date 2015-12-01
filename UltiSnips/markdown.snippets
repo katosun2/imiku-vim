@@ -1,83 +1,79 @@
 # [link][]
-snippet [[ 
+snippet [[ "" i
 [${1:link_id}][]${2}
 endsnippet
 
 # [link][id]
-snippet [[
+snippet [[ "" i
 endsnippet
 
-snippet link
+snippet link "" i
 [${1:link}][${2:id}]${3}
 # [link](url)
 endsnippet
 
-snippet link 
+snippet link "" i
 [${1:link}](http://${2:url})${3}
 # [link](email)
 endsnippet
 
-snippet email 
+snippet email "" i
 [${1:link}(mailto:${2:email})${3}
 # [link](url "title")
 endsnippet
 
-snippet [("
+snippet [(" "" i
 [${1:link}](${2:url} "${3:title}")${4}
 # [id]: url "title"
 endsnippet
 
-snippet [:
+snippet [: "" i
 [${1:id}]: http://${2:url} "${3:title}"
 # [id]: email "title"
 endsnippet
 
-snippet [:@
+snippet [:@ "" i
 [${1:id}]: mailto:${2:url} "${3:title}"
 # ![alt][id]
 endsnippet
 
-snippet ![
+snippet ![ "" i
 ![${1:alt}][${2:id}]${3}
 # ![alt](url)
 endsnippet
 
-snippet img 
+snippet img "" i
 ![${1:alt}](${2:url})${3}
 # ![alt](url "title")
 endsnippet
 
-snippet !("
+snippet !(" "" i
 ![${1:alt}](${2:url} "${3:title}")${4}
 # *emphasis* or _emphasis_
 endsnippet
 
-snippet *
+snippet * "" i
 *${1}*${2}
 endsnippet
 
-snippet _
+snippet _ "" i
 _${1}_${2}
 # **strong** or __strong__
 endsnippet
 
-snippet **
+snippet ** "" i
 **${1}**${2}
 endsnippet
 
-snippet __
+snippet __ "" i
 __${1}__${2}
 # `code`
 endsnippet
 
-snippet `
+snippet ` "" i
 \`${1}\`${2}
 endsnippet
 
-snippet h1
-# ${1}
-endsnippet
-
-snippet h2
-## ${1}
+snippet "h(\d+)?" "" ri
+`!p snip.rv = '#' * int(match.group(1)) if match.group(1) is not None else '#'` ${1}
 endsnippet

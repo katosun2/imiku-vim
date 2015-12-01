@@ -8,10 +8,10 @@ snippet gtconf
 		},
 		"files": [{
 			"expand": true,
-			"cwd": "${2:$1}/src",
+			"cwd": "$1/src",
 			"src": "**/*",
 			"filter": "isFile",
-			"dest": "${3:$1}/<%= temp_dir %>/"
+			"dest": "$1/<%= temp_dir %>/"
 		}]
 	},
 	"concat" : {
@@ -20,13 +20,13 @@ snippet gtconf
 		},
 		"files": [{
 			"expand": true,
-			"cwd": "${3:$1}/<%= temp_dir %>/",
-			"src": ["${4:$1}.js", "${5:$1}-debug.js"],
-			"dest": "${6:$1}/<%= compile_dir %>/"
+			"cwd": "$1/<%= temp_dir %>/",
+			"src": ["$1.js", "$1-debug.js"],
+			"dest": "$1/<%= compile_dir %>/"
 		}]
 	},
 	"jshint" : {
-		"src" : ["${7:$1}/<%= temp_dir %>/*.js", "${8:$1}/<%= compile_dir %>/*.js"]
+		"src" : ["$1/<%= temp_dir %>/*.js", "$1/<%= compile_dir %>/*.js"]
 	},
 	"uglify" : {
 		"files": [{
