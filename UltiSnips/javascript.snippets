@@ -1,12 +1,6 @@
 # Prototype
-snippet test
-/${2:^}/.${1:TARGET}
-endsnippet
-
-snippet isstring
-function isString(obj) {
-	return Object.prototype.toString.call(obj) === "[object String]";
-}
+snippet isstring "" i
+Object.prototype.toString.call(${1:key}) === "[object String]";
 endsnippet
 
 snippet str2json
@@ -67,8 +61,6 @@ snippet jsmodules
 endsnippet
 
 snippet isalltype
-var toString = Object.prototype.toString;
-
 function isObject(obj) {
 	return toString.call(obj) === "[object Object]";
 }
@@ -465,7 +457,7 @@ if(escape(str).indexOf("%u") < 0){}
 endsnippet
 
 snippet isarray
-Object.prototype.toString.call(key)==='[object Array]'
+Object.prototype.toString.call(key) === '[object Array]'
 endsnippet
 
 snippet isarr
