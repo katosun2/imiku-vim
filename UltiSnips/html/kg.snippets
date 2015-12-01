@@ -1,0 +1,85 @@
+# for Kugou
+snippet kgfor
+{foreach ${1:$Variable} as $key=>$val}
+${2}
+{/foreach}
+endsnippet
+
+snippet kgstar
+{for $foo=1 to 10}    
+	{$class_name=''}
+{if $foo%2 == 0}
+	{$class_name='class="odd"'}
+{if $foo <= $val["star"]}
+	{$class_name='class="selected odd"'}
+{/if}
+	{else}
+		{if $foo <= $val['star']}
+			{$class_name='class="selected"'}
+		{/if}
+	{/if}
+		<i {$class_name}></i>
+{/for}
+endsnippet
+
+snippet kgvar
+{${1:$val}['${2:tag_name}']|default:'${3:无}'}
+endsnippet
+
+snippet kgdate
+{$JS_CSS_DATE}
+endsnippet
+
+snippet kgljsb
+<script type="text/javascript" src="http://static.kugou.com/common/js-lib/min/base-min.js?{$JS_CSS_DATE}"></script>
+endsnippet
+
+snippet kgljsfs
+<script type="text/javascript" src="http://static.kugou.com/common/js-lib/min/fakeScroll-min.js?{$JS_CSS_DATE}"></script>
+endsnippet
+
+snippet kgfs
+<!--滚动条-->
+<div class="fake_scroll">
+	<div><b class="top"></b><span></span><b class="bottom"></b></div>
+</div>
+endsnippet
+
+snippet kginifs
+s = new fakeScroll(Kg.$(".content")[0], Kg.$(".fake_scroll div")[0], {
+	radius:true,
+	radiusWidth:2,
+	gototop:1000
+});
+endsnippet
+
+snippet kgdump
+{var_dump(${1:$val})}
+endsnippet
+
+snippet kgstr
+{StrUtil::cnSubStr(${1:$val['name']},0,8,'...')}
+endsnippet
+
+snippet kggetjson
+Kg.getJSON("${1:url}&n=" + Math.random(),null,function(json){
+	if(json){
+	}
+});
+endsnippet
+
+snippet kgzh
+{addcslashes(${1:value}, '"')}
+endsnippet
+
+snippet kgzy
+{htmlspecialchars(${1:value}, $smarty.const.ENT_QUOTES)}
+endsnippet
+
+snippet kgpage
+{$pageNav}
+endsnippet
+
+snippet kgpic
+http://10.13.3.98/tools/createImg.php?wh=${1:120x120}
+endsnippet
