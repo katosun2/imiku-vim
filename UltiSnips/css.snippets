@@ -1,46 +1,31 @@
-snippet cc
-.${1}{${2}}
+snippet "/?\*\*?" "css comment" ri
+/* ${1}{ */
+.$1{ ${0} }
+/* }$1 */
 endsnippet
 
-snippet dc
-#${1}{${2}}
-endsnippet
-
-snippet cssscroll
-overflow:scroll;-webkit-overflow-scrolling:touch;
-endsnippet
-
-snippet csssj
+snippet csssj "css Triangle" i
 border-style:dashed solid dashed dashed;border-color:transparent #000000 transparent transparent;
 endsnippet
 
-snippet yj
+snippet yj "" i
 a { position:absolute; color:#666666; height: 16px; border-top:1px solid #80b7F1; border-bottom:1px solid #80B7F1; display:block;top:18px; right:17px; }
 a span{ float:left; height: 16px; position:relative; padding:0 5px; margin:0 -1px; text-align:center; color:#FFFFFF; background:#80B7F1; line-height:16px;}
 endsnippet
 
-snippet **
-/*${1}*/
+snippet divscroll "div scroll" i
+overflow:scroll; overflow-scrolling: touch; -webkit-overflow-scrolling: touch; 
 endsnippet
 
-snippet divscroll
-overflow-scrolling: touch; 
--webkit-overflow-scrolling: touch; 
-endsnippet
-
-snippet qjbhh
+snippet "qjbhh?" "nowrap" ri
 white-space:nowrap;
 endsnippet
 
-snippet qjhh
-word-break:break-all;
+snippet "qjhh?" "auto wrap" ri
+word-break: break-all; word-wrap: break-word;
 endsnippet
 
-snippet zdhh
-word-wrap:break-word;word-break:normal; 
-endsnippet
-
-snippet cssff
+snippet cssff "css icon font" i
 /*define
 use in css : .iconfont{font-family:"iconfont"; font-size:16px;font-style:normal;}
 use in css : .iconfont{-webkit-font-smoothing: antialiased;}
@@ -55,377 +40,280 @@ use in html : <i class="iconfont">&#33</i>
 }
 endsnippet
 
-snippet cssztyh
-	font-smoothing: antialiased; -webkit-font-smoothing: antialiased;
+snippet cssztyh "font smooth" i
+font-smoothing: antialiased; -webkit-font-smoothing: antialiased;
 endsnippet
 
-snippet cssztmh
-	text-stroke-width: ${1:0.2px}; -webkit-text-stroke-width: ${2:$1};
+snippet cssztmh "font stroke" i
+text-stroke-width: ${1:1px}; -webkit-text-stroke-width: $1;
 endsnippet
 
-snippet fs
-font-size:
+snippet "fs(\d+)?" "font size" ri
+font-size:`!p snip.rv = match.group(1) if match.group(1) is not None else ""`${1}px;${0}
 endsnippet
 
-snippet fs12
-font-size:12px;
+snippet "fw(\d+)?" "font weight" ri
+font-weight:`!p snip.rv = match.group(1) if match.group(1) is not None else ""`${1}px;${0}
 endsnippet
 
-snippet fs14
-font-size:14px;
+snippet ff "font family" i 
+font-family:${1};${0}
 endsnippet
 
-snippet fs16
-font-size:16px;
+snippet ffht "font hei ti" i
+font-family:"\9ED1\4F53";${0}
 endsnippet
 
-snippet fs18
-font-size:18px;
+snippet ffst "font songti" i
+font-family:"\5B8B\4F53";${0}
 endsnippet
 
-snippet fw
-font-weight:${1};
+snippet ffyh "font ya hei" i
+font-family:"\5FAE\8F6F\96C5\9ED1";${0}
 endsnippet
 
-snippet fw7
-font-weight:700;
+snippet "pa(\d+)?" "css padding" ri
+padding:`!p snip.rv = match.group(1) if match.group(1) is not None else ''`${1}px;${0}
 endsnippet
 
-snippet fw4
-font-weight:400;
+snippet pat "padding-top" i
+padding-top:${1};${0}
 endsnippet
 
-snippet ff
-font-family:${1};
+snippet par "padding-right" i
+padding-right:${1};${0}
 endsnippet
 
-snippet ffht
-font-family:"\9ED1\4F53";
+snippet pab "padding-bottom" i
+padding-bottom:${1};${0}
 endsnippet
 
-snippet ffst
-font-family:"\5B8B\4F53";
+snippet pal "padding-left" i
+padding-left:${1};${0}
 endsnippet
 
-snippet ffyh
-font-family:"\5FAE\8F6F\96C5\9ED1";
+snippet "ma(\d+)?" "css margin" ri
+margin:`!p snip.rv = match.group(1) if match.group(1) is not None else ''`${1}px;${0}
 endsnippet
 
-snippet pa
-padding:${1};
+snippet maa "css block center" i
+margin:0 auto;${0}
 endsnippet
 
-snippet pat
-padding-top:${1};
+snippet mat "margin-top" i
+margin-top:${1}px;${0}
 endsnippet
 
-snippet par
-padding-right:${1};
+snippet mar "margin-right" i
+margin-right:${1}px;${0}
 endsnippet
 
-snippet pab
-padding-bottom:${1};
+snippet mab "margin-bottom" i
+margin-bottom:${1}px;${0}
 endsnippet
 
-snippet pal
-padding-left:${1};
+snippet mal "margin-left" i
+margin-left:${1}px;${0}
 endsnippet
 
-snippet ma
-margin:${1};
+snippet mh "min-height" i
+min-height:${1};${0}
 endsnippet
 
-snippet maa
-margin:0 auto;
+snippet mw "min-width" i
+min-width:${1};${0}
 endsnippet
 
-snippet mat
-margin-top:${1};
-endsnippet
-
-snippet mar
-margin-right:${1};
-endsnippet
-
-snippet mab
-margin-bottom:${1};
-endsnippet
-
-snippet mal
-margin-left:${1};
-endsnippet
-
-snippet mh
-min-height:${1};
-endsnippet
-
-snippet mw
-min-width:${1};
-endsnippet
-
-snippet bg
+snippet "b(ack)?g(round)?" "background" ri
 background:${1};
 endsnippet
 
-snippet bgc
-background:#${1};
+snippet "b(ack)?g(round)?u" "background" ri
+background:url(${1}) no-repeat ${2};
 endsnippet
 
-snippet bgu
-background:url(${1}) no-repeat;
+snippet "b(ack)?g(round)?u(\w)" "background" ri
+background:url(${1}) repeat-`!p snip.rv = match.group(3)`;
 endsnippet
 
-snippet bguc
-background:url(${1}) no-repeat #${2};
-endsnippet
-
-snippet bgux
-background:url(${1}) repeat-x;
-endsnippet
-
-snippet bguy
-background:url(${1}) repeat-y;
-endsnippet
-
-snippet bgp
+snippet "b(ack)?g(round)?p" "background-position" ri
 background-position:${1};
 endsnippet
 
-snippet bgn
+snippet "b(ack)?g(round)?n" "background" ri
 background:none;
 endsnippet
 
-snippet bcc 
+snippet bcc "" i
 border-collapse:collapse;
 endsnippet
 
-snippet co
+snippet co "" i
 color:#${1};
 endsnippet
 
-snippet db
+snippet db "" i
 display:block;
 endsnippet
 
-snippet dn
+snippet dn "" i
 display:none;
 endsnippet
 
-snippet di
+snippet di "" i
 display:inline;
 endsnippet
 
-snippet dib
+snippet dib "" i
 display:inline-block;*display:inline;*zoom:1;
 endsnippet
 
-snippet tac
+snippet tac "" i
 text-align:center;
 endsnippet
 
-snippet tal
+snippet tal "" i
 text-align:left;
 endsnippet
 
-snippet tar
+snippet tar "" i
 text-align:right;
 endsnippet
 
-snippet ti
-text-indent:
+snippet "ti(\w+)?" "text indent" ri
+text-indent:`!p snip.rv = match.group(1) if match.group(1) is not None else ''`${1};${0}
 endsnippet
 
-snippet ti2
-text-indent:2em;
-endsnippet
-
-snippet tdn
+snippet tdn "" i
 text-decoration:none;
 endsnippet
 
-snippet tdu
+snippet tdu "" i
 text-decoration:underline;
 endsnippet
 
-snippet lhp
-line-height:%${1};
+snippet lh "" i
+line-height:${1};${0}
 endsnippet
 
-snippet lh
-line-height:${1};
+snippet bo "border" i
+border:${1:1}px solid ${2};${0}
 endsnippet
 
-snippet bo
-border:1px solid #${1};
+snippet bon "" i
+border:0 none;${0}
 endsnippet
 
-snippet bon
-border:0 none;
+snippet botn "" i
+border-top:0 none;${0}
 endsnippet
 
-snippet botn
-border-top:0 none;
+snippet born "" i
+border-right:0 none;${0}
 endsnippet
 
-snippet born
-border-right:0 none;
+snippet boln "" i
+border-left:0 none;${0}
 endsnippet
 
-snippet boln
-border-left:0 none;
+snippet botn "" i
+border-bottom:0 none;${0}
 endsnippet
 
-snippet bot
-border-top:1px solid #${1};
+snippet bot "" i
+border-top:${1:1}px solid ${2};${0}
 endsnippet
 
-snippet bor
-border-right:1px solid #${1};
+snippet bor "" i
+border-right:${1:1}px solid ${2};${0}
 endsnippet
 
-snippet bob
-border-bottom:1px solid #${1};
+snippet bob "" i
+border-bottom:${1:1}px solid ${2};${0}
 endsnippet
 
-snippet bol
-border-left:1px solid #${1};
+snippet bol "" i
+border-left:${1:1}px solid ${2};${0}
 endsnippet
 
-snippet border_dashed
-dashed
+snippet fl "" i
+float:left;${0}
 endsnippet
 
-snippet border_solid
-solid
+snippet fr "" i
+float:right;${0}
 endsnippet
 
-snippet border_dotted
-dotted
+snippet oh "" i
+overflow:hidden;${0}
 endsnippet
 
-snippet border_double
-double
+snippet vh "" i
+visibility:hidden;${0}
 endsnippet
 
-snippet border_groove
-groove
+snippet vv "" i
+visibility:visible;${0}
 endsnippet
 
-snippet border_inset
-inset
+snippet poa "" i
+position:absolute;${0}
 endsnippet
 
-snippet border_outset
-outset
+snippet por "" i
+position:relative;${0}
 endsnippet
 
-snippet border_ridge
-ridge
+snippet pof "" i
+position:fixed;${0}
 endsnippet
 
-snippet fl
-float:left;
+snippet pos "" i
+position:static;${0}
 endsnippet
 
-snippet fr
-float:right;
+snippet "l(eft)?" "" ri
+left:${1};${0}
 endsnippet
 
-snippet oh
-overflow:hidden;
+snippet "r(ight)" "" ri
+right:${1};${0}
 endsnippet
 
-snippet vh
-visibility:hidden;
+snippet "t(op)?" "" ri
+top:${1};${0} 
 endsnippet
 
-snippet vv
-visibility:visible;
+snippet "b(ottom)" "" ri
+bottom:${1};${0}
 endsnippet
 
-
-snippet oa
-overflow:auto;height:1%;
+snippet vam "" i
+vertical-align:middle;${0}
 endsnippet
 
-snippet poa
-position:absolute;
+snippet vab "" i
+vertical-align:bottom;${0}
 endsnippet
 
-snippet por
-position:relative;
+snippet vat "" i
+vertical-align:top;${0}
 endsnippet
 
-snippet pof
-position:fixed;
+snippet cuh "" i
+cursor:hand;cursor:pointer${0}
 endsnippet
 
-snippet pos
-position:static;
+snippet cum "" i
+cursor:move;${0}
 endsnippet
 
-snippet l
-left:${1};
+snippet "alp(\d+)?" "alpha" ri
+filter:alpha(opacity=${1:`!p snip.rv = match.group(1) if match.group(1) is not None else 80`}); -webkit-opacity:`!p snip.rv = float(float(t[1]) / 10) if t[1] is not None else 0.8`; opacity:`!p snip.rv = float(float(t[1]) / 10) if t[1] is not None else 0.8`;${0}
 endsnippet
 
-snippet r
-right:${1};
-endsnippet
-
-snippet t
-top:${1};
-endsnippet
-
-snippet b
-bottom:${1};
-endsnippet
-
-snippet va
-vertical-align:baseline|sub|super|text-top|text-bottom|inherit;
-endsnippet
-
-snippet vam
-vertical-align:middle;
-endsnippet
-
-snippet vab
-vertical-align:bottom;
-endsnippet
-
-snippet vatb
-vertical-align:text-bottom;
-endsnippet
-
-snippet vat
-vertical-align:top;
-endsnippet
-
-snippet cu
-cursor:${1};
-endsnippet
-
-snippet cuhh
-cursor:help;
-endsnippet
-
-snippet cuh
-cursor:hand;cursor:pointer;
-endsnippet
-
-snippet cum
-cursor:move;
-endsnippet
-
-snippet alp
-filter:alpha(opacity=80);-moz-opacity:0.8;opacity: 0.8;
-endsnippet
-
-snippet iebg
+snippet iebg "" i
 background:url(about:blank);
-endsnippet
-
-snippet toe
-overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
 endsnippet
 
 snippet utf8
@@ -449,11 +337,11 @@ abbr, acronym{border:0 none;}
 body{color:#333333;font-size:12px;font-family:"\5B8B\4F53", Arial, Tahoma, Verdana, sans-serif;}
 a{color:#333333;text-decoration:none;}
 a:hover{text-decoration:underline;}
-.wrapfix:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
-.wrapfix{display: inline-table;}/* Hides from IE-mac \*/
-* html .wrapfix{height: 1%;}
-.wrapfix{display: block;}/* End hide from IE-mac */
-*+html .wrapfix{min-height: 1px;}/*ie7*/
+.clearfix:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clearfix{display: inline-table;}/* Hides from IE-mac \*/
+* html .cleafix{height: 1%;}
+.clearfix{display: block;}/* End hide from IE-mac */
+*+html .clearfix{min-height: 1px;}/*ie7*/
 endsnippet
 
 snippet ie6png32
@@ -462,28 +350,24 @@ endsnippet
 
 snippet ts
 text-shadow:${1:1px} ${2:2px} ${3:rgba(0,0,0,0)};
-
-#User CSS3
 endsnippet
 
 snippet bgs
 background-size:${1};
 endsnippet
 
-snippet cssyj
-border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;-o-border-radius:5px;-webkit-background-clip: padding-box;background-clip: padding-box;
+snippet cssyj "css border radius" i
+border-radius:${1}px; -webkit-border-radius:$1px; -moz-border-radius:$1px; -o-border-radius:$1px;${0}
 endsnippet
 
-snippet csstm
-filter:alpha(opacity=80);-moz-opacity:0.8;opacity:0.8;
+snippet cssyy "css shadow" i
+box-shadow:${1:1px} ${2:5px} ${3:3px} ${4:#000};
+-moz-box-shadow:$1 $2 $3 $4;
+-webkit-box-shadow:$1 $2 $3 $4;
 endsnippet
 
-snippet cssyy
-box-shadow:${1:1px} ${2:5px} ${3:3px} ${4:#000};-moz-box-shadow:${5:$1} ${6:$2} ${7:$3} ${8:$4};-webkit-box-shadow:${9:$1} ${10:$2} ${11:$3} ${12:$4};
-endsnippet
-
-snippet cssjq
-overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+snippet cssjq "" i
+display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
 endsnippet
 
 snippet cssqx
@@ -498,8 +382,8 @@ snippet cssbs
 box-sizing:border-box;-webkit-box-sizing:border-box;
 endsnippet
 
-snippet cssjb
-background-color: ${1:#endcolor};background-repeat: repeat-x;background-image: -webkit-gradient(linear, left top, left bottom, from(${2:$begincolor}), to(${3:$1}));background-image: -webkit-linear-gradient(top, ${4:$2}, ${5:$1});background-image: linear-gradient(top, ${6:$2}, ${7:$1});
+snippet cssjb "css gradient" i
+background-color: ${2:#endcolor}; background-repeat: repeat-x; background-image: -webkit-gradient(linear, left top, left bottom, from(${1:$begincolor}), to($1)); background-image: -webkit-linear-gradient(top, $2, $1); background-image: linear-gradient(top, $2, $1);${0}
 endsnippet
 
 snippet csshz
@@ -523,38 +407,35 @@ snippet css3img
 }
 endsnippet
 
-snippet cssxz
-transform:rotate(${1:90deg});
--webkit-transform:rotate(${2:$1});
--moz-transform:rotate(${3:$1});
--o-transform:rotate(${4:$1});
+snippet cssxz "css rotate" i
+transform:rotate(${1:90deg}); -webkit-transform:rotate($1); -moz-transform:rotate($1); -o-transform:rotate($1);
 endsnippet
 
 snippet cssgd
-transition:${1:transform} ${5:.3s};
--webkit-transition:-webkit-${2:$1} ${6:$5};
--moz-transition:-webkit-${3:$1} ${7:$5};
--o-transition:-webkit-${4:$1} ${8:$5};
+transition:${1:transform} ${2:.3s};
+-webkit-transition:-webkit-$1 $2;
+-moz-transition:-webkit-$1 $2;
+-o-transition:-webkit-$1 $2;
 endsnippet
 
 snippet cssdh
-animation: ${5:$1} ${9:.5s};
--moz-animation: ${6:$1} ${10:$9};
--webkit-animation: ${7:$1} ${11:$9};
--o-animation: ${8:$1} ${12:$9};
+animation: $1 ${2:.5s};
+-moz-animation: $1 $2;
+-webkit-animation: $1 $2;
+-o-animation: $1 $2;
 @keyframes ${1:myanime} {
 	from {background: red;}
 	to {background: yellow;}
 }
-@-webkit-keyframes ${2:$1} {
+@-webkit-keyframes $1 {
 	from {background: red;}
 	to {background: yellow;}
 }
-@-moz-keyframes ${3:$1} {
+@-moz-keyframes $1 {
 	from {background: red;}
 	to {background: yellow;}
 }
-@-o-keyframes ${4:$1} {
+@-o-keyframes $1 {
 	from {background: red;}
 	to {background: yellow;}
 }
@@ -636,7 +517,7 @@ snippet tf
 endsnippet
 
 snippet cssjq2
-	overflow : hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+overflow : hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
 endsnippet
 
 snippet csssel
