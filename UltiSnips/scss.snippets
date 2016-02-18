@@ -1,0 +1,24 @@
+snippet cssends
+ul{
+	font-size:0;
+	text-align:justify;
+	width: 100%;
+	height: px2rem(155);
+
+	&:after{
+		content:'';
+		height: 0;
+		width: 100%;
+		display:inline-block;
+		overflow:hidden;
+	}
+}
+
+li{
+	position:relative;
+	z-index: 2;
+	display:inline-block;
+	vertical-align:top;
+	overflow:hidden;
+}
+endsnippet
