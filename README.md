@@ -9,7 +9,7 @@
 - *markdown* 语法识别（如果有安装vimwiki可以无视）
 - *html, aiml, <del>less</del>, javascript* 语法缩进调整
 - *ajaxminIMiku.vim* 对 js, css 进行压缩
-- <del>*browsersIMiku.vim* 从 Vim 打开不同的浏览器</del> [imiku-vim-less](https://github.com/katosun2/vim-browsers)
+- <del>*browsersIMiku.vim* 从 Vim 打开不同的浏览器</del> [vim-browsers](https://github.com/katosun2/vim-browsers)
 - *calendar.vim* 日历插件
 - *explorerIMiku.vim* 从文件打开文件所在的目录（win only）
 - *jsbeautify.vim* js代码美化
