@@ -1,75 +1,71 @@
-snippet "/?\*\*?" "css comment" ri
+snippet "/?\*\*?" "css comment" r
 /* ${1}{ */
 .$1{ ${0} }
 /* }$1 */
 endsnippet
 
-snippet csssj "css Triangle" i
-border-style:dashed solid dashed dashed;border-color:transparent #000000 transparent transparent;
+snippet utf8 ""
+@charset "utf-8";
 endsnippet
 
-snippet yj "" i
-a { position:absolute; color:#666666; height: 16px; border-top:1px solid #80b7F1; border-bottom:1px solid #80B7F1; display:block;top:18px; right:17px; }
-a span{ float:left; height: 16px; position:relative; padding:0 5px; margin:0 -1px; text-align:center; color:#FFFFFF; background:#80B7F1; line-height:16px;}
+snippet gbk ""
+@charset "gbk";
 endsnippet
 
-snippet divscroll "div scroll" i
-overflow:scroll; overflow-scrolling: touch; -webkit-overflow-scrolling: touch; 
+snippet "b(ack)?g(round)?" "background" ri
+background:${1};
 endsnippet
 
-snippet "qjbhh?" "nowrap" ri
-white-space:nowrap;
+snippet bgs "" i
+background-size:${1};
 endsnippet
 
-snippet "qjhh?" "auto wrap" ri
-word-break: break-all; word-wrap: break-word;
+snippet left "" i
+left:${1};${2}
 endsnippet
 
-snippet cssff "css icon font" i
-/*define
-use in css : .iconfont{font-family:"iconfont"; font-size:16px;font-style:normal;}
-use in css : .iconfont{-webkit-font-smoothing: antialiased;}
-use in html : <i class="iconfont">&#33</i>
-*/
-@font-face {font-family: 'iconfont';
-	src: url('iconfont.eot'); /* IE9*/
-	src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-	url('iconfont.woff') format('woff'), /* chrome、firefox */
-	url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-	url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
-}
+snippet bottom "" i
+bottom:${1};${2}
 endsnippet
 
-snippet cssztyh "font smooth" i
-font-smoothing: antialiased; -webkit-font-smoothing: antialiased;
+snippet top "" i
+top:${1};${2}
 endsnippet
 
-snippet cssztmh "font stroke" i
-text-stroke-width: ${1:1px}; -webkit-text-stroke-width: $1;
+snippet "b(ack)?g(round)?u" "background" ri
+background:url(${1}) no-repeat ${2};
 endsnippet
 
-snippet "fs(\d+)?" "font size" ri
-font-size:`!p snip.rv = match.group(1) if match.group(1) is not None else ""`${1}px;${0}
+snippet "b(ack)?g(round)?u(\w)" "background" ri
+background:url(${1}) repeat-`!p snip.rv = match.group(3)`;
 endsnippet
 
-snippet "fw(\d+)?" "font weight" ri
-font-weight:`!p snip.rv = match.group(1) if match.group(1) is not None else ""`${1}px;${0}
+snippet "b(ack)?g(round)?p" "background-position" ri
+background-position:${1};
 endsnippet
 
-snippet ff "font family" i 
+snippet "b(ack)?g(round)?n" "background" ri
+background:none;
+endsnippet
+
+snippet ff "font family" i
 font-family:${1};${0}
 endsnippet
 
-snippet ffht "font hei ti" i
+snippet ffht "黑体" i
 font-family:"\9ED1\4F53";${0}
 endsnippet
 
-snippet ffst "font songti" i
+snippet ffst "宋体" i
 font-family:"\5B8B\4F53";${0}
 endsnippet
 
-snippet ffyh "font ya hei" i
+snippet ffyh "微软雅黑" i
 font-family:"\5FAE\8F6F\96C5\9ED1";${0}
+endsnippet
+
+snippet "fw(\d+)?" "font weight" ri
+font-weight:`!p snip.rv = match.group(1) if match.group(1) is not None else ""`${1};${0}
 endsnippet
 
 snippet "pa(\d+)?" "css padding" ri
@@ -101,19 +97,19 @@ margin:0 auto;${0}
 endsnippet
 
 snippet mat "margin-top" i
-margin-top:${1}px;${0}
+margin-top:${1};${0}
 endsnippet
 
 snippet mar "margin-right" i
-margin-right:${1}px;${0}
+margin-right:${1};${0}
 endsnippet
 
 snippet mab "margin-bottom" i
-margin-bottom:${1}px;${0}
+margin-bottom:${1};${0}
 endsnippet
 
 snippet mal "margin-left" i
-margin-left:${1}px;${0}
+margin-left:${1};${0}
 endsnippet
 
 snippet mh "min-height" i
@@ -124,29 +120,6 @@ snippet mw "min-width" i
 min-width:${1};${0}
 endsnippet
 
-snippet "b(ack)?g(round)?" "background" ri
-background:${1};
-endsnippet
-
-snippet "b(ack)?g(round)?u" "background" ri
-background:url(${1}) no-repeat ${2};
-endsnippet
-
-snippet "b(ack)?g(round)?u(\w)" "background" ri
-background:url(${1}) repeat-`!p snip.rv = match.group(3)`;
-endsnippet
-
-snippet "b(ack)?g(round)?p" "background-position" ri
-background-position:${1};
-endsnippet
-
-snippet "b(ack)?g(round)?n" "background" ri
-background:none;
-endsnippet
-
-snippet bcc "" i
-border-collapse:collapse;
-endsnippet
 
 snippet co "" i
 color:#${1};
@@ -156,7 +129,7 @@ snippet db "" i
 display:block;
 endsnippet
 
-snippet dn
+snippet dn "" i
 display:none;
 endsnippet
 
@@ -180,17 +153,14 @@ snippet tar "" i
 text-align:right;
 endsnippet
 
-snippet "ti(\w+)?" "text indent" ri
-text-indent:`!p snip.rv = match.group(1) if match.group(1) is not None else ''`${1};${0}
-endsnippet
-
-snippet tdn
+snippet tdn "" i
 text-decoration:none;
 endsnippet
 
 snippet tdu "" i
 text-decoration:underline;
 endsnippet
+
 
 snippet lh "" i
 line-height:${1};${0}
@@ -216,10 +186,6 @@ snippet boln "" i
 border-left:0 none;${0}
 endsnippet
 
-snippet botn "" i
-border-bottom:0 none;${0}
-endsnippet
-
 snippet bot "" i
 border-top:${1:1}px solid ${2};${0}
 endsnippet
@@ -235,6 +201,7 @@ endsnippet
 snippet bol "" i
 border-left:${1:1}px solid ${2};${0}
 endsnippet
+
 
 snippet fl "" i
 float:left;${0}
@@ -272,264 +239,42 @@ snippet pos "" i
 position:static;${0}
 endsnippet
 
-<<<<<<< HEAD
-snippet left ""
-=======
-snippet left
->>>>>>> office
-left:${1};${0}
-endsnippet
-
-snippet r
-right:${1};${0}
-endsnippet
-
-snippet t
-top:${1};${0} 
-endsnippet
-
-snippet b
-bottom:${1};${0}
-endsnippet
-
-snippet vam
+snippet vam "" i
 vertical-align:middle;${0}
 endsnippet
 
-snippet vab
-vertical-align:bottom;${0}
-endsnippet
-
-snippet vat
+snippet vat "" i
 vertical-align:top;${0}
 endsnippet
 
-snippet cuh
-cursor:hand;cursor:pointer${0}
+snippet vab "" i
+vertical-align:bottom;${0}
 endsnippet
 
-snippet cum "" i
-cursor:move;${0}
+
+snippet cuh "" i
+cursor:${1:hand/pointer/move};${0}
+endsnippet
+
+snippet "ti(\w+)?" "text indent" ri
+text-indent:`!p snip.rv = match.group(1) if match.group(1) is not None else ''`${1};${0}
 endsnippet
 
 snippet "alp(\d+)?" "alpha" ri
 filter:alpha(opacity=${1:`!p snip.rv = match.group(1) if match.group(1) is not None else 80`}); -webkit-opacity:`!p snip.rv = float(float(t[1]) / 10) if t[1] is not None else 0.8`; opacity:`!p snip.rv = float(float(t[1]) / 10) if t[1] is not None else 0.8`;${0}
 endsnippet
 
-snippet iebg "" i
-background:url(about:blank);
+snippet "fs(\d+)?" "font size" ri
+font-size:`!p snip.rv = match.group(1) if match.group(1) is not None else ""`${1}px;${0}
 endsnippet
 
-snippet utf8 "" i
-@charset "utf-8";
-endsnippet
-
-snippet gbk
-@charset "gbk";
-endsnippet
-
-snippet tplcss
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td{padding:0;margin:0;}
-table{border-collapse:collapse;border-spacing:0;}
-fieldset, img{border:0 none;}
-address, caption, cite, code, dfn, em, th, var{font-weight:400;font-style:normal;}
-ol, ul{list-style:none;}
-caption, th{text-align:left;}
-h1, h2, h3, h4, h5, h6{font-weight:400;font-size:100%;}
-q:before, q:after{content:"";}
-abbr, acronym{border:0 none;}
-body{color:#333333;font-size:12px;font-family:"\5B8B\4F53", Arial, Tahoma, Verdana, sans-serif;}
-a{color:#333333;text-decoration:none;}
-a:hover{text-decoration:underline;}
-.clearfix:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
-.clearfix{display: inline-table;}/* Hides from IE-mac \*/
-* html .cleafix{height: 1%;}
-.clearfix{display: block;}/* End hide from IE-mac */
-*+html .clearfix{min-height: 1px;}/*ie7*/
-endsnippet
-
-snippet ie6png32
-_background:none;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true,sizingMethod=scale,src="${1:full path}");
-endsnippet
-
-snippet ts
-text-shadow:${1:1px} ${2:2px} ${3:rgba(0,0,0,0)};
-endsnippet
-
-snippet bgs
-background-size:${1};
-endsnippet
-
-snippet cssyj "css border radius" i
-border-radius:${1}px; -webkit-border-radius:$1px; -moz-border-radius:$1px; -o-border-radius:$1px;${0}
-endsnippet
-
-snippet cssyy "css shadow" i
-box-shadow:${1:1px} ${2:5px} ${3:3px} ${4:#000};
--moz-box-shadow:$1 $2 $3 $4;
--webkit-box-shadow:$1 $2 $3 $4;
-endsnippet
-
-snippet cssjq "" i
-display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
-endsnippet
-
-snippet cssqx
-transform:skew(10deg,0);-webkit-transform:skew(10deg,0);-moz-transform:skew(10deg,0);
-endsnippet
-
-snippet csspy
-transform:translate(x,y);-webkit-transform:translate(x,y);-moz-transform:translate(x,y);
-endsnippet
-
-snippet cssbs
-box-sizing:border-box;-webkit-box-sizing:border-box;
-endsnippet
-
-snippet cssjb "css gradient" i
-background-color: ${2:#endcolor}; background-repeat: repeat-x; background-image: -webkit-gradient(linear, left top, left bottom, from(${1:$begincolor}), to($1)); background-image: -webkit-linear-gradient(top, $2, $1); background-image: linear-gradient(top, $2, $1);${0}
-endsnippet
-
-snippet csshz
-display:box;display:-webkit-box;box-flex:1;-webkit-box-flex:1;box-align:center;-webkit-box-align:center;box-pack:center;-webkit-box-pack:center;
-endsnippet
-
-snippet cssztyy
-text-shadow:${1:1px} ${2:2px} ${3:rgba(0,0,0,0)};
-endsnippet
-
-snippet css3img
-@media (min-device-width:600px) { 
-	img[data-src-600px] {
-		content: attr(data-src-600px, url); 
-	}
-}
-@media (min-device-width:800px) {
-	img[data-src-800px] {
-		content: attr(data-src-800px, url);
-	}
-}
-endsnippet
-
-snippet cssxz "css rotate" i
-transform:rotate(${1:90deg}); -webkit-transform:rotate($1); -moz-transform:rotate($1); -o-transform:rotate($1);
-endsnippet
-
-snippet cssgd
-transition:${1:transform} ${2:.3s};
--webkit-transition:-webkit-$1 $2;
--moz-transition:-webkit-$1 $2;
--o-transition:-webkit-$1 $2;
-endsnippet
-
-snippet cssdh
-animation: $1 ${2:.5s};
--moz-animation: $1 $2;
--webkit-animation: $1 $2;
--o-animation: $1 $2;
-@keyframes ${1:myanime} {
-	from {background: red;}
-	to {background: yellow;}
-}
-@-webkit-keyframes $1 {
-	from {background: red;}
-	to {background: yellow;}
-}
-@-moz-keyframes $1 {
-	from {background: red;}
-	to {background: yellow;}
-}
-@-o-keyframes $1 {
-	from {background: red;}
-	to {background: yellow;}
-}
-endsnippet
-
-snippet csscb
-:root input[type="checkbox"] {
-	display:none;
-}
-:root input[type="checkbox"] + label:before {
-	display:inline-block;
-	width:28px;
-	height:28px;
-	margin:-1px 4px 0 0;
-	vertical-align:middle;
-	background:url() left top no-repeat;
-	background-size:contain;
-	cursor:pointer;
-	content:"";
-}
-:root input[type="checkbox"]:checked + label:before {
-	background-position:-38px;
-	background-size:contain;
-	content:"";
-}
-endsnippet
-
-snippet cssrd
-:root input[type="radio"]{
-	display:none;
-}
-:root input[type="radio"] + label:before {
-	display:inline-block;
-	margin-right:0.5em;
-	width:1.2em;
-	height:1.2em;
-	vertical-align:middle;
-	background:url() no-repeat;
-	background-size:contain;
-	cursor:pointer;
-	content:"";
-}
-:root input[type="radio"]:checked + label:before {
-	background:url() no-repeat;
-	background-size:contain;
-	content:"";
-}
-endsnippet
-
-snippet csspre
-white-space:pre-wrap
+snippet qjhh "强制换行" i
+word-break: break-all;
 word-wrap: break-word;
-word-break: break-all;/*如果要兼容IE，可以加上这句，连续字母断行的问题伤不起啊。。。。*/
+/*如果要兼容IE，可以加上这句，连续字母断行的问题伤不起啊。。。。*/
+word-break: break-all;
 endsnippet
 
-snippet gpu
--webkit-backface-visibility: hidden;
--moz-backface-visibility: hidden;
--ms-backface-visibility: hidden;
-backface-visibility: hidden;
-
-/*hack for light*/
--webkit-perspective: 1000;
--moz-perspective: 1000;
--ms-perspective: 1000;
-perspective: 1000;
-endsnippet
-
-snippet ha
-	hyphens:auto; 
-endsnippet
-
-snippet ts
-	transition:${1};
-endsnippet
-
-snippet tf
-	transform:${1:translateX};
-endsnippet
-
-snippet cssjq2
-overflow : hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-endsnippet
-
-snippet csssel
-user-select: none; 
--ms-user-select: none; 
--webkit-user-select: none; 
--khtml-user-select: none; 
--moz-user-select: none; 
--webkit-touch-callout: none; 
--webkit-user-drag: none; 
+snippet qjbhh "强制不换行" i
+white-space:nowrap;
 endsnippet
