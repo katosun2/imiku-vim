@@ -1,77 +1,5 @@
-# new tags for html5
-snippet canvas "" i
-<canvas id="${1:canvasID} width="${2}" height="${3}"></canvas>
-endsnippet
-
-snippet pro "" i
-<progress id="${1:id}" max="${2:100}">${3}</progress>
-endsnippet
-
-snippet asc "" i
-<aside class="${1:class}">${2}</aside>
-endsnippet
-
-snippet lmedia
-<link rel="stylesheet" media="screen, handled and (orientation:portrait)" href="${1:portrait.css}" /> 
-<link rel="stylesheet" media="screen, handled and (orientation:landscape)" href="${2:landscape.css}" /> 
-endsnippet
-
-snippet as "" i
-<aside">${1}</aside>
-endsnippet
-
-snippet nav "" i
-<nav>${1}</nav>
-endsnippet
-
-snippet navc "" i
-<nav class="${1:class}">${2}</nav>
-endsnippet
-
-snippet hd "" i
-<header>${1:class}</header>
-endsnippet
-
-snippet hdc "" i
-<header class="${1:class}">${2}</header>
-endsnippet
-
-snippet secc "" i
-<section class="${1:class}">${2}</section>
-endsnippet
-
-snippet sec "" i
-<section>${1:class}</section>
-endsnippet
-
-snippet artc "" i
-<article class="${1:class}">${2}</article>
-endsnippet
-
-snippet art "" i
-<article>${1:class}</article>
-endsnippet
-
-snippet ftc "" i
-<footer class="${1:class}">${2}</footer>
-endsnippet
-
-snippet ft "" i
-<footer>${1:class}</footer>
-endsnippet
-
-snippet met "" i
-<meter title="${1:title}" id="${2:id}" value="${3:value}" min="${4:num}" max="${5:num}">${6:code}</meter>
-endsnippet
-
-snippet iframe "" i
-<iframe name="recommend_box" frameborder="0" width="100%" height="330" allowTransparency="true" style="background:transparent;" src="${1:src}"></iframe>
-endsnippet
-
-# xhtml tag
-snippet nbs "" i
-&nbsp;
-# Generic Doctype
+snippet doctype "HTML 5" b
+<!DOCTYPE HTML>
 endsnippet
 
 snippet doctype "HTML 4.01 Strict" b
@@ -82,10 +10,6 @@ endsnippet
 snippet doctype "HTML 4.01 Transitional" b
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""
 "http://www.w3.org/TR/html4/loose.dtd">
-endsnippet
-
-snippet doc5
-<!DOCTYPE HTML>
 endsnippet
 
 snippet doctype "XHTML 1.0 Frameset" b
@@ -108,25 +32,15 @@ snippet doctype "XHTML 1.1" b
 "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 endsnippet
 
-# HTML Doctype 4.01 Strict
-snippet docts
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""
-"http://www.w3.org/TR/html4/strict.dtd">
+snippet iframe ""
+<iframe name="iframe" frameborder="0" width="100%" height="330" allowTransparency="true" style="background:transparent;" src="${1:src}"></iframe>
 endsnippet
 
-# HTML Doctype 4.01 Transitional
-snippet doct
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""
-"http://www.w3.org/TR/html4/loose.dtd">
+snippet nbs ""
+&nbsp;
 endsnippet
 
-# XHTML Doctype 1.0 Frameset
-snippet docxf
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
-endsnippet
-
-snippet head
+snippet head "网页head"
 <head>
 <meta charset="UTF-8"/>
 <title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
@@ -134,64 +48,38 @@ ${2}
 </head>
 endsnippet
 
-snippet title
+snippet title "网页标题"
 <title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
 endsnippet
 
 snippet base
-<base href="${1}" target="${2}"/>
+<base href="${1}" target="${2}" />
 endsnippet
 
-snippet br "" i
+snippet br "换行"
 <br/>
 endsnippet
 
-snippet div
-<div id="${1:name}">
-${0}
-</div>
-endsnippet
-
-# Embed QT Movie
-snippet movie
-<object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
-codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-<param name="src" value="$1"/>
-<param name="controller" value="$4"/>
-<param name="autoplay" value="$5"/>
-<embed src="${1:movie.mov}"
-width="${2:320}" height="${3:240}"
-controller="${4:true}" autoplay="${5:true}"
-scale="tofit" cache="true"
-pluginspage="http://www.apple.com/quicktime/download/" />
-</object>${6}
-endsnippet
-
-snippet fieldset "" i
+snippet fieldset ""
 <fieldset id="$1">
 <legend>${1:name}</legend>
 ${3}
 </fieldset>
 endsnippet
 
-snippet form
+snippet form "表单" b
 <form action="${1:`Filename('$1_submit')`}" method="${2:get}" accept-charset="utf-8">
+<input type="submit" value="Continue &rarr;"/>
 ${3}
-<p><input type="submit" value="Continue &rarr;"/></p>
 </form>
 endsnippet
 
-
-snippet input "" i
-<input type="${1:text/submit/hidden/button/checkbox}" name="${2:some_name}" value="${3}"/>${4}
+snippet input ""
+<input type="${1:text/submit/hidden/button/checkbox}" name="${2:some_name}" value="${3}" />${4}
 endsnippet
 
-snippet label "" i
+snippet label ""
 <label for="${2:$1}">${1:name}</label><input type="${3:text/submit/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}"/>${7}
-endsnippet
-
-snippet link "" i
-<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" charset="utf-8"/>${4}
 endsnippet
 
 snippet mailto "" i
@@ -199,328 +87,117 @@ snippet mailto "" i
 endsnippet
 
 snippet meta "" i
-<meta name="${1:name}" content="${2:content}"/>${3}
+<meta name="${1:name}" content="${2:content}" />${3}
 endsnippet
 
-snippet opt "" i
+snippet opt ""
 <option value="${1:option}">${2:$1}</option>${3}
 endsnippet
 
-snippet optt "" i
-<option>${1:option}</option>${2}
-endsnippet
-
-snippet select "" i
+snippet select ""
 <select name="${1:some_name}" id="${2:$1}">
-<option value="${3:option}">${4:$3}</option>
+	<option value="${3:option}">${4:$3}</option>
 </select>${5}
 endsnippet
 
-snippet table "" i
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-	<thead>
-		<tr>
-			<th>Month</th>
-			<th>Savings</th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr>
-			<td>Sum</td>
-			<td>$180</td>
-		</tr>
-	</tfoot>
-	<tbody>
-	<tr>
-		<td>January</td>
-		<td>$100</td>
-	</tr>
-	<tr>
-		<td>February</td>
-		<td>$80</td>
-	</tr>
-	</tbody>
-</table>
-endsnippet
-
-snippet textarea "" i
+snippet textarea ""
 <textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>${5}
 endsnippet
 
-snippet log "" i
-console.log(${1:str});
+snippet at ""
+<a target="_blank" href="${1}">${2}</a>
 endsnippet
 
-#define by imiku
-#A======================================================================
-snippet ah "" i
-<a href="${2}#">${1}</a>
-endsnippet
-
-snippet at "" i
-<a target="_blank" href="${2}">${1}</a>
-endsnippet
-
-snippet ac "" i
-<a class="${1}" href="#">${2}</a>
-endsnippet
-
-snippet act "" i
-<a class="${1}" target="_blank" href="${3}">${2}</a>
-endsnippet
-
-snippet aj "" i
-<a href="javascript:void(0)">${1}</a>
-endsnippet
-
-snippet acj "" i
-<a class="${1}" href="javascript:void(0)">${2}</a>
-endsnippet
-
-snippet actj "" i
-<a class="${1}" target="_blank" href="javascript:void(0)">${2}</a>
-endsnippet
-
-snippet aimg "" i
-<a href="${5}"><img src="${1}" width="${2}" height="${3}"/>${4}</a>
-endsnippet
-
-snippet atimg "" i
-<a href="${5}" target="_blank"><img src="${1}" width="${2}" height="${3}"/>${4}</a>
-endsnippet
-
-snippet css3img "" i
-<img src="${1}" data-src-${4:$2}="image-${2}.jpg" data-src-{$5:$3}="image-${3}.jpg" alt="">
-endsnippet
-
-snippet an "" i
-<a name="${1}">${2}</a>
-endsnippet
-
-snippet d "" i
+snippet d ""
 <div>${1}</div>
 endsnippet
 
-snippet di "" i
+snippet di ""
 <div id="${1:id}"></div>
 endsnippet
 
-snippet dc "" i
+snippet dc ""
 <div class="${1}"></div>
 endsnippet
 
-snippet ds "" i
-<div style="${1}"></div>
-endsnippet
-
-snippet dic "" i
+snippet dic ""
 <div id="${1}" class="${2}"></div>
 endsnippet
 
-snippet dl "" i
+snippet dl ""
 <dl>
 	<dt>${1}</dt>
 	<dd>${2}</dd>
 </dl>
 endsnippet
 
-snippet dli "" i
+snippet dli ""
 <dl id="${1}">
 	<dt>${0}</dt>
 	<dd></dd>
 </dl>
 endsnippet
 
-snippet dlc "" i
+snippet dlc ""
 <dl class="${1}">
 	<dt></dt>
 	<dd></dd>
 </dl>
 endsnippet
 
-snippet em "" i
+snippet em ""
 <em>${1}</em>
 endsnippet
 
-snippet image "" i
-<input type="image" src="${1}" width="${2}" height="${3}"/>
-endsnippet
-
-snippet file "" i
+snippet file ""
 <input type="file" name="${1}" />
 endsnippet
 
-snippet fsel "" i
-<select name="${2}" id="${3}">
-	<option value="${1}"></option>
-</select>
-endsnippet
-
-snippet fopt "" i
-<option value="${1}"></option>
-endsnippet
-
-snippet "h(\d+)" "h1-hN" ri
+snippet "h(\d+)" "h1-hN" r
 <h`!p snip.rv = match.group(1)`>${0}</h`!p snip.rv = match.group(1)`>
 endsnippet
 
-snippet img "" i
+snippet img ""
 <img src="${1}" width="${2}" height="${3}" alt="" />
 endsnippet
 
-snippet lia "" i
-<li><a href="${2}">${1}</a></li>
+snippet lcss "链接css文件"
+<link href="${1}.css" rel="stylesheet" type="text/css" />
 endsnippet
 
-snippet liat "" i
-<li><a href="${2}" target="_blank">${1}</a></li>
-endsnippet
-
-snippet lica "" i
-<li class="${1}"><a href="${2}"></a></li>
-endsnippet
-
-snippet licat "" i
-<li class="${1}"><a href="${2}" target="_blank">${3}</a></li>
-endsnippet
-
-snippet liica "" i
-<li id="${1}"><a href="${2}">${3}</a></li>
-endsnippet
-
-snippet liiat "" i
-<li id="${1}"><a href="${3}" target="_blank">${2}</a></li>
-endsnippet
-
-snippet lcss
-<link href="${1}.css" rel="stylesheet" type="text/css"/>
-endsnippet
-
-snippet ljs
+snippet ljs "链接js文件"
 <script type="text/javascript" src="${1}.js"></script>
 endsnippet
 
-snippet lab "" i
-<label>${1}</label>
-endsnippet
-
-snippet ulli "" i
-<ul>
-	<li>${1}</li>
-</ul>
-endsnippet
-
-snippet ucl "" i
-<ul class="${1}">
-	<li>${2}</li>
-</ul>
-endsnippet
-
-snippet ol "" i
+snippet ol ""
 <ol>
 	<li>${1}</li>
 </ol>
 endsnippet
 
-snippet olc "" i
-<ol class="${1}">
-	<li>${2}</li>
-</li>
-endsnippet
-
-snippet "se(\d+)" "<!--S --> <!--E -->" ri
+snippet "se(\d+)" "<!--S --> <!--E -->" r
 <!--`!p snip.rv = '=' * int(match.group(1))`S ${1} -->
 ${0}
 <!--`!p snip.rv = '=' * int(match.group(1))`E $1 -->
 endsnippet
 
 snippet js
-<script type="text/javascript">
+<script>
 ${0}
 </script>
 endsnippet
 
 snippet css
-<style type="text/css">
+<style>
 ${0}
 </style>
 endsnippet
 
-snippet selectt "" i
-<select>
-	<option>${1}</option>
-</select>
-endsnippet
-
-snippet checkbox "" i
+snippet checkbox ""
 <input type="checkbox" id="${1:id}" name="some_name" value=""/>
 <label for="$1">${0}</label>
 endsnippet
 
-snippet tplcss
-<style type="text/css">
-<!--
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td{padding:0;margin:0;}
-table{border-collapse:collapse;border-spacing:0;}
-fieldset, img{border:0 none;}
-address, caption, cite, code, dfn, em, th, var{font-weight:400;font-style:normal;}
-ol, ul{list-style:none;}
-caption, th{text-align:left;}
-h1, h2, h3, h4, h5, h6{font-weight:400;font-size:100%;}
-q:before, q:after{content:'';}
-abbr, acronym{border:0 none;}
-body{color:#333;font-size:12px;font-family:\5B8B\4F53, Arial, Tahoma, Verdana, sans-serif;}
-a{color:#333;text-decoration:none;}
-a:hover{text-decoration:underline;}
-.cleafix:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
-.cleafix{display: inline-table;}
-* html .cleafix{height: 1%;}
-.cleafix{display: block;}
-*+html .cleafix{min-height: 1px;}/*ie7*/
--->
-</style>
-endsnippet
-
-snippet hf "ie hide Dotted frame" i
+snippet hf "hidefocus"
 hidefocus="true"
-endsnippet
-
-snippet baidushare
-<!-- Baidu Button BEGIN -->
-<script type="text/javascript" id="bdshare_js" data="type=slide&img=0&pos=right" ></script>
-<script type="text/javascript" id="bdshell_js"></script>
-<script type="text/javascript">
-var bds_config = null;
-var _bds = {
-	setTime : null, 
-	reset : function(){
-		var _bdshare = $('#bdshare');
-		var w = $('body').width();
-		var w2 = $(window).width();
-		if(w > w2){
-			_bdshare.css({
-				right : '0px'
-			});
-		}
-		_bdshare.show();
-	}, 
-	action : function(){
-		$('#bdshare').hide();
-		var _ts = _bds;
-		if(_ts.setTime){clearTimeout(_ts.setTime);}
-		_ts.setTime = setTimeout(function(){
-			_ts.reset();
-		},400);
-	}
-};
-$(function(){
-	var bdTop = $(window).height() - 314;
-	bds_config = {"bdTop":bdTop};
-	document.getElementById("bdshell_js").src = "http://share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
-		if($.browser.msie && $.browser.version == '6.0'){
-		$(window).bind('scroll', _bds.action);
-	}
-});
-</script>
-<!-- Baidu Button END -->
 endsnippet
