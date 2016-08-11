@@ -1,0 +1,24 @@
+snippet com "react es6定义组件"
+class ${1:Photo} extends ${2:React.Component} {
+	/*构造函数初始化*/
+	constructor(props){
+		super(props);
+		this.state = {
+			loopsRemaining: this.props.maxLoops,
+		};
+	};
+
+	/* 静态方法 */
+	${3:static defaultProps = {
+	};
+	static propTypes = {
+	};}
+
+	/* 渲染 */
+	render() {
+		return (
+			${4:<Image source={this.props.source} />}
+		);
+	}
+}
+endsnippet
