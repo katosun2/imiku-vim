@@ -1,24 +1,65 @@
-snippet cssends
-ul{
-	font-size:0;
-	text-align:justify;
-	width: 100%;
-	height: px2rem(155);
+snippet px2rem "psd 750 x 1334 -> 1rem = 75px for mobile" 
+// px2rem扩展应用 eg: px2rem(80,40,32,56)
+// ip6: psd 750 x 1334 -> 1rem = 75px
+// rem = clientWidth * dpr / 10;
+@function px2rem($values...) {
+	$tempList:();
+	@for $i from 1 through length($values) {
+		$value: nth($values, $i);
+		$tempList:append($tempList, $value / 75 * 1rem);
+	}
+	@return $tempList;
+}
+endsnippet
 
-	&:after{
-		content:'';
-		height: 0;
-		width: 100%;
-		display:inline-block;
-		overflow:hidden;
+snippet px2px "px2px, zoom@2 for mobile"
+// px2px, zoom@2
+@mixin px2px($name, $px) {
+	#{$name}: round($px / 2) * 1px;
+	[data-dpr="2"] & {
+		#{$name}: $px * 1px;
+	}
+	// for mx3
+	[data-dpr="2.5"] & {
+		#{$name}: round($px * 2.5 / 2) * 1px;
+	}
+	// for 小米note
+	[data-dpr="2.75"] & {
+		#{$name}: round($px * 2.75 / 2) * 1px;
+	}
+	[data-dpr="3"] & {
+		#{$name}: round($px / 2 * 3) * 1px;
+	}
+	[data-dpr="3.5"] & {
+		#{$name}: round($px / 2 * 3.5) * 1px;
+	}
+	// for 三星note4
+	[data-dpr="4"] & {
+		#{$name}: $px * 2px;
 	}
 }
+endsnippet
 
-li{
-	position:relative;
-	z-index: 2;
-	display:inline-block;
-	vertical-align:top;
+snippet text-ellipsis "文本溢出时使用省略号 占位实现(%placeholder) -> @extend"
+//文本溢出时使用省略号 占位实现(%placeholder) -> @extend
+%text-ellipsis{
 	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	word-break:break-all;
+}
+endsnippet
+
+snippet clearfix "清除浮动"
+%clearfix {
+	display: inline-block;
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	* html & { height: 1px }
 }
 endsnippet
