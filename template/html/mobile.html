@@ -24,10 +24,135 @@
 
     <style type="text/css">
     /*reset*/
-    body{font-family:tahoma,arial,\5b8b\4f53,sans-serif;}
-    html{-webkit-text-size-adjust:100%;}
+	body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td{padding:0;margin:0;-webkit-text-size-adjust:none;}
+	a,button,input,textarea{ -webkit-tap-highlight-color: rgba(0,0,0,0);}
+	body{color:#333333;font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica;}
     div{transform:translateZ(0);}
     </style>
+
+	<script>
+		/*!
+		* 高清屏适配方案初始化JS
+		* 
+		* @Version 0.0.1 
+		* @Creator Ryu
+		*
+		*/
+		(function() {
+			var iUA = navigator.userAgent,
+			UA = {
+				isAndroid: /Android|Adr/i.test(iUA),
+				isIOS: /(iPhone|iPod|iPad)/.test(iUA),
+				isWindowsPhone: /(?:Windows Phone)/.test(iUA),
+				isSymbian: /(?:SymbianOS)/.test(iUA),
+				isUCBrowser: /UCBrowser|UCWEB/.test(iUA)
+			};
+			UA.isPc = ! UA.isIOS && ! UA.isAndroid && ! UA.isSymbian;
+
+			var dc = document,
+			dpr = window.devicePixelRatio || 1,
+			docEl = dc.documentElement,
+			head = dc.getElementsByTagName('head')[0],
+			metaEl = dc.createElement('meta'),
+			scWidth = UA.isPc ? docEl.clientWidth: window.screen.width,
+			scHeight = UA.isPc ? docEl.clientHeight: window.screen.height;
+
+			/*创建viewport*/
+			metaEl.name = 'viewport';
+			head.appendChild(metaEl);
+
+			/*获取屏幕宽高*/
+			if (UA.isIOS) {
+				scWidth = scWidth * dpr;
+				scHeight = scHeight * dpr;
+			}
+
+			/*Android*/
+			else if (!UA.isPc) {
+				/*用来做判断测试*/
+				metaEl.content = "width=device-width, initial-scale=1, maximum-scale=1";
+
+				var docW2H = docEl.clientWidth-docEl.clientHeight,
+				scW2H = scWidth-scHeight;
+
+				/*
+					* 修复部分机型 window.screen.width 始终代表屏幕较短的问题 
+					* 即 横屏情况下 window.screen.width < window.screen.height
+					*/
+				if (docW2H / Math.abs(docW2H) != (scW2H) / Math.abs(scW2H)) {
+					scWidth = window.screen.height;
+					scHeight = window.screen.width;
+				}
+
+				/*
+					* 修复部分机型 window.screen.width === docEl.clientWidth 情况,
+					* 正常应该是 window.screen.width == docEl.clientWidth * dpr
+					* 5为某一范围值内可行, 据不完全测试，部分机型出现了小数点尺寸
+					* 如1080.75异常数值
+					*/
+				if (Math.abs(scWidth-docEl.clientWidth * dpr) > 5) {
+					scWidth = Math.floor(scWidth * dpr);
+					scHeight = Math.floor(scHeight * dpr);
+				}
+			}
+
+			/*计算屏幕宽高*/
+			var clientWidth = UA.isPc ? scWidth: (scWidth > scHeight ? scHeight: scWidth),
+			clientHeight = UA.isPc ? scHeight: (scWidth > scHeight ? scWidth: scHeight),
+			fontEl = dc.createElement('style'),
+			/*计算基准值的方法 1rem = X px*/
+			/*rem = clientWidth * dpr / 10;*/
+			rem = clientWidth / 10,
+			vrem = clientHeight / 10,
+			scale = 1 / dpr,
+			cnt = ['width=' + clientWidth, 'initial-scale=' + scale, 'maximum-scale=' + scale, 'minimum-scale=' + scale, 'user-scalable=no'];
+
+			/*
+				* 修复部分低端机缩放后显示比例不正常问题 
+				* 而 UC浏览器 碰到这个则会出现忽略 scale 直接 1:1 显示
+				*/
+			if (UA.isAndroid && ! UA.isUCBrowser) {
+				cnt.push('target-densitydpi=device-dpi');
+			}
+
+			/*设置viewport缩放参数*/
+			metaEl.setAttribute('content', cnt.join(','));
+			/*设置data-dpr属性，留作的css hack之用*/
+			docEl.setAttribute('data-dpr', dpr);
+			/*动态写入样式*/
+			docEl.firstElementChild.appendChild(fontEl);
+
+			/*计算横竖屏*/
+			var cWidth = docEl.clientWidth,
+			cHeight = docEl.clientHeight,
+			mediaWidth = cWidth > cHeight ? cWidth: cHeight;
+
+			/*设置页面样式*/
+			fontEl.innerHTML = ['html{font-size:' + rem + 'px!important;}', '@media screen and (min-width: ' + mediaWidth + 'px){', 'html{font-size:' + vrem + 'px!important;}', '}'].join('');
+
+			fontEl.innerHTML = ['html{font-size:' + rem + 'px!important;}', 'html{ margin:0 auto;}'].join('');
+
+			/*给js调用的，某一dpr下rem和px之间的转换函数*/
+			window.rem2px = function(v) {
+				v = parseFloat(v);
+				return {
+					wpx: v * rem,
+					hpx: v * vrem
+				};
+			};
+			window.px2rem = function(v) {
+				v = parseFloat(v);
+				return {
+					wrem: v / rem,
+					hrem: v / vrem
+				};
+			};
+			window.dpr = dpr;
+			window.rem = rem;
+			window.vrem = vrem;
+			window.cWidth = cWidth;
+		})();
+	</script>
 </head>
 <body>
 </body>
