@@ -53,3 +53,28 @@ endsnippet
 snippet jc "子元素沿着主轴的排列方式"
 justifyContent: ${1: 'flex-start|center|flex-end|space-around|space-between'}
 endsnippet
+
+
+snippet reducer "创建一个reducer"
+function ${1:'reducerName'}(state = 0, action) {
+	switch (action.type) {
+		case '${2:INCREMENT}':
+			return ${3:state + 1};
+		default:
+			return state;
+	}
+}
+$0
+endsnippet
+
+snippet action "创建一个action函数"
+function ${1:'actionName'}(${2}){
+	return {
+		type: ${3:},
+		index: ${4},
+		filter: ${5},
+		$2
+	};
+}
+$0
+endsnippet
