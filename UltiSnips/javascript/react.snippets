@@ -23,7 +23,7 @@ class ${1:Photo} extends ${2:React.Component} {
 }
 endsnippet
 
-snippet rn "导入react-native头部"
+snippet native "导入react-native头部"
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -35,6 +35,10 @@ import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+endsnippet
+
+snippet reactdom "导入react-dom"
+import ReactDOM, { render } from 'react-dom';
 endsnippet
 
 snippet reactcss "创建css"
@@ -50,7 +54,6 @@ const styles = StyleSheet.create({
 });
 endsnippet
 
-
 snippet fd "组件布局，row水平，column竖直"
 flexDirection: ${1: 'row|column'}
 endsnippet
@@ -63,8 +66,12 @@ snippet jc "子元素沿着主轴的排列方式"
 justifyContent: ${1: 'flex-start|center|flex-end|space-around|space-between'}
 endsnippet
 
-snippet reactrouter "导入react-router"
-import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
+snippet router "导入react-router"
+import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
+endsnippet
+
+snippet redux "导入redux"
+import { createStore, combineReducers } from 'redux';
 endsnippet
 
 snippet reducer "创建一个reducer"
@@ -91,10 +98,31 @@ function ${1:'actionName'}(${2}){
 $0
 endsnippet
 
+snippet actionredux "创建一个action-redux函数"
+function ${1:'actionName'}(${2}){
+	return (dispatch, getState) => {
+		return dispatch(${3: 'actionFunc'});
+	};
+}
+$0
+endsnippet
+
+snippet routerredux "导入react-router-redux"
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+endsnippet
+
+snippet reactredux "导入react-redux"
+import { connect, Provider } from 'react-redux';
+endsnippet
+
 snippet render "渲染器"
 render () {
 	return (
 		$1
 	);
 }
+endsnippet
+
+snippet appreg "注册react-native"
+AppRegistry.registerComponent('${1: HelloWorldApp}', () => $1);
 endsnippet
