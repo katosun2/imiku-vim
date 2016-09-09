@@ -26,8 +26,12 @@ endsnippet
 snippet native "导入react-native头部"
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { AppRegistry, StyleSheet, ScrollView, Text, TextInput, View, Image } from 'react-native';
+endsnippet
+
+snippet redux "导入redux"
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 endsnippet
 
 snippet react "导入react头部"
@@ -39,6 +43,17 @@ endsnippet
 
 snippet reactdom "导入react-dom"
 import ReactDOM, { render } from 'react-dom';
+endsnippet
+
+snippet store "创建store"
+/*中间件*/
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+/*创建reducers*/
+const reducers = combineReducers({
+	Counter
+});
+/*创建store*/
+const store = createStoreWithMiddleware(reducers);
 endsnippet
 
 snippet reactcss "创建css"
@@ -56,14 +71,6 @@ endsnippet
 
 snippet fd "组件布局，row水平，column竖直"
 flexDirection: ${1: 'row|column'}
-endsnippet
-
-snippet ai "决定其子元素沿着次轴（与主轴垂直的轴，比如若主轴方向为row，则次轴方向为column）的排列方式"
-alignItems: ${1: 'flex-start|center|flex-end|stretch'}
-endsnippet 
-
-snippet jc "子元素沿着主轴的排列方式"
-justifyContent: ${1: 'flex-start|center|flex-end|space-around|space-between'}
 endsnippet
 
 snippet router "导入react-router"
@@ -125,4 +132,51 @@ endsnippet
 
 snippet appreg "注册react-native"
 AppRegistry.registerComponent('${1: HelloWorldApp}', () => $1);
+endsnippet
+
+# dom
+snippet text "<Text />"
+<Text>${1}</Text>$0
+endsnippet
+
+snippet view "<View />"
+<View>${1}</View>$0
+endsnippet
+
+snippet toucho "<TouchableOpacity />"
+<TouchableOpacity>${1}</TouchableOpacity>$0
+endsnippet
+
+
+# 样式
+snippet width ""
+width: ${1}$0
+endsnippet
+
+snippet height ""
+width: ${1}$0
+endsnippet
+
+snippet pa "padding"
+padding: ${1}$0
+endsnippet
+
+snippet bgc "background"
+backgroundColor: ${1}$0
+endsnippet
+
+snippet ma "margin"
+margin: ${1}$0
+endsnippet
+
+snippet ai "决定其子元素沿着次轴（与主轴垂直的轴，比如若主轴方向为row，则次轴方向为column）的排列方式"
+alignItems: ${1: flex-start|center|flex-end|stretch}
+endsnippet 
+
+snippet jc "子元素沿着主轴的排列方式"
+justifyContent: ${1: flex-start|center|flex-end|space-around|space-between}
+endsnippet
+
+snippet maa "居中"
+flex:1, alignItems: 'center', justifyContent: 'center'
 endsnippet
