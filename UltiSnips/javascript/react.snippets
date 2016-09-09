@@ -56,6 +56,17 @@ const reducers = combineReducers({
 const store = createStoreWithMiddleware(reducers);
 endsnippet
 
+snippet connect "创建redux connect"
+connect((state) => ({
+	count: state.count
+}), (dispatch) => ({
+	actions: bindActionCreators({
+		increment,
+		decrement
+	}, dispatch)
+}))(CounterApp);
+endsnippet
+
 snippet reactcss "创建css"
 const styles = StyleSheet.create({
 	bigblue: {
