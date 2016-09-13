@@ -67,7 +67,7 @@ connect((state) => ({
 }))(CounterApp);
 endsnippet
 
-snippet reactcss "创建css"
+snippet styles "创建styles"
 const styles = StyleSheet.create({
 	bigblue: {
 		color: 'blue',
@@ -80,9 +80,6 @@ const styles = StyleSheet.create({
 });
 endsnippet
 
-snippet fd "组件布局，row水平，column竖直"
-flexDirection: ${1: 'row|column'}
-endsnippet
 
 snippet router "导入react-router"
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
@@ -133,6 +130,12 @@ snippet reactredux "导入react-redux"
 import { connect, Provider } from 'react-redux';
 endsnippet
 
+snippet prov "Provider"
+<Provider store={store} key="provider">
+${1}
+</Provider>
+endsnippet
+
 snippet render "渲染器"
 render () {
 	return (
@@ -144,6 +147,20 @@ endsnippet
 snippet appreg "注册react-native"
 AppRegistry.registerComponent('${1: HelloWorldApp}', () => $1);
 endsnippet
+
+snippet navi "创建Navigator"
+<Navigator
+	initialRoute={{ name: defaultName, component: defaultComponent }}
+	configureScene={(route) => {
+		return Navigator.SceneConfigs.VerticalDownSwipeJump;
+	}}
+	renderScene={(route, navigator) => {
+		let Component = route.component;
+		return <Component {...route.params} navigator={navigator} />
+	}}
+/>
+endsnippet
+
 
 # dom
 snippet text "<Text />"
@@ -158,6 +175,9 @@ snippet toucho "<TouchableOpacity />"
 <TouchableOpacity>${1}</TouchableOpacity>$0
 endsnippet
 
+snippet nol "text, 属性上overflow ellipse"
+numberOfLines={${1}}
+endsnippet
 
 # 样式
 snippet width ""
@@ -180,14 +200,82 @@ snippet ma "margin"
 margin: ${1}$0
 endsnippet
 
-snippet ai "决定其子元素沿着次轴（与主轴垂直的轴，比如若主轴方向为row，则次轴方向为column）的排列方式"
+snippet ai "左右居中，决定其子元素沿着次轴（与主轴垂直的轴，比如若主轴方向为row，则次轴方向为column）的排列方式"
 alignItems: ${1: flex-start|center|flex-end|stretch}
 endsnippet 
 
-snippet jc "子元素沿着主轴的排列方式"
+snippet jc "上下居中，子元素沿着主轴的排列方式"
 justifyContent: ${1: flex-start|center|flex-end|space-around|space-between}
 endsnippet
 
 snippet maa "居中"
 flex:1, alignItems: 'center', justifyContent: 'center'
+endsnippet
+
+snippet fd "等分网络，组件布局，row水平，column竖直"
+flexDirection: ${1: 'row|column'}
+endsnippet
+
+snippet fs "fontSize"
+fontSize: ${1}
+endsnippet
+
+snippet tac "textAlign"
+textAlign: ${1:'center'}
+endsnippet
+
+snippet rm "图片, Object.keys(Image.resizeMode).join(' ');"
+resizeMode: ${1:'contain|cover|stretch'}
+endsnippet
+
+snippet borr "边框圆角"
+	borderRadius: ${1}
+endsnippet
+
+snippet pos "绝对定位"
+position: '${1:absolute}'
+endsnippet
+
+snippet por "相对定位"
+position: '${1:relative}'
+endsnippet
+
+snippet mr ""
+marginRight: ${1}
+endsnippet
+
+snippet ml ""
+marginLeft: ${1}
+endsnippet
+
+snippet mt ""
+marginTop: ${1}
+endsnippet
+
+snippet mb ""
+marginBotton: ${1}
+endsnippet
+
+snippet co ""
+color:${1}
+endsnippet
+
+snippet cbc ""
+containerBackgroundColor:${1}
+endsnippet 
+
+snippet ff ""
+fontFamily:${1}
+endsnippet
+
+snippet fw "参数字符串"
+fontWeight:${1}
+endsnippet
+
+snippet lh ""
+lineHeight:${1}
+endsnippet
+
+snippet wd ""
+writingDirection: ${1:auto|ltr|rtl}
 endsnippet
