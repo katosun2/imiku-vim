@@ -92,14 +92,14 @@ import { createStore, combineReducers } from 'redux';
 endsnippet
 
 snippet reducer "创建一个reducer"
-function ${1:'reducerName'}(state = 0, action) {
+const ${1:'reducerName'} = (state = 0, action) => {
 	switch (action.type) {
 		case '${2:INCREMENT}':
 			return ${3:state + 1};
 		default:
 			return state;
 	}
-}
+};
 $0
 endsnippet
 
@@ -132,7 +132,7 @@ snippet reactredux "导入react-redux"
 import { connect, Provider } from 'react-redux';
 endsnippet
 
-snippet prov "Provider"
+snippet "prov(ider)?" "Provider" r
 <Provider store={store} key="provider">
 ${1}
 </Provider>
