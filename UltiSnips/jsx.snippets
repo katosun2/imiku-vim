@@ -37,8 +37,10 @@ endsnippet
 snippet react "导入react头部"
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
+import { Router, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import reduxThunk from 'redux-thunk';
 endsnippet
 
 snippet reactdom "导入react-dom"
@@ -278,4 +280,10 @@ endsnippet
 
 snippet wd ""
 writingDirection: ${1:auto|ltr|rtl}
+endsnippet
+
+snippet "se(\d+)" "{/*S */} {/*E */}" r
+{/*`!p snip.rv = '=' * int(match.group(1))`S ${1} */}
+${0}
+{/*`!p snip.rv = '=' * int(match.group(1))`E $1 */}
 endsnippet
