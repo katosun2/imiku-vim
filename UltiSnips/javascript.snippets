@@ -1138,7 +1138,8 @@ snippet jsresize
 })();
 endsnippet
 
-snippet getimg
+#将图片换为base64
+snippet fsreadimg
 var setUploadImg = function(target, imgTarget){
 	// 检查是否支持FileReader对象
 	if (typeof FileReader != 'undefined') {
@@ -1547,8 +1548,9 @@ Array.prototype.remove = function(item){
 };
 endsnippet
 
-snippet get2d
-var ${1:ctx} = ${2:canvas}.getContext('2d');
+snippet ctx
+var ${1:id} = document.getElementById('$1');
+var ${2:ctx} = $1.getContext('2d');
 endsnippet
 
 snippet typeOf
@@ -1805,4 +1807,14 @@ endsnippet
 
 snippet uses "开启严格模式"
 'use strict';
+endsnippet
+
+#证读取任意文件转换为base64
+snippet fsread
+/*通过文件读取*/
+var reader = new FileReader();
+reader.onload = function(e){
+	console.log(e.target.result);
+};
+reader.readAsDataURL(file);  
 endsnippet
