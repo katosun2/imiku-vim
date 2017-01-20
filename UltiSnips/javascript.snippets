@@ -1223,25 +1223,6 @@ function getFlashVersion() {
 }
 endsnippet
 
-snippet ctxdi
-${1:ctx}.drawImage(${2:img}, ${3:sX}, ${4:sY}, ${5:sW}, ${6:sH}, ${7:dX}, ${8:dY}, ${9:dW}, ${10:dH});
-endsnippet
-
-snippet ctxclear
-${1:ctx}.clearRect(${2:x}, ${3:y}, ${4:w}, ${5:h});
-endsnippet
-
-snippet ctxrect
-${1:ctx}.rect(${2:x}, ${3:y}, ${4:w}, ${5:h});
-endsnippet
-
-snippet ctxarc
-${1:ctx}.arc(${2:x}, ${3:y}, ${4:radius}, ${5:startAngle}, ${6:endAngle}, ${7:anticlockwise});
-endsnippet
-
-snippet ctxmt
-${1:ctx}.arc(${2:x}, ${3:y});
-endsnippet
 
 snippet stage
 /**
@@ -1548,11 +1529,6 @@ Array.prototype.remove = function(item){
 };
 endsnippet
 
-snippet ctx
-var ${1:id} = document.getElementById('$1');
-var ${2:ctx} = $1.getContext('2d');
-endsnippet
-
 snippet typeOf
 var oP = Object.prototype,
 toString = oP.toString;
@@ -1818,3 +1794,68 @@ reader.onload = function(e){
 };
 reader.readAsDataURL(file);  
 endsnippet
+
+
+# CANVAS API S
+# https://segmentfault.com/a/1190000007792150
+
+snippet ctx
+var ${1:id} = document.getElementById('$1');
+var ${2:ctx} = $1.getContext('2d');
+endsnippet
+
+snippet ctxdi
+${1:ctx}.drawImage(${2:img}, ${3:sX}, ${4:sY}, ${5:sW}, ${6:sH}, ${7:dX}, ${8:dY}, ${9:dW}, ${10:dH});
+endsnippet
+
+snippet ctxclear
+${1:ctx}.clearRect(${2:x}, ${3:y}, ${4:w}, ${5:h});
+endsnippet
+
+snippet ctxrect
+${1:ctx}.rect(${2:x}, ${3:y}, ${4:w}, ${5:h});
+endsnippet
+
+snippet ctxmt
+${1:ctx}.arc(${2:x}, ${3:y});
+endsnippet
+
+snippet ctxarc
+${1:ctx}.arc(${2:x}, ${3:y}, ${4:radius}, ${5:startAngle}, ${6:endAngle}, ${7:anticlockwise});
+endsnippet
+
+# 画线
+snippet ctxline
+// 开始画线,里面没有任何参数
+ctx.beginPath();
+// 定义起始点
+ctx.moveTo(x,y);
+// 定义过程点
+ctx.lineTo(x,y);
+// 还可以定义线宽, 单位默认为 px
+ctx.lineWidth = 20;
+// 定义线两端的格式，该属性有 3 个取值：butt，round，square
+ctx.lineCap = 'butt';
+// 用来描述，多个路径之间的连接方式。基本取值有：round,bevel,miter
+ctx.lineJoin = 'miter';
+// 线的颜色
+ctx.strokeStyle = "#fff";
+// 开始划线,里面没任何参数
+ctx.stroke();
+endsnippet
+
+# Quadratic Curve
+# 该是用来画二次曲线的：
+snippet ctxqct
+ctx.beginPath();
+// x 轴上的点 (50, 20)
+ctx.moveTo(50, 20);
+// 控制点为 (230, 30)
+// 另外 x 轴上的点为 (50, 100)
+// ctx.quadraticCurveTo(cpx, cpy, x, y);
+ctx.quadraticCurveTo(230, 30, 50, 100);
+ctx.stroke();
+endsnippet
+
+
+# CANVAS API E
