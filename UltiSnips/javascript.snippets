@@ -976,22 +976,6 @@ video.addEventListener("canplay", function(){});
 video.addEventListener("canplaythrough", function(){});
 endsnippet
 
-snippet canvas
-var canvas = document.getElementById("${1}");
-var context = canvas.getContext("2d");
-context.fillStyle="#FF0000";//填充颜色
-context.fillRect(0,0,150,75); //开始位置x,y,宽高width,height
-
-/*
-context.moveTo(10,10);//开始画线位置x,y
-context.lineTo(150,50);//移动位置
-context.lineTo(10,50);
-context.stroke();//处理
-context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
-var base64 = canvas.toDataURL("image/png")); 
-*/
-endsnippet
-
 snippet jsopenapp
 (function() {
 	var isInstalled = 0,
@@ -1812,20 +1796,49 @@ snippet ctxclear
 ${1:ctx}.clearRect(${2:x}, ${3:y}, ${4:w}, ${5:h});
 endsnippet
 
-snippet ctxrect
-${1:ctx}.rect(${2:x}, ${3:y}, ${4:w}, ${5:h});
+# 四边形
+snippet ctxrect "四边形"
+ctx.beginPath();
+ctx.rect(${1:x}, ${2:y}, ${3:w}, ${4:h});
+ctx.strokeStyle = "green";
+ctx.fill();
+// 或者使用两者的结合属性
+// ctx.fillRect($1, $2, $3, $4);
+// 定义线宽
+ctx.lineWidth = 5;
+ctx.strokeRect(10, 10, 100, 100);
+ctx.stroke();
 endsnippet
 
-snippet ctxmt
-${1:ctx}.arc(${2:x}, ${3:y});
+# 画圆
+snippet ctxarc "画圆"
+ctx.beginPath();
+// radius 半径
+// startAngle 是从 x 轴正方向，顺时针计算角度，弧度值
+// anticlockwise，false为顺时针
+// 默认为逆时针
+${1:ctx}.arc(${2:x}, ${3:y}, ${4:radius}, ${5:startAngle}, ${6:endAngle|(deg * Math.PI) / 180}, ${7:anticlockwise});
+ctx.closePath();
+ctx.lineWidth = 5;
+ctx.fillStyle = 'red';
+ctx.fill();
+ctx.strokeStyle = '#550000';
+ctx.stroke();
 endsnippet
 
-snippet ctxarc
-${1:ctx}.arc(${2:x}, ${3:y}, ${4:radius}, ${5:startAngle}, ${6:endAngle}, ${7:anticlockwise});
+
+# 画圆
+snippet ctxellipse "画圆新APi"
+ctx.beginPath();
+// x,y 确定长轴，短轴的位置
+// rotation 按照 x 轴正方向，按照 anticlockwise 的设置进行旋转，也是弧度制
+// startAngle，endAngle 也是按照 x 轴正方向来的
+ctx.ellipse(${1:x}, ${2:y}, ${3:radiusX}, ${4:radiusY}, ${5:rotation}, ${6:startAngle}, ${7:endAngle}, ${8:anticlockwise});
+ctx.stroke();
 endsnippet
 
 # 画线
-snippet ctxline
+snippet ctxline "画线"
 // 开始画线,里面没有任何参数
 ctx.beginPath();
 // 定义起始点
@@ -1846,7 +1859,7 @@ endsnippet
 
 # Quadratic Curve
 # 该是用来画二次曲线的：
-snippet ctxqct
+snippet ctxqct "二次曲线"
 ctx.beginPath();
 // x 轴上的点 (50, 20)
 ctx.moveTo(50, 20);
@@ -1855,6 +1868,49 @@ ctx.moveTo(50, 20);
 // ctx.quadraticCurveTo(cpx, cpy, x, y);
 ctx.quadraticCurveTo(230, 30, 50, 100);
 ctx.stroke();
+endsnippet
+
+# 贝塞尔曲线
+snippet ctxbct "贝塞尔曲线"
+ctx.beginPath();
+ctx.moveTo(50,20);
+// 这里定义了两个控制点，一个基准点
+ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+ctx.closePath();
+ctx.stroke();
+endsnippet
+
+# 填充颜色
+snippet ctxfillstyle "基本颜色填充，渐变填充，图片填充"
+// 填充基本颜色值，比如 #fff
+ctx.fillStyle = ${1:color};
+// 填充渐变值，比如 createLinear 创建的渐变等
+ctx.fillStyle = ${2:gradient};
+// 通常用来贴图用的值
+ctx.fillStyle = ${3:pattern};
+endsnippet
+
+# 线性渐变色填充
+snippet ctxlinear "线性渐变色填充"
+// ctx.createLinearGradient(x0, y0, x1, y1);
+var gradient = ctx.createLinearGradient(0, 0, 200, 0);
+// offset: 为 [0,1] 之间的数
+// color: rgb 的值
+gradient.addColorStop(0, 'green');
+gradient.addColorStop(1, 'white');
+ctx.fillStyle = gradient;
+ctx.fillRect(10, 10, 200, 100);
+endsnippet
+
+# 中心渐变
+snippet ctxradial "中心渐变"
+// ctx.createRadialGradient(x0, y0, r0, x1, y1, r1);
+let gradient = ctx.createRadialGradient(200, 200, 0, 200, 200, 160);
+gradient.addColorStop(0, 'red');
+gradient.addColorStop(1, 'white');
+ctx.fillStyle = gradient;
+ctx.arc(200, 200, 160, 0, 2 * Math.PI);
+ctx.fill();
 endsnippet
 
 
