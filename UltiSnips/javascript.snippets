@@ -1939,4 +1939,34 @@ ctx.drawImage(image, dx, dy, dWidth, dHeight);
 ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 endsnippet
 
+# 字体处理
+snippet ctxfont "字体处理"
+// font 的值 一般的 css font 属性的值。默认为： 10px sans-serif
+ctx.font = 'italic 40pt Calibri';
+// 字体排序，默认为 start
+ctx.textAlign = "left" || "right" || "center" || "start" || "end";
+// 基线位置，默认值为 ideographic
+ctx.textBaseline = "top" || "hanging" || "middle" || "alphabetic" || "ideographic" || "bottom";
+// x, y text 左下角
+ctx.fillText('Hello World!', 150, 100);
+// x,y 用来确定 text 的左下角起始点。很重要，是左下角！
+// maxWidth: 用来确定 text 渲染的宽度，如果字体大了，则会自动缩小，不会换行。
+ctx.strokeText(text, x, y [, maxWidth]);
+endsnippet
+
+snippet ctxfontface "定义字体文件"
+// 使用比较新的 API FontFace() 来使用在线字体：
+var f = new FontFace('font-name', 'url(x)');
+f.load().then(function() {
+	ctx.font='20px font-name';
+	ctx.fillText('ABC', 100, 100);
+});
+endsnippet
+
+# 测量字体
+snippet ctxmeasure "测量字体"
+var text = ctx.measureText('${1: foo}');
+console.log(text.width);
+endsnippet
+
 # CANVAS API E
