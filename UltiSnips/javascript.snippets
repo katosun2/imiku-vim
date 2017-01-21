@@ -1913,5 +1913,20 @@ ctx.arc(200, 200, 160, 0, 2 * Math.PI);
 ctx.fill();
 endsnippet
 
+# 贴图
+snippet ctxpattern "贴图"
+// image: 该类型的取值有很多，比如 <img/>, <video/>, <cavnas/>, CanvasRenderingContext2D, ImageBitmap, ImageData, Blob 等。
+// repetition：repeat, repeat-x, repeat-y, no-repeat.
+// ctx.createPattern(image, 'repetition');
+// FROM MDN
+var img = new Image();
+img.onload = function() {
+	var pattern = ctx.createPattern(img, 'repeat');
+	ctx.fillStyle = pattern;
+	ctx.fillRect(0,0,400,400);
+};
+img.src = 'http://www.imiku.com/lib/tpl/dokuwiki/images/logo.png';
+endsnippet
+
 
 # CANVAS API E
