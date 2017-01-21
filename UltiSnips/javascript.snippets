@@ -1929,4 +1929,14 @@ img.src = 'http://www.imiku.com/lib/tpl/dokuwiki/images/logo.png';
 endsnippet
 
 
+# 图片处理
+snippet ctxdrawimage "图片处理"
+// 简单绘制
+ctx.drawImage(image, dx, dy);
+// 缩放绘制 dWidth 和 dHeight 来确定在 canvas 中绘制的大小，可以放大和缩小。
+ctx.drawImage(image, dx, dy, dWidth, dHeight);
+// 裁剪绘制 sx, sy, sWidth, sHeight 用来确定在原来图片上，截取图像的区域。
+ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+endsnippet
+
 # CANVAS API E
