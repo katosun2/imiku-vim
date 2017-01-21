@@ -1969,4 +1969,32 @@ var text = ctx.measureText('${1: foo}');
 console.log(text.width);
 endsnippet
 
+# 原点平移变化
+snippet ctxtranslate "原点平移变化"
+// x：当前坐标系在 x 轴向的移动方向
+// y：当前坐标在 y 轴向的移动方向
+ctx.translate(x, y);
+// 2D 变换矩阵，这和 transform 属性一样。
+ctx.setTransform(1, 0, 0, 1, x, y);
+endsnippet
+
+# 旋转坐标系
+snippet ctxrotate "旋转坐标系"
+// 里面的参数是弧度，可以使用 Math.PI 来进行转换
+ctx.rotate(${1:angle});
+// ctx.fillRect(70, 0, 100, 30);
+endsnippet
+
+# 缩放坐标系
+snippet ctxscale "缩放坐标系"
+// x：将 x 轴放大/缩小 x 倍。即，设置的像素值会乘以该 x 值.
+// y：将 y 轴放大/缩小 y 倍。即，设置的像素值会乘以该 y 值.
+ctx.scale(${1:x}, ${2:y});
+// 它对应于矩阵的表达就是：
+// setTransform(A, 0, 0, B, 0, 0);
+// ctx.scale(10, 3);
+// ctx.fillRect(10,10,10,10);
+// 最后的结果就是，在 (100,30) 点，画出 width: 100,height: 30 的矩形。
+endsnippet
+
 # CANVAS API E
