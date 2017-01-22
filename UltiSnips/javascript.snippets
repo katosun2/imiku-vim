@@ -1972,7 +1972,7 @@ console.log(text.width);
 endsnippet
 
 # 原点平移变化
-snippet ctxtranslate "原点平移变化"
+snippet ctxtranslate "坐标系平移变化"
 // x：当前坐标系在 x 轴向的移动方向
 // y：当前坐标在 y 轴向的移动方向
 ctx.translate(x, y);
@@ -1981,14 +1981,14 @@ ctx.setTransform(1, 0, 0, 1, x, y);
 endsnippet
 
 # 旋转坐标系
-snippet ctxrotate "旋转坐标系"
+snippet ctxrotate "坐标系旋转"
 // 里面的参数是弧度，可以使用 Math.PI 来进行转换
 ctx.rotate(${1:angle});
 // ctx.fillRect(70, 0, 100, 30);
 endsnippet
 
 # 缩放坐标系
-snippet ctxscale "缩放坐标系"
+snippet ctxscale "坐标系缩放"
 // x：将 x 轴放大/缩小 x 倍。即，设置的像素值会乘以该 x 值.
 // y：将 y 轴放大/缩小 y 倍。即，设置的像素值会乘以该 y 值.
 ctx.scale(${1:x}, ${2:y});
