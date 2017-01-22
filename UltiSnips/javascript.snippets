@@ -1948,6 +1948,8 @@ ctx.textAlign = "left" || "right" || "center" || "start" || "end";
 // 基线位置，默认值为 ideographic
 ctx.textBaseline = "top" || "hanging" || "middle" || "alphabetic" || "ideographic" || "bottom";
 // x, y text 左下角
+// 字体边框粗细
+ctx.lineWidth = 5;
 ctx.fillText('Hello World!', 150, 100);
 // x,y 用来确定 text 的左下角起始点。很重要，是左下角！
 // maxWidth: 用来确定 text 渲染的宽度，如果字体大了，则会自动缩小，不会换行。
@@ -1995,6 +1997,47 @@ ctx.scale(${1:x}, ${2:y});
 // ctx.scale(10, 3);
 // ctx.fillRect(10,10,10,10);
 // 最后的结果就是，在 (100,30) 点，画出 width: 100,height: 30 的矩形。
+endsnippet
+
+# 阴影特效
+snippet ctxshadow "阴影特效"
+// 阴影，默认为 0
+ctx.shadowBlur = 0;
+// color 默认为 black
+ctx.shadowColor = 'black';
+// 默认值为 0，相当于取 canvas 上的像素值
+// 可以为负值，但不能取 Infinity or NaN
+ctx.shadowOffsetX = 0;
+ctx.shadowOffsetY = 0;
+endsnippet
+
+# 设置透明度
+snippet ctxalpha "设置透明度"
+// value 为 [0.0,1.0] 
+// 默认值为 0.0，表示不透明
+ctx.globalAlpha = 0.5;
+ctx.fillStyle = 'blue';
+ctx.fillRect(10, 10, 100, 100);
+ctx.fillStyle = 'red';
+ctx.fillRect(50, 50, 100, 100);
+endsnippet
+
+# 裁剪效果
+snippet ctxclip "裁剪效果"
+// 最常用
+void ctx.clip();
+// fillRule 主要有两种，一种是 nonzero，一种是 even-odd
+// 默认的算法是 nonzero
+void ctx.clip(${1:fillRule});
+// 这里就是将需要画的路径，当参数传到 clip 里
+void ctx.clip(${2:path}, ${3:fillRule});
+endsnippet
+
+# 两个重叠图层绘制
+snippet ctxco "两个重叠图层绘制"
+// 两个重叠图层绘制的效果
+// https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing/Example
+globalCompositeOperation = type
 endsnippet
 
 # CANVAS API E
