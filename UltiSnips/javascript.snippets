@@ -1793,7 +1793,7 @@ ${1:ctx}.drawImage(${2:img}, ${3:sX}, ${4:sY}, ${5:sW}, ${6:sH}, ${7:dX}, ${8:dY
 endsnippet
 
 snippet ctxclear
-${1:ctx}.clearRect(${2:x}, ${3:y}, ${4:w}, ${5:h});
+${1:ctx}.clearRect(${2:x}, ${3:y}, ${4:canvas.width}, ${5:canavs.height});
 endsnippet
 
 # 四边形
@@ -2014,12 +2014,8 @@ endsnippet
 # 设置透明度
 snippet ctxalpha "设置透明度"
 // value 为 [0.0,1.0] 
-// 默认值为 0.0，表示不透明
+// 默认值为 0.0，表示透明
 ctx.globalAlpha = 0.5;
-ctx.fillStyle = 'blue';
-ctx.fillRect(10, 10, 100, 100);
-ctx.fillStyle = 'red';
-ctx.fillRect(50, 50, 100, 100);
 endsnippet
 
 # 裁剪效果
@@ -2039,5 +2035,39 @@ snippet ctxco "两个重叠图层绘制"
 // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing/Example
 globalCompositeOperation = type
 endsnippet
+
+# 图像处理，创建
+snippet ctximagecreate "图像处理 createImageData"
+// width/height：用来设置当前 imgObj 的大小。
+// ImageData ctx.createImageData(width, height);
+// imagedata：获得一个已知 imgObj 的大小，注意这里不是复制，只是 copy imagedata 的 width/height。
+// ImageData ctx.createImageData(imagedata);
+// 用来手动创建一个空图片内容，默认的像素都是透明的黑色
+var ${1:imageData} = ctx.createImageData(${2:width}, ${3:height}, ${4:imagedata});
+endsnippet
+
+# 图像处理，取色
+snippet ctximageget "图像处理 getImageData"
+// x,y 用来指定截取像素的起始点
+// widht/height 用来指定截取像素点的宽/高
+var imageData = ctx.getImageData(${1:x}, ${2:y}, ${3:width}, ${4:height});
+endsnippet
+
+# 图像处理，着色
+snippet ctximageput "图像处理 putImageData"
+// dx/y 代表在 canvas 上绘制的绘制, margin
+// startX/Y 表示相对于图片其实的位置, padding共享宽高
+// width/height 表示获取的宽/高
+ctx.putImageData(imagedata, dx, dy);
+ctx.putImageData(imagedata, dx, dy, startX, startY, width, height);
+endsnippet
+
+# 生成URI
+snippet ctxuri "canvas 生成URI"
+// type: 用来设置导出图片类型，默认为：image/png。可选值有：image/jpeg，image/webp（chrome支持）。
+// encoderOptions[Number]：用来设置压缩比。只针对于 image/jpeg or webp 有用。通常取值为 0-1。默认值为 0.92。
+var uri = document.getElementById('${1:canvasId}').toDataURL(${2:type}, ${3:encoderOptions});
+endsnippet
+
 
 # CANVAS API E
