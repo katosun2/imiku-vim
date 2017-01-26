@@ -976,22 +976,6 @@ video.addEventListener("canplay", function(){});
 video.addEventListener("canplaythrough", function(){});
 endsnippet
 
-snippet canvas
-var canvas = document.getElementById("${1}");
-var context = canvas.getContext("2d");
-context.fillStyle="#FF0000";//填充颜色
-context.fillRect(0,0,150,75); //开始位置x,y,宽高width,height
-
-/*
-context.moveTo(10,10);//开始画线位置x,y
-context.lineTo(150,50);//移动位置
-context.lineTo(10,50);
-context.stroke();//处理
-context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
-var base64 = canvas.toDataURL("image/png")); 
-*/
-endsnippet
-
 snippet jsopenapp
 (function() {
 	var isInstalled = 0,
@@ -1138,7 +1122,8 @@ snippet jsresize
 })();
 endsnippet
 
-snippet getimg
+#将图片换为base64
+snippet fsreadimg
 var setUploadImg = function(target, imgTarget){
 	// 检查是否支持FileReader对象
 	if (typeof FileReader != 'undefined') {
@@ -1222,25 +1207,6 @@ function getFlashVersion() {
 }
 endsnippet
 
-snippet ctxdi
-${1:ctx}.drawImage(${2:img}, ${3:sX}, ${4:sY}, ${5:sW}, ${6:sH}, ${7:dX}, ${8:dY}, ${9:dW}, ${10:dH});
-endsnippet
-
-snippet ctxclear
-${1:ctx}.clearRect(${2:x}, ${3:y}, ${4:w}, ${5:h});
-endsnippet
-
-snippet ctxrect
-${1:ctx}.rect(${2:x}, ${3:y}, ${4:w}, ${5:h});
-endsnippet
-
-snippet ctxarc
-${1:ctx}.arc(${2:x}, ${3:y}, ${4:radius}, ${5:startAngle}, ${6:endAngle}, ${7:anticlockwise});
-endsnippet
-
-snippet ctxmt
-${1:ctx}.arc(${2:x}, ${3:y});
-endsnippet
 
 snippet stage
 /**
@@ -1547,10 +1513,6 @@ Array.prototype.remove = function(item){
 };
 endsnippet
 
-snippet get2d
-var ${1:ctx} = ${2:canvas}.getContext('2d');
-endsnippet
-
 snippet typeOf
 var oP = Object.prototype,
 toString = oP.toString;
@@ -1806,3 +1768,306 @@ endsnippet
 snippet uses "开启严格模式"
 'use strict';
 endsnippet
+
+#证读取任意文件转换为base64
+snippet fsread
+/*通过文件读取*/
+var reader = new FileReader();
+reader.onload = function(e){
+	console.log(e.target.result);
+};
+reader.readAsDataURL(file);  
+endsnippet
+
+
+# CANVAS API S
+# https://segmentfault.com/a/1190000007792150
+
+snippet ctx
+var ${1:id} = document.getElementById('$1');
+var ${2:ctx} = $1.getContext('2d');
+endsnippet
+
+snippet ctxdi
+${1:ctx}.drawImage(${2:img}, ${3:sX}, ${4:sY}, ${5:sW}, ${6:sH}, ${7:dX}, ${8:dY}, ${9:dW}, ${10:dH});
+endsnippet
+
+snippet ctxclear
+${1:ctx}.clearRect(${2:x}, ${3:y}, ${4:canvas.width}, ${5:canavs.height});
+endsnippet
+
+# 四边形
+snippet ctxrect "四边形"
+ctx.beginPath();
+ctx.rect(${1:x}, ${2:y}, ${3:w}, ${4:h});
+ctx.strokeStyle = "green";
+ctx.fill();
+// 或者使用两者的结合属性
+// ctx.fillRect($1, $2, $3, $4);
+// 定义线宽
+ctx.lineWidth = 5;
+ctx.strokeRect(10, 10, 100, 100);
+ctx.stroke();
+endsnippet
+
+# 画圆
+snippet ctxarc "画圆"
+ctx.beginPath();
+// radius 半径
+// startAngle 是从 x 轴正方向，顺时针计算角度，弧度值
+// anticlockwise，false为顺时针
+// 默认为逆时针
+${1:ctx}.arc(${2:x}, ${3:y}, ${4:radius}, ${5:startAngle}, ${6:endAngle|(deg * Math.PI) / 180}, ${7:anticlockwise});
+ctx.closePath();
+ctx.lineWidth = 5;
+ctx.fillStyle = 'red';
+ctx.fill();
+ctx.strokeStyle = '#550000';
+ctx.stroke();
+endsnippet
+
+
+# 画圆
+snippet ctxellipse "画圆新APi"
+ctx.beginPath();
+// x,y 确定长轴，短轴的位置
+// rotation 按照 x 轴正方向，按照 anticlockwise 的设置进行旋转，也是弧度制
+// startAngle，endAngle 也是按照 x 轴正方向来的
+ctx.ellipse(${1:x}, ${2:y}, ${3:radiusX}, ${4:radiusY}, ${5:rotation}, ${6:startAngle}, ${7:endAngle}, ${8:anticlockwise});
+ctx.stroke();
+endsnippet
+
+# 画线
+snippet ctxline "画线"
+// 开始画线,里面没有任何参数
+ctx.beginPath();
+// 定义起始点
+ctx.moveTo(x,y);
+// 定义过程点
+ctx.lineTo(x,y);
+// 还可以定义线宽, 单位默认为 px
+ctx.lineWidth = 20;
+// 定义线两端的格式，该属性有 3 个取值：butt，round，square
+ctx.lineCap = 'butt';
+// 用来描述，多个路径之间的连接方式。基本取值有：round,bevel,miter
+ctx.lineJoin = 'miter';
+// 线的颜色
+ctx.strokeStyle = "#fff";
+// 开始划线,里面没任何参数
+ctx.stroke();
+endsnippet
+
+# Quadratic Curve
+# 该是用来画二次曲线的：
+snippet ctxqct "二次曲线"
+ctx.beginPath();
+// x 轴上的点 (50, 20)
+ctx.moveTo(50, 20);
+// 控制点为 (230, 30)
+// 另外 x 轴上的点为 (50, 100)
+// ctx.quadraticCurveTo(cpx, cpy, x, y);
+ctx.quadraticCurveTo(230, 30, 50, 100);
+ctx.stroke();
+endsnippet
+
+# 贝塞尔曲线
+snippet ctxbct "贝塞尔曲线"
+ctx.beginPath();
+ctx.moveTo(50,20);
+// 这里定义了两个控制点，一个基准点
+ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+ctx.closePath();
+ctx.stroke();
+endsnippet
+
+# 填充颜色
+snippet ctxfillstyle "基本颜色填充，渐变填充，图片填充"
+// 填充基本颜色值，比如 #fff
+ctx.fillStyle = ${1:color};
+// 填充渐变值，比如 createLinear 创建的渐变等
+ctx.fillStyle = ${2:gradient};
+// 通常用来贴图用的值
+ctx.fillStyle = ${3:pattern};
+endsnippet
+
+# 线性渐变色填充
+snippet ctxlinear "线性渐变色填充"
+// ctx.createLinearGradient(x0, y0, x1, y1);
+var gradient = ctx.createLinearGradient(0, 0, 200, 0);
+// offset: 为 [0,1] 之间的数
+// color: rgb 的值
+gradient.addColorStop(0, 'green');
+gradient.addColorStop(1, 'white');
+ctx.fillStyle = gradient;
+ctx.fillRect(10, 10, 200, 100);
+endsnippet
+
+# 中心渐变
+snippet ctxradial "中心渐变"
+// ctx.createRadialGradient(x0, y0, r0, x1, y1, r1);
+let gradient = ctx.createRadialGradient(200, 200, 0, 200, 200, 160);
+gradient.addColorStop(0, 'red');
+gradient.addColorStop(1, 'white');
+ctx.fillStyle = gradient;
+ctx.arc(200, 200, 160, 0, 2 * Math.PI);
+ctx.fill();
+endsnippet
+
+# 贴图
+snippet ctxpattern "贴图"
+// image: 该类型的取值有很多，比如 <img/>, <video/>, <cavnas/>, CanvasRenderingContext2D, ImageBitmap, ImageData, Blob 等。
+// repetition：repeat, repeat-x, repeat-y, no-repeat.
+// ctx.createPattern(image, 'repetition');
+// FROM MDN
+var img = new Image();
+img.onload = function() {
+	var pattern = ctx.createPattern(img, 'repeat');
+	ctx.fillStyle = pattern;
+	ctx.fillRect(0,0,400,400);
+};
+img.src = 'http://www.imiku.com/lib/tpl/dokuwiki/images/logo.png';
+endsnippet
+
+
+# 图片处理
+snippet ctxdrawimage "图片处理"
+// 简单绘制
+ctx.drawImage(image, dx, dy);
+// 缩放绘制 dWidth 和 dHeight 来确定在 canvas 中绘制的大小，可以放大和缩小。
+ctx.drawImage(image, dx, dy, dWidth, dHeight);
+// 裁剪绘制 sx, sy, sWidth, sHeight 用来确定在原来图片上，截取图像的区域。
+ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+endsnippet
+
+# 字体处理
+snippet ctxfont "字体处理"
+// font 的值 一般的 css font 属性的值。默认为： 10px sans-serif
+ctx.font = 'italic 40pt Calibri';
+// 字体排序，默认为 start
+ctx.textAlign = "left" || "right" || "center" || "start" || "end";
+// 基线位置，默认值为 ideographic
+ctx.textBaseline = "top" || "hanging" || "middle" || "alphabetic" || "ideographic" || "bottom";
+// x, y text 左下角
+// 字体边框粗细
+ctx.lineWidth = 5;
+ctx.fillText('Hello World!', 150, 100);
+// x,y 用来确定 text 的左下角起始点。很重要，是左下角！
+// maxWidth: 用来确定 text 渲染的宽度，如果字体大了，则会自动缩小，不会换行。
+ctx.strokeText(text, x, y [, maxWidth]);
+endsnippet
+
+snippet ctxfontface "定义字体文件"
+// 使用比较新的 API FontFace() 来使用在线字体：
+var f = new FontFace('font-name', 'url(x)');
+f.load().then(function() {
+	ctx.font='20px font-name';
+	ctx.fillText('ABC', 100, 100);
+});
+endsnippet
+
+# 测量字体
+snippet ctxmeasure "测量字体"
+var text = ctx.measureText('${1: foo}');
+console.log(text.width);
+endsnippet
+
+# 原点平移变化
+snippet ctxtranslate "坐标系平移变化"
+// x：当前坐标系在 x 轴向的移动方向
+// y：当前坐标在 y 轴向的移动方向
+ctx.translate(x, y);
+// 2D 变换矩阵，这和 transform 属性一样。
+ctx.setTransform(1, 0, 0, 1, x, y);
+endsnippet
+
+# 旋转坐标系
+snippet ctxrotate "坐标系旋转"
+// 里面的参数是弧度，可以使用 Math.PI 来进行转换
+ctx.rotate(${1:angle});
+// ctx.fillRect(70, 0, 100, 30);
+endsnippet
+
+# 缩放坐标系
+snippet ctxscale "坐标系缩放"
+// x：将 x 轴放大/缩小 x 倍。即，设置的像素值会乘以该 x 值.
+// y：将 y 轴放大/缩小 y 倍。即，设置的像素值会乘以该 y 值.
+ctx.scale(${1:x}, ${2:y});
+// 它对应于矩阵的表达就是：
+// setTransform(A, 0, 0, B, 0, 0);
+// ctx.scale(10, 3);
+// ctx.fillRect(10,10,10,10);
+// 最后的结果就是，在 (100,30) 点，画出 width: 100,height: 30 的矩形。
+endsnippet
+
+# 阴影特效
+snippet ctxshadow "阴影特效"
+// 阴影，默认为 0
+ctx.shadowBlur = 0;
+// color 默认为 black
+ctx.shadowColor = 'black';
+// 默认值为 0，相当于取 canvas 上的像素值
+// 可以为负值，但不能取 Infinity or NaN
+ctx.shadowOffsetX = 0;
+ctx.shadowOffsetY = 0;
+endsnippet
+
+# 设置透明度
+snippet ctxalpha "设置透明度"
+// value 为 [0.0,1.0] 
+// 默认值为 0.0，表示透明
+ctx.globalAlpha = 0.5;
+endsnippet
+
+# 裁剪效果
+snippet ctxclip "裁剪效果"
+// 最常用
+void ctx.clip();
+// fillRule 主要有两种，一种是 nonzero，一种是 even-odd
+// 默认的算法是 nonzero
+void ctx.clip(${1:fillRule});
+// 这里就是将需要画的路径，当参数传到 clip 里
+void ctx.clip(${2:path}, ${3:fillRule});
+endsnippet
+
+# 两个重叠图层绘制
+snippet ctxco "两个重叠图层绘制"
+// 两个重叠图层绘制的效果
+// https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing/Example
+globalCompositeOperation = type
+endsnippet
+
+# 图像处理，创建
+snippet ctximagecreate "图像处理 createImageData"
+// width/height：用来设置当前 imgObj 的大小。
+// ImageData ctx.createImageData(width, height);
+// imagedata：获得一个已知 imgObj 的大小，注意这里不是复制，只是 copy imagedata 的 width/height。
+// ImageData ctx.createImageData(imagedata);
+// 用来手动创建一个空图片内容，默认的像素都是透明的黑色
+var ${1:imageData} = ctx.createImageData(${2:width}, ${3:height}, ${4:imagedata});
+endsnippet
+
+# 图像处理，取色
+snippet ctximageget "图像处理 getImageData"
+// x,y 用来指定截取像素的起始点
+// widht/height 用来指定截取像素点的宽/高
+var imageData = ctx.getImageData(${1:x}, ${2:y}, ${3:width}, ${4:height});
+endsnippet
+
+# 图像处理，着色
+snippet ctximageput "图像处理 putImageData"
+// dx/y 代表在 canvas 上绘制的绘制, margin
+// startX/Y 表示相对于图片其实的位置, padding共享宽高
+// width/height 表示获取的宽/高
+ctx.putImageData(imagedata, dx, dy);
+ctx.putImageData(imagedata, dx, dy, startX, startY, width, height);
+endsnippet
+
+# 生成URI
+snippet ctxuri "canvas 生成URI"
+// type: 用来设置导出图片类型，默认为：image/png。可选值有：image/jpeg，image/webp（chrome支持）。
+// encoderOptions[Number]：用来设置压缩比。只针对于 image/jpeg or webp 有用。通常取值为 0-1。默认值为 0.92。
+var uri = document.getElementById('${1:canvasId}').toDataURL(${2:type}, ${3:encoderOptions});
+endsnippet
+
+
+# CANVAS API E

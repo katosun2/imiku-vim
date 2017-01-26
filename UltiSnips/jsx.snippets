@@ -37,8 +37,10 @@ endsnippet
 snippet react "导入react头部"
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
+import { Router, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import reduxThunk from 'redux-thunk';
 endsnippet
 
 snippet reactdom "导入react-dom"
@@ -90,14 +92,14 @@ import { createStore, combineReducers } from 'redux';
 endsnippet
 
 snippet reducer "创建一个reducer"
-function ${1:'reducerName'}(state = 0, action) {
+const ${1:'reducerName'} = (state = 0, action) => {
 	switch (action.type) {
 		case '${2:INCREMENT}':
 			return ${3:state + 1};
 		default:
 			return state;
 	}
-}
+};
 $0
 endsnippet
 
@@ -130,7 +132,7 @@ snippet reactredux "导入react-redux"
 import { connect, Provider } from 'react-redux';
 endsnippet
 
-snippet prov "Provider"
+snippet "prov(ider)?" "Provider" r
 <Provider store={store} key="provider">
 ${1}
 </Provider>
@@ -282,4 +284,10 @@ endsnippet
 
 snippet wd ""
 writingDirection: ${1:auto|ltr|rtl}
+endsnippet
+
+snippet "se(\d+)" "{/*S */} {/*E */}" r
+{/*`!p snip.rv = '=' * int(match.group(1))`S ${1} */}
+${0}
+{/*`!p snip.rv = '=' * int(match.group(1))`E $1 */}
 endsnippet
