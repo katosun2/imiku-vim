@@ -2069,5 +2069,12 @@ snippet ctxuri "canvas 生成URI"
 var uri = document.getElementById('${1:canvasId}').toDataURL(${2:type}, ${3:encoderOptions});
 endsnippet
 
+snippet ctxpoint "画点"
+// 实际还是1px画圆
+ctx.beginPath();
+ctx.arc(10, 10, 1, 0, 2 * Math.PI, true);
+ctx.fillStyle = 'red';
+ctx.fill();
+endsnippet
 
 # CANVAS API E
