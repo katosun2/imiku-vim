@@ -171,6 +171,10 @@ snippet view "<View />"
 <View>${1}</View>$0
 endsnippet
 
+snippet input "<TextInput />"
+<TextInput keyboardType="${1:default|numeric|email-address}" password={${2:true}} defaultValue="${3}" />
+endsnippet
+
 snippet toucho "<TouchableOpacity />"
 <TouchableOpacity>${1}</TouchableOpacity>$0
 endsnippet
