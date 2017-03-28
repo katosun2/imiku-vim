@@ -2099,3 +2099,7 @@ snippet amd "amd defined"
 	return this || window;
 }());
 endsnippet
+
+snippet isIE "IE浏览器判断"
+var isIE = (!!window.ActiveXObject) || (!!navigator.userAgent.match(/Trident.*rv\:11\./));
+endsnippet
