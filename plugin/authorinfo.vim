@@ -120,21 +120,23 @@ function s:AddTitle()
     call setline('.',noTypeChar.preChar.'         Desc: ')
     let gotoLn = line('.')
     normal o
-    call setline('.',noTypeChar.preChar.'       Creator: '.g:vimrc_author)
+    call setline('.',noTypeChar.preChar.'      Creator: '.g:vimrc_author)
 	normal o
 	call setline('.',noTypeChar.preChar.'        Email: '.g:vimrc_email)
     "normal o
     "call setline('.',noTypeChar.preChar.'     HomePage: '.g:vimrc_homepage)
     normal o
     call setline('.',noTypeChar.preChar.'      Version: 1.0.0')
+	normal o
+	call setline('.',noTypeChar.preChar.'   LastChange: '.strftime("%Y-%m-%d %H:%M:%S"))
+	normal o
+	call setline('.',noTypeChar.preChar.'        $Rev::                     $:')
+	normal o
+	call setline('.',noTypeChar.preChar.'     $Author::                     $:')
+	normal o
+	call setline('.',noTypeChar.preChar.'       $Date:: '.strftime("%Y-%m-%d %H:%M:%S").'#$:')
     "normal o
-    "call setline('.',noTypeChar.preChar.'      $Author: '.g:vimrc_author.' $')
-    "normal o
-    "call setline('.',noTypeChar.preChar.'        $Date:  $')
-    normal o
-    call setline('.',noTypeChar.preChar.'   LastChange: '.strftime("%Y-%m-%d %H:%M:%S"))
-    normal o
-    call setline('.',noTypeChar.preChar.'      History:')
+    "call setline('.',noTypeChar.preChar.'      History:')
     normal o
     call setline('.',noTypeChar.'=============================================================================')
     let lastLine = line('.')
