@@ -45,8 +45,8 @@ snippet "unix(date)?(time)?" "vimscript unixtime" ri
 endsnippet
 
 # eg. 24px10 -> 2.4rem
-snippet "([0-9.]+)(px)([0-9.]+)" "py: convent px to rem, eg. 24px10 -> 2.4rem" rib
-`!p snip.rv = round(float(match.group(1)) / float(match.group(3)), 4)`${1}${2:rem}${0}
+snippet "(.*?)([0-9.]+)(px)([0-9.]+)" "py: convent px to rem, eg. 24px10 -> 2.4rem" rib
+`!p snip.rv = match.group(1)``!p snip.rv = round(float(match.group(2)) / float(match.group(4)), 4)`rem;${0}
 endsnippet
 
 snippet nodev "cmd: node -v" i
@@ -54,8 +54,8 @@ snippet nodev "cmd: node -v" i
 endsnippet
 
 # eg. 2rem10 -> 24px
-snippet "([0-9.]+)(rem|em)([0-9.]+)" "convent rem or em to px, eg. 2rem10 -> 24px" rb
-`!p snip.rv = round(float(match.group(1)) * float(match.group(3)), 4)`${1}px${0}
+snippet "(.*?)([0-9.]+)(rem|em)([0-9.]+)" "convent rem or em to px, eg. 2rem10 -> 24px" rb
+`!p snip.rv = match.group(1)``!p snip.rv = round(float(match.group(1)) * float(match.group(3)), 4)`px;${0}
 endsnippet
 
 # ${1} diff $1
