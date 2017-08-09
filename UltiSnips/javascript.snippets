@@ -698,6 +698,20 @@ snippet jstrim
 String.prototype.trim = function(){
 	return this.replace(/^(\s|\u3000)*|(\s|\u3000)*$/g,"");
 };
+
+endsnippet
+
+snippet jstrim2
+/* 清空左右空白 */
+String.prototype.trim = function() {
+	var str = this,
+		str = str.replace(/^\s\s*/, ''),
+		ws = /\s/,
+		i = str.length;
+
+	while (ws.test(str.charAt(--i)));
+	return str.slice(0, i + 1);
+};
 endsnippet
 
 snippet jsua
