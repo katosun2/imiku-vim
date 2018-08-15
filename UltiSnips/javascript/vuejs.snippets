@@ -46,3 +46,15 @@ snippet vimportc "Merge js"
 const ${1} = () => import(/* webpackChunkName: '${2:chunkName}' */ '${3:@/components/$1}');
 endsnippet
 #vuejs E
+
+snippet vgetter
+${1:getterName} (state, getters, rootState) {
+  ${2}
+}
+endsnippet
+
+snippet vaction
+${1:actionName} ({ state, commit, rootState }) {
+  ${2}
+}
+endsnippet
