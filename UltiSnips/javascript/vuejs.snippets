@@ -7,4 +7,42 @@ var ${1} = new Vue({
 	}
 });
 endsnippet
+
+snippet vuex
+import { mapState, mapGetters } from 'vuex';
+endsnippet
+
+snippet vstore
+export default {
+	state: {},
+	getters: {},
+	actions: {},
+	mutations: {}
+}
+endsnippet
+
+snippet vrouter
+export default [{
+  path: '/${2:$1}',
+  name: '${1}',
+  redirect: '',
+  component: () => import('@/components/${1}'),
+  children: [{
+    path: '/co_trade',
+    name: 'co_trade',
+    meta: {
+      title: 'co_trade'
+    },
+    component: () => import('@/components/co_coinTran')
+  }]
+}]
+endsnippet
+
+snippet vimports "single js"
+const ${1} = () => import('${2:@/components/$1}');
+endsnippet
+
+snippet vimportc "Merge js"
+const ${1} = () => import(/* webpackChunkName: '${2:chunkName}' */ '${3:@/components/$1}');
+endsnippet
 #vuejs E
