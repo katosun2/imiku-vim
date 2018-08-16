@@ -49,12 +49,24 @@ endsnippet
 
 snippet vgetter
 ${1:getterName} (state, getters, rootState) {
-  ${2}
+	${2}
 }
 endsnippet
 
 snippet vaction
 ${1:actionName} ({ state, commit, rootState }) {
-  ${2}
+	${2}
 }
+endsnippet
+
+snippet vinstall
+// http.js 创建 instance
+// 导出一个包含 install 函数的对象
+export default {
+	install (Vue) {
+		Vue.prototype.${1:$http} = ${2:instance};
+	}
+}
+// main.js
+Vue.use(http) // 在 Vue 组件中 this.$http 就可以发起请求了
 endsnippet
