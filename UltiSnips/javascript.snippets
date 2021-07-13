@@ -10,6 +10,18 @@ var json = eval('(' + jsonStr + ')');
 var json = JSON.parse(jsonStr);
 endsnippet
 
+
+snippet jsexport 
+// 导出
+if (typeof exports !== "undefined") {
+	if (typeof module !== "undefined" && module.exports) {
+		module.exports = ${1:JSNetworkUtils};
+	}
+} else {
+	window.$1 = $1;
+}
+endsnippet
+
 snippet jssortram
 ${1:tabList}.sort(function(){
 	return Math.random() > 0.5 ? -1 : 1;

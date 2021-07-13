@@ -1,0 +1,195 @@
+#fish redux templete
+
+snippet fishpagepage
+import 'package:fish_redux/fish_redux.dart';
+
+import 'effect.dart';
+import 'reducer.dart';
+import 'state.dart';
+import 'view.dart';
+
+class ${1:name}Page extends Page<$1State, Map<String, dynamic>> {
+	$1Page(): super(
+		initState: initState,
+		effect: buildEffect(),
+		reducer: buildReducer(),
+		view: buildView,
+		dependencies: Dependencies<$1State>(
+			adapter: null,
+			slots: <String, Dependent<$1State>>{
+		),
+		middleware: <Middleware<$1State>>[
+	]);
+}
+endsnippet
+
+snippet fishpageaction
+import 'package:fish_redux/fish_redux.dart';
+
+//TODO replace with your own action
+enum ${1:name}Action { action }
+
+class $1ActionCreator {
+	static Action onAction() {
+		return const Action($1Action.action);
+	}
+}
+endsnippet
+
+snippet fishpageeffect
+import 'package:fish_redux/fish_redux.dart';
+import 'action.dart';
+import 'state.dart';
+
+Effect<${1:name}State> buildEffect() {
+	return combineEffects(<Object, Effect<$1State>>{
+		$1Action.action: _onAction,
+	});
+}
+
+void _onAction(Action action, Context<$1State> ctx) { }
+endsnippet
+
+snippet fishpagereducer
+import 'package:fish_redux/fish_redux.dart';
+
+import 'action.dart';
+import 'state.dart';
+
+Reducer<${1:name}State> buildReducer() {
+	return asReducer(
+		<Object, Reducer<$1State>>{
+			$1Action.action: _onAction,
+		},
+	);
+}
+
+$1State _onAction($1State state, Action action) {
+	final $1State newState = state.clone();
+	return newState;
+}
+endsnippet
+
+snippet fishpagestate
+import 'package:fish_redux/fish_redux.dart';
+
+class ${1:name}State implements Cloneable<$1State> {
+	@override
+	$1State clone() {
+		return $1State();
+	}
+}
+
+$1State initState(Map<String, dynamic> args) {
+	return $1State();
+}
+endsnippet
+
+snippet fishpageview
+import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/material.dart';
+
+import 'action.dart';
+import 'state.dart';
+
+Widget buildView(${1:name}State state, Dispatch dispatch, ViewService viewService) {
+	return Container();
+}
+endsnippet
+
+snippet fishpagecomponent
+import 'package:fish_redux/fish_redux.dart';
+
+import 'effect.dart';
+import 'reducer.dart';
+import 'state.dart';
+import 'view.dart';
+
+class ${1:name}Component extends Component<$1State> {
+	$1Component()
+		: super(
+				effect: buildEffect(),
+				reducer: buildReducer(),
+				view: buildView,
+				dependencies: Dependencies<$1State>(
+					adapter: null,
+					slots: <String, Dependent<$1State>>{
+					}),);
+}
+endsnippet
+
+snippet fishadaptercustom
+import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/widgets.dart';
+
+import 'effect.dart';
+import 'reducer.dart';
+import 'state.dart';
+
+class ${1:name}Adapter extends Adapter<$1State> {
+	$1Adapter()
+		: super(
+			adapter: buildAdapter,
+			effect: buildEffect(),
+			reducer: buildReducer(),
+	);
+}
+
+ListAdapter buildAdapter(
+	$1State state, Dispatch dispatch, ViewService service) {
+		final List<IndexedWidgetBuilder> builders = Collections.compact(<IndexedWidgetBuilder>[]);
+		return ListAdapter(
+			(BuildContext buildContext, int index) => builders[index](buildContext, index),
+			builders.length,
+		);
+}
+endsnippet
+
+snippet fishadapterdynamic
+import 'package:fish_redux/fish_redux.dart';
+
+import 'reducer.dart';
+import 'state.dart';
+
+class ${1:name}Adapter extends DynamicFlowAdapter<$1State> {
+	$1Adapter()
+		: super(
+			pool: <String, Component<Object>>{ },
+			connector: _$1Connector(),
+			reducer: buildReducer(),
+	);
+}
+
+class _$1Connector extends ConnOp<$1State, List<ItemBean>> {
+	@override
+	List<ItemBean> get($1State state) {
+		return <ItemBean>[];
+	}
+
+	@override
+	void set($1State state, List<ItemBean> items) { }
+
+	@override
+	subReducer(reducer) {
+		// TODO: implement subReducer
+		return super.subReducer(reducer);
+	}
+}
+endsnippet
+
+snippet fishadapterstatic
+import 'package:fish_redux/fish_redux.dart';
+
+import 'effect.dart';
+import 'reducer.dart';
+import 'state.dart';
+
+class ${1:name}Adapter extends StaticFlowAdapter<$1State> {
+	$1Adapter()
+	: super(
+		slots: <Dependent<$1State>>[],
+		effect: buildEffect(),
+		reducer: buildReducer(),
+	);
+}
+endsnippet

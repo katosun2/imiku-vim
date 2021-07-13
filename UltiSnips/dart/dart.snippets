@@ -1,0 +1,88 @@
+snippet main
+void main() {
+	runApp(${1:createApp()});
+}
+endsnippet
+
+snippet importm
+import 'package:flutter/material.dart'${1: hide Page};
+endsnippet
+
+snippet importw
+import 'package:flutter/widgets.dart'${1: hide Action};
+endsnippet
+
+snippet importfish
+import 'package:fish_redux/fish_redux.dart';
+endsnippet
+
+snippet MaterialApp 
+import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/material.dart' hide Page; // 和fish_redux 重复
+
+Widget ${1:createApp}() {
+import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/material.dart' hide Page; // 和fish_redux 重复
+
+Widget createApp() {
+	final AbstractRoutes routes = PageRoutes(pages: <String, Page<Object, dynamic>>{});
+
+	return MaterialApp(
+			title: 'FishDemo',
+			theme: ThemeData(
+				primarySwatch: Colors.pink
+				),
+			onGenerateRoute: (RouteSettings settings) {
+			return MaterialPageRoute<Object>(builder: (BuildContext context){
+					return routes.buildPage(settings.name, settings.arguments);
+					});
+			}
+			);
+}
+endsnippet
+
+snippet edgei
+EdgeInsets.fromLTRB(${1:0}, ${2:0}, ${3:0}, ${4:0})
+endsnippet
+
+snippet scaffold
+	return Scaffold(
+		appBar: AppBar(
+			backgroundColor: Colors.pink,
+			title: Text('${1:页面标题}')
+		),
+		body: Container(
+			child: Center(
+				child: RaisedButton(
+					padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
+					color: Colors.green,
+					child: Text("进入", style: TextStyle(color: Colors.white)),
+					onPressed: () {
+							// TODO 点击事件
+					}
+				)
+			)
+		)
+	);
+endsnippet
+
+snippet action
+	static Action on${1:ActionName}() {
+		return const Action(${2:ClassAction}.${3:actionType});
+	}
+endsnippet
+
+snippet onaction
+void _on${1:ActionName}(Action action, Context<HomeState> ctx) {
+	$0
+}
+endsnippet
+
+snippet p
+print('${1:msg}');
+endsnippet
+
+snippet navn
+	Navigator.of(ctx.context).pushNamed('${1:grid_page}', arguments: ${2:null});
+endsnippet
+
