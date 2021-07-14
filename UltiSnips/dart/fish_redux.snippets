@@ -193,3 +193,20 @@ class ${1:name}Adapter extends StaticFlowAdapter<$1State> {
 	);
 }
 endsnippet
+
+snippet inst
+class ${1:NavigationService} {
+	factory $1.getInstance() => _getInstance();
+
+	$1._internal();
+
+	static $1 _instance;
+
+	static $1 _getInstance() {
+		if (_instance == null) {
+			_instance = new $1._internal();
+		}
+		return _instance;
+	}
+}
+endsnippet
