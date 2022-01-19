@@ -1,0 +1,12 @@
+snippet apixy "创建一个api"
+export let api${1} = (data) => {
+return apiRequest({
+	url: `${REQUESTDOMAIN}/proxymsg`,
+		reqDesction: '${2}',
+		resDesction: '${3}',
+		funcName: '$1',
+		serverName: 'breath.user.UserExtObj',
+		data
+	}, null, cusDomain);
+};
+endsnippet

@@ -39,12 +39,16 @@ void main() {
 }
 endsnippet
 
-snippet importm
+snippet importfm "flutter/material.dart"
 import 'package:flutter/material.dart'${1: hide Page};
 endsnippet
 
-snippet importw
+snippet importfw "flutter/widgets.dart"
 import 'package:flutter/widgets.dart'${1: hide Action};
+endsnippet
+
+snippet importff "flutter/foundation.dart"
+import 'package:flutter/foundation.dart';
 endsnippet
 
 snippet importfish
@@ -152,15 +156,55 @@ endsnippet
 
 snippet stateful
 class ${1:TapboxA} extends StatefulWidget {
-	$1({Key key}) : super(key: key);
+	String title = '';
+
+	$1({Key key, this.title}) : super(key: key);
 
 	@override
-	_$1State createState() => new _$1State();
+	_$1State createState() => new _$1State(title: this.title);
 }
 
 class _$1State extends State<$1> {
+	String title = '';
+	bool isShow = true;
+
+	$1({Key key, this.title}) : super(key: key);
+
+	// TODO
+	void toggleShow() {
+		setState((){
+			isShow = !isShow;
+		});
+	}
+
+	@override
+	void initState() {
+		super.initState();
+		print("执行$1State的init方法");
+	}
+
+	@override
+	void didChangeDependencies() {
+		// TODO: implement didChangeDependencies
+		super.didChangeDependencies();
+		print("执行$1State的didChangeDependencies方法");
+	}
+
+	@override
 	Widget build(BuildContext context) {
 		return Container();
+	}
+
+	@override
+	void didUpdateWidget($1Widget oldWidget) {
+		super.didUpdateWidget(oldWidget);
+		print("执行$1State的didUpdateWidget方法");
+	}
+
+	@override
+	void dispose() {
+		super.dispose();
+		print("执行MyCounterState的dispose方法");
 	}
 }
 endsnippet
@@ -211,4 +255,75 @@ Image(
 	image: ${1: AssetImage|NetworkImage}("${2:images/avatar.png}"),
 	width: ${3:100.0}
 )
+endsnippet
+
+snippet inst
+class ${1:NavigationService} {
+	factory $1.getInstance() => _getInstance();
+
+	$1._internal();
+
+	static $1 _instance;
+
+	static $1 _getInstance() {
+		if (_instance == null) {
+			_instance = new $1._internal();
+		}
+		return _instance;
+	}
+}
+endsnippet
+
+snippet showabout
+showAboutDialog( context: context,
+	applicationIcon: Image.asset(
+		'images/bird.png',
+		height: 100,
+		width: 100,
+		),
+	applicationName: '应用程序',
+	applicationVersion: '1.0.0',
+	applicationLegalese: 'copyright 老孟，一枚有态度的程序员',
+	children: <Widget>[
+	Container(
+		height: 30,
+		color: Colors.red,
+		),
+	Container(
+		height: 30,
+		color: Colors.blue,
+		),
+	Container(
+		height: 30,
+		color: Colors.green,
+		)
+	],
+);
+endsnippet
+
+snippet enum
+enum ${1:className} {
+	${2:apple},
+	${3:orange} 
+}
+endsnippet
+
+snippet mpr
+new MaterialPageRoute(
+	builder: (BuildContext context) {
+		return ${1:TestPage()};
+	}
+)
+endsnippet
+
+snippet npmpr
+Navigator.of(context).push(
+	new MaterialPageRoute(
+		builder: (BuildContext context) {
+			return ${1:TestPage()};
+		}
+	)
+).then((value) {
+	// 获取上一个页面的数据
+});
 endsnippet

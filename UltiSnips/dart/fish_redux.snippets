@@ -194,19 +194,23 @@ class ${1:name}Adapter extends StaticFlowAdapter<$1State> {
 }
 endsnippet
 
-snippet inst
-class ${1:NavigationService} {
-	factory $1.getInstance() => _getInstance();
+snippet fishpageconn
+import 'package:fish_redux/fish_redux.dart';
 
-	$1._internal();
+import 'state.dart';
 
-	static $1 _instance;
+// 继承ConnOp
+class ${1:Detail}Conn extends ConnOp<AppState, $1State> {
+	@override
+	$1State get(AppState state) {
+		// 重写get函数，返回一个$1State，也就是$1State的绑定
+		return AppState.${1/\w+\s*/\l$0/}State;
+	}
 
-	static $1 _getInstance() {
-		if (_instance == null) {
-			_instance = new $1._internal();
-		}
-		return _instance;
+	@override
+	void set(AppState state, $1State subState){
+		// 重写set函数，定义当$1State有新的状态时AppState应该如何修改
+		AppState.${1/\w+\s*/\l$0/}State=subState;
 	}
 }
 endsnippet

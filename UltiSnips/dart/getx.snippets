@@ -1,0 +1,44 @@
+snippet importget 
+import 'package:get/get.dart';
+endsnippet
+
+snippet gma
+return GetMaterialApp(
+	title: '${1: title}',
+	theme: ThemeData(
+		primarySwatch: Color.pink
+	),
+	routes: {
+	},
+);
+endsnippet
+
+snippet getto
+Get.to(${1:'new TestPage()'});
+endsnippet
+
+snippet getton
+Get.toNamed(${1:"'/tefun4'"});
+endsnippet
+
+snippet getoff
+Get.off(${1:'new TestPage()'});
+endsnippet
+
+snippet obs
+// 变量必须用final修饰
+final ${1:name} = ${2:''}.obs;
+
+void set${1/\w+\s*/\u$0/}(String title) {
+	// 必须使用 .value 修饰具体的值
+	this.$1.value = title;
+}
+endsnippet
+
+snippet getlog
+final ${1:ArticleHome}Logic logic = Get.put($1Logic());
+endsnippet
+
+snippet obx
+Obx(() => ${1: Container})
+endsnippet
