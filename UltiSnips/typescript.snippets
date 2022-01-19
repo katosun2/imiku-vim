@@ -1,0 +1,18 @@
+snippet arr "「类型 + 方括号」"
+${1:number}[${2}]
+endsnippet
+
+snippet arrt "数组泛型"
+Array<${1:number}>
+endsnippet
+
+snippet arri "接口表示数组"
+interface ${1:NumberArray} {
+	[index: number]: number;
+}
+let fibonacci: $1 = [1, 1, 2, 3, 5];
+endsnippet
+
+snippet vo "void 没有任何值返回"
+void
+endsnippet
