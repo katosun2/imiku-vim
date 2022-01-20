@@ -5,9 +5,31 @@ endsnippet
 snippet defc "vue3 组件文件"
 // defineComponent
 export default defineComponent({
+	name: '${1:App}',
+	components: {
+	},
+	setup() {
 		$0
+	}
 });
 endsnippet
+
+snippet defcc "vue2 组件文件"
+// src/components/HelloWorld.vue
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+	name: 'HelloWorld',
+	data () {
+		return {
+			msg: 'Welcome to Your Vue.js App'
+		};
+	}
+})
+</script>
+endsnippet
+
 
 snippet refdec "定义并声明ref参数"
 ref<${1:number}>();
