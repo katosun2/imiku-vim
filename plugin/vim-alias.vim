@@ -57,6 +57,9 @@ function! VimAliasFindFile(cmd) abort
   endwhile
 
   if l:foundAlias == 0
+    if filereadable(l:cfile)
+      return s:edit_file(l:cfile, a:cmd)
+    endif
     return s:print_error("(Error) VimAlias: Failed to find " . l:aliasJSON . ", try increasing the levels by increasing g:vim_alias_max_levels variable.")
   endif
 

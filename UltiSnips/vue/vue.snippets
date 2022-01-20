@@ -1,3 +1,7 @@
+snippet importapi "引入 vue api"
+import { defineComponent, PropType, ref, reactive, onMounted, onBeforeUnmount } from 'vue';
+endsnippet
+
 snippet defc "vue3 组件文件"
 // defineComponent
 export default defineComponent({
@@ -7,4 +11,8 @@ endsnippet
 
 snippet refdec "定义并声明ref参数"
 ref<${1:number}>();
+endsnippet
+
+snippet typedef "props type 定义"
+type: Object as PropType<${1:StatusItem}>,
 endsnippet

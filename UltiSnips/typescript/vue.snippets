@@ -1,8 +1,16 @@
-snippet decvue "声明 *.vue"
+snippet decvue3 "vue3声明 *.vue"
 /* eslint-disable */
 declare module '*.vue' {
 	import type {DefineComponent} from 'vue';
 	const component: DefineComponent<{}, {}, any>;
 	export default component;
+}
+endsnippet
+
+snippet decvue2 "vue2声明 *.vue"
+/* eslint-disable */
+declare module '*.vue' {
+	import Vue from 'vue';
+	export default Vue;
 }
 endsnippet
