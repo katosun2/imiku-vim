@@ -18,7 +18,7 @@ endif
 
 " A list of file extensions that the plugin will actively work on.
 if !exists("g:vim_alias_file_types")
-  let g:vim_alias_file_types = ["js", "jsx", "css", "coffee", "vue", "ts", "scss"]
+  let g:vim_alias_file_types = ["js", "jsx", "css", "coffee", "vue", "ts", "scss", "d.ts"]
 endif
 
 " Default resolution directories if 'resolve' key is not found in package.json.

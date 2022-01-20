@@ -13,6 +13,17 @@ interface ${1:NumberArray} {
 let fibonacci: $1 = [1, 1, 2, 3, 5];
 endsnippet
 
+snippet arrp "array axios promise"
+import { AxiosResponse } from 'axios';
+const jsons: Array<Promise<AxiosResponse<${1:any}>>> = [];
+endsnippet
+
 snippet vo "void 没有任何值返回"
 void
+endsnippet
+
+snippet intf "interface"
+${1:export} interface ${2:name} {
+	data: string;
+}
 endsnippet
