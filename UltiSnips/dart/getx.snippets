@@ -1,7 +1,3 @@
-snippet importget 
-import 'package:get/get.dart';
-endsnippet
-
 snippet gma
 return GetMaterialApp(
 	title: '${1: title}',
@@ -41,4 +37,20 @@ endsnippet
 
 snippet obx
 Obx(() => ${1: Container})
+endsnippet
+
+snippet getBuilder
+GetBuilder<${1:ArticleHome}Logic>(
+	builder: (${2:logic}) {
+		return ${3};
+	}
+),
+endsnippet
+
+snippet getPage
+GetPage(
+	name: ${1:articleList},
+	page: () => ${1/\w+\s*/\u$0/}Page(),
+	binding: ${1/\w+\s*/\u$0/}Binding()
+),
 endsnippet

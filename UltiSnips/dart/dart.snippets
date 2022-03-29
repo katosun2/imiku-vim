@@ -39,22 +39,6 @@ void main() {
 }
 endsnippet
 
-snippet importfm "flutter/material.dart"
-import 'package:flutter/material.dart'${1: hide Page};
-endsnippet
-
-snippet importfw "flutter/widgets.dart"
-import 'package:flutter/widgets.dart'${1: hide Action};
-endsnippet
-
-snippet importff "flutter/foundation.dart"
-import 'package:flutter/foundation.dart';
-endsnippet
-
-snippet importfish
-import 'package:fish_redux/fish_redux.dart';
-endsnippet
-
 snippet MaterialApp 
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Page; // 和fish_redux 重复
@@ -211,7 +195,7 @@ endsnippet
 
 snippet stateless
 class ${1:TapboxB} extends StatelessWidget {
-	$1({Key key}) : super(key: key);
+	const $1({Key key}) : super(key: key);
 
 	Widget build(BuildContext context) {
 		return Container();
@@ -247,13 +231,6 @@ new GridView.count(
 					)
 				);
 		})
-)
-endsnippet
-
-snippet img
-Image(
-	image: ${1: AssetImage|NetworkImage}("${2:images/avatar.png}"),
-	width: ${3:100.0}
 )
 endsnippet
 
@@ -326,4 +303,26 @@ Navigator.of(context).push(
 ).then((value) {
 	// 获取上一个页面的数据
 });
+endsnippet
+
+snippet statefuls
+class ${1:TapboxA} extends StatefulWidget {
+	const $1({Key? key}) : super(key: key);
+
+	@override
+	_$1State createState() => new _$1State();
+}
+
+class _$1State extends State<$1> {
+	@override
+	void initState() {
+		super.initState();
+		$0
+	}
+
+	@override
+	Widget build(BuildContext context) {
+		return Container();
+	}
+}
 endsnippet

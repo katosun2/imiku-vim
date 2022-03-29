@@ -1,0 +1,27 @@
+#flutter only
+
+snippet img "Image"
+Image(image: ${1:AssetImage("assets/images/logo.png")|NetworkImage("assets/images/logo.png")}, width: ${2: 100.0})
+endsnippet
+
+snippet imga "Image.asset"
+Image.asset(${1:"assets/images/logo.png"}, width: ${2: 100.0})
+endsnippet
+
+snippet imgn "network"
+Image.network(
+	${1:"assets/images/logo.png"},
+	width: ${3: 100.0},
+	errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+	return Image(
+			width: 96.0,
+			height: 144.0,
+			fit: BoxFit.fill,
+			image: NetworkImage(this.item['coverSmall']));
+	},
+)
+endsnippet
+
+snippet stoast "Scaffold toast"
+ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(${1:"My amazing message! O.o"})));
+endsnippet
